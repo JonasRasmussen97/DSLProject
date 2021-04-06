@@ -54,6 +54,11 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   
   public CharSequence generateController(final Controller controller) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("var ");
+    String _name = controller.getName();
+    _builder.append(_name);
+    _builder.append(" = {");
+    _builder.newLineIfNotEmpty();
     {
       EList<Endpoint> _endpoint = controller.getEndpoint();
       for(final Endpoint e : _endpoint) {
@@ -64,9 +69,9 @@ public class ProjectDSLGenerator extends AbstractGenerator {
               EList<Parameter> _parameters = b.getParameters();
               for(final Parameter p : _parameters) {
                 {
-                  String _name = p.getName();
-                  String _name_1 = e.getName();
-                  boolean _equals = Objects.equal(_name, _name_1);
+                  String _name_1 = p.getName();
+                  String _name_2 = e.getName();
+                  boolean _equals = Objects.equal(_name_1, _name_2);
                   if (_equals) {
                     {
                       EList<String> _type = p.getType();
@@ -78,32 +83,32 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                             case "C":
                               StringConcatenation _builder_1 = new StringConcatenation();
                               _builder_1.append("post");
-                              String _name_2 = p.getName();
-                              _builder_1.append(_name_2);
+                              String _name_3 = p.getName();
+                              _builder_1.append(_name_3);
                               _builder_1.append(": function(req, res) {},");
                               _switchResult = _builder_1;
                               break;
                             case "R":
                               StringConcatenation _builder_2 = new StringConcatenation();
                               _builder_2.append("get");
-                              String _name_3 = p.getName();
-                              _builder_2.append(_name_3);
+                              String _name_4 = p.getName();
+                              _builder_2.append(_name_4);
                               _builder_2.append(": function(req, res) {},");
                               _switchResult = _builder_2;
                               break;
                             case "U":
                               StringConcatenation _builder_3 = new StringConcatenation();
                               _builder_3.append("put");
-                              String _name_4 = p.getName();
-                              _builder_3.append(_name_4);
+                              String _name_5 = p.getName();
+                              _builder_3.append(_name_5);
                               _builder_3.append(": function(req, res) {},");
                               _switchResult = _builder_3;
                               break;
                             case "D":
                               StringConcatenation _builder_4 = new StringConcatenation();
                               _builder_4.append("delete");
-                              String _name_5 = p.getName();
-                              _builder_4.append(_name_5);
+                              String _name_6 = p.getName();
+                              _builder_4.append(_name_6);
                               _builder_4.append(": function(req, res) {},");
                               _switchResult = _builder_4;
                               break;
@@ -121,6 +126,12 @@ public class ProjectDSLGenerator extends AbstractGenerator {
         }
       }
     }
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("module.exports = ");
+    String _name_7 = controller.getName();
+    _builder.append(_name_7);
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   

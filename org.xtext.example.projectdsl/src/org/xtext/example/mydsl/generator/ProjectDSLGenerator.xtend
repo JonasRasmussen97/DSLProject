@@ -41,6 +41,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	}
 
 	def generateController(Controller controller) '''
+		var «controller.name» = {
 		«FOR e : controller.endpoint»
 			«FOR b:controller.base»
 				«FOR p:b.parameters» 
@@ -58,6 +59,8 @@ class ProjectDSLGenerator extends AbstractGenerator {
 				«ENDFOR»
 			«ENDFOR»
 		«ENDFOR»
+		}
+		module.exports = «controller.name»
 	'''
 
 	// Appends the entity data to the app.js file
