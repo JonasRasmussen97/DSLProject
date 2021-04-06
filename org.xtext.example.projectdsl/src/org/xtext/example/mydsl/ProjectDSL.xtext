@@ -17,7 +17,7 @@ Entity:
 
 // Example of syntax: controller Weather uses Entity1, Entity {make Weather}
 Controller: 
-	'controller' name=ID 'uses' base+= [Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)+ '}'
+	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)+ '}'
 ;
 
 // Are used for all the endpoints in controllers e.g., make 'Weather' 
@@ -26,7 +26,7 @@ Endpoint:
 ;
 
 Parameter: 
-	name=ID ':' type=Type ('redirect' base=Redirect)?
+	name=ID ':' type+=Type+ ('redirect' base=Redirect)?
 ; 
 
 // Redirect can either be a controller reference or a string. 
@@ -37,5 +37,5 @@ Redirect:
 
 // Indicates the different CRUD operations. 
 Type: 
-	'C' | 'R' | 'U' | 'D' | 'CR' | 'CRU' | 'CRUD' 
+	'C' | 'R' | 'U' | 'D' 
 ;
