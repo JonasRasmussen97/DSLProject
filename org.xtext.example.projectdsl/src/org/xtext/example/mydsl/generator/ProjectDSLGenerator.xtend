@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.xtext.example.mydsl.projectDSL.Entity
 import org.xtext.example.mydsl.projectDSL.Controller
-import org.xtext.example.mydsl.projectDSL.Parameter
 
 /**
  * Generates code from your model files on save.
@@ -24,41 +23,62 @@ class ProjectDSLGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val RestAPI modelInstance = resource.allContents.filter(RestAPI).next
-		val entity = modelInstance.declarations.filter(Entity)
-		generateApp(fsa, entity.get(0))
+		val entities = modelInstance.declarations.filter(Entity)
+		generateApp(fsa, entities)
 		// Generate each of the controller files
 		modelInstance.declarations.filter(Controller).forEach[generateControllers(fsa)]
-		// modelInstance.display
+	// modelInstance.display
 	}
-	
+
 	// Generates the app.js file
-	def generateApp(IFileSystemAccess2 access1, Entity entity) {
-		access1.generateFile('app.js', entity.generateEntity);
+	def generateApp(IFileSystemAccess2 access1, Iterable<Entity> entities) {
+		access1.generateFile('app.js', entities.generateEntity);
 	}
-	
+
 	// Generates the controller js files
-	def generateControllers(IFileSystemAccess2 access2) {
-		
+	def generateControllers(Controller controller, IFileSystemAccess2 access2) {
+		access2.generateFile(controller.name + '.js', controller.generateController)
 	}
-		
+
+	def generateController(Controller controller) '''
+		«FOR e : controller.endpoint»
+			«FOR b:controller.base»
+				«FOR p:b.parameters» 
+				««« Only create the functions in the controller js file that have "make" in the controller. *)		
+					«IF p.name == e.name»
+						«FOR t:p.type»
+							«switch t.toString {
+						case 'C': '''post«p.name»: function(req, res) {},'''
+						case 'R': '''get«p.name»: function(req, res) {},'''
+						case 'U': '''put«p.name»: function(req, res) {},'''
+						case 'D': '''delete«p.name»: function(req, res) {},'''
+					}»
+						«ENDFOR»
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+		«ENDFOR»
+	'''
+
 	// Appends the entity data to the app.js file
-	def generateEntity(Entity entity) '''
+	def generateEntity(Iterable<Entity> entities) '''
 		const express = require('express')
 		const app = express()
 		const port = 3000	
-		«FOR p:entity.parameters»
-		«FOR t:p.type»
-		«switch t.toString {
-			case 'C': '''app.post('/post«p.name»') { «p.name.toFirstLower»Controller.post«p.name» }'''
-			case 'R': '''app.read('/read«p.name»') {«p.name.toFirstLower»Controller.read«p.name» }'''
-			case 'U': '''app.put('/put«p.name»') { «p.name.toFirstLower»Controller.put«p.name» }'''
-			case 'D': '''app.delete('/delete«p.name»') { «p.name.toFirstLower»Controller.delete«p.name» }'''
-		}»
-		«ENDFOR»
+		«FOR e : entities»
+			«FOR p:e.parameters»
+				«FOR t:p.type»
+					«switch t.toString {
+							case 'C': '''app.post('/post«p.name»') { «p.name.toFirstLower»Controller.post«p.name»() }'''
+							case 'R': '''app.get('/get«p.name»') { «p.name.toFirstLower»Controller.get«p.name»() }'''
+							case 'U': '''app.put('/put«p.name»') { «p.name.toFirstLower»Controller.put«p.name»() }'''
+							case 'D': '''app.delete('/delete«p.name»') { «p.name.toFirstLower»Controller.delete«p.name»() }'''
+						}»
+				«ENDFOR»
+			«ENDFOR»
 		«ENDFOR»
 	'''
-	
-	
+
 	def display(EObject model) {
 		val res = new XMLResourceImpl
 		res.contents.add(EcoreUtil::copy(model))

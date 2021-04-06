@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import java.util.function.Consumer;
@@ -15,10 +16,10 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.projectDSL.Controller;
+import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
@@ -33,23 +34,97 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     final RestAPI modelInstance = Iterators.<RestAPI>filter(resource.getAllContents(), RestAPI.class).next();
-    final Iterable<Entity> entity = Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class);
-    this.generateApp(fsa, ((Entity[])Conversions.unwrapArray(entity, Entity.class))[0]);
+    final Iterable<Entity> entities = Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class);
+    this.generateApp(fsa, entities);
     final Consumer<Controller> _function = (Controller it) -> {
-      this.generateControllers(fsa);
+      this.generateControllers(it, fsa);
     };
     Iterables.<Controller>filter(modelInstance.getDeclarations(), Controller.class).forEach(_function);
   }
   
-  public void generateApp(final IFileSystemAccess2 access1, final Entity entity) {
-    access1.generateFile("app.js", this.generateEntity(entity));
+  public void generateApp(final IFileSystemAccess2 access1, final Iterable<Entity> entities) {
+    access1.generateFile("app.js", this.generateEntity(entities));
   }
   
-  public Object generateControllers(final IFileSystemAccess2 access2) {
-    return null;
+  public void generateControllers(final Controller controller, final IFileSystemAccess2 access2) {
+    String _name = controller.getName();
+    String _plus = (_name + ".js");
+    access2.generateFile(_plus, this.generateController(controller));
   }
   
-  public CharSequence generateEntity(final Entity entity) {
+  public CharSequence generateController(final Controller controller) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<Endpoint> _endpoint = controller.getEndpoint();
+      for(final Endpoint e : _endpoint) {
+        {
+          EList<Entity> _base = controller.getBase();
+          for(final Entity b : _base) {
+            {
+              EList<Parameter> _parameters = b.getParameters();
+              for(final Parameter p : _parameters) {
+                {
+                  String _name = p.getName();
+                  String _name_1 = e.getName();
+                  boolean _equals = Objects.equal(_name, _name_1);
+                  if (_equals) {
+                    {
+                      EList<String> _type = p.getType();
+                      for(final String t : _type) {
+                        CharSequence _switchResult = null;
+                        String _string = t.toString();
+                        if (_string != null) {
+                          switch (_string) {
+                            case "C":
+                              StringConcatenation _builder_1 = new StringConcatenation();
+                              _builder_1.append("post");
+                              String _name_2 = p.getName();
+                              _builder_1.append(_name_2);
+                              _builder_1.append(": function(req, res) {},");
+                              _switchResult = _builder_1;
+                              break;
+                            case "R":
+                              StringConcatenation _builder_2 = new StringConcatenation();
+                              _builder_2.append("get");
+                              String _name_3 = p.getName();
+                              _builder_2.append(_name_3);
+                              _builder_2.append(": function(req, res) {},");
+                              _switchResult = _builder_2;
+                              break;
+                            case "U":
+                              StringConcatenation _builder_3 = new StringConcatenation();
+                              _builder_3.append("put");
+                              String _name_4 = p.getName();
+                              _builder_3.append(_name_4);
+                              _builder_3.append(": function(req, res) {},");
+                              _switchResult = _builder_3;
+                              break;
+                            case "D":
+                              StringConcatenation _builder_4 = new StringConcatenation();
+                              _builder_4.append("delete");
+                              String _name_5 = p.getName();
+                              _builder_4.append(_name_5);
+                              _builder_4.append(": function(req, res) {},");
+                              _switchResult = _builder_4;
+                              break;
+                          }
+                        }
+                        _builder.append(_switchResult);
+                        _builder.newLineIfNotEmpty();
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence generateEntity(final Iterable<Entity> entities) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("const express = require(\'express\')");
     _builder.newLine();
@@ -58,75 +133,79 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     _builder.append("const port = 3000\t");
     _builder.newLine();
     {
-      EList<Parameter> _parameters = entity.getParameters();
-      for(final Parameter p : _parameters) {
+      for(final Entity e : entities) {
         {
-          EList<String> _type = p.getType();
-          for(final String t : _type) {
-            CharSequence _switchResult = null;
-            String _string = t.toString();
-            if (_string != null) {
-              switch (_string) {
-                case "C":
-                  StringConcatenation _builder_1 = new StringConcatenation();
-                  _builder_1.append("app.post(\'/post");
-                  String _name = p.getName();
-                  _builder_1.append(_name);
-                  _builder_1.append("\') { ");
-                  String _firstLower = StringExtensions.toFirstLower(p.getName());
-                  _builder_1.append(_firstLower);
-                  _builder_1.append("Controller.post");
-                  String _name_1 = p.getName();
-                  _builder_1.append(_name_1);
-                  _builder_1.append(" }");
-                  _switchResult = _builder_1;
-                  break;
-                case "R":
-                  StringConcatenation _builder_2 = new StringConcatenation();
-                  _builder_2.append("app.read(\'/read");
-                  String _name_2 = p.getName();
-                  _builder_2.append(_name_2);
-                  _builder_2.append("\') {");
-                  String _firstLower_1 = StringExtensions.toFirstLower(p.getName());
-                  _builder_2.append(_firstLower_1);
-                  _builder_2.append("Controller.read");
-                  String _name_3 = p.getName();
-                  _builder_2.append(_name_3);
-                  _builder_2.append(" }");
-                  _switchResult = _builder_2;
-                  break;
-                case "U":
-                  StringConcatenation _builder_3 = new StringConcatenation();
-                  _builder_3.append("app.put(\'/put");
-                  String _name_4 = p.getName();
-                  _builder_3.append(_name_4);
-                  _builder_3.append("\') { ");
-                  String _firstLower_2 = StringExtensions.toFirstLower(p.getName());
-                  _builder_3.append(_firstLower_2);
-                  _builder_3.append("Controller.put");
-                  String _name_5 = p.getName();
-                  _builder_3.append(_name_5);
-                  _builder_3.append(" }");
-                  _switchResult = _builder_3;
-                  break;
-                case "D":
-                  StringConcatenation _builder_4 = new StringConcatenation();
-                  _builder_4.append("app.delete(\'/delete");
-                  String _name_6 = p.getName();
-                  _builder_4.append(_name_6);
-                  _builder_4.append("\') { ");
-                  String _firstLower_3 = StringExtensions.toFirstLower(p.getName());
-                  _builder_4.append(_firstLower_3);
-                  _builder_4.append("Controller.delete");
-                  String _name_7 = p.getName();
-                  _builder_4.append(_name_7);
-                  _builder_4.append(" }");
-                  _switchResult = _builder_4;
-                  break;
+          EList<Parameter> _parameters = e.getParameters();
+          for(final Parameter p : _parameters) {
+            {
+              EList<String> _type = p.getType();
+              for(final String t : _type) {
+                CharSequence _switchResult = null;
+                String _string = t.toString();
+                if (_string != null) {
+                  switch (_string) {
+                    case "C":
+                      StringConcatenation _builder_1 = new StringConcatenation();
+                      _builder_1.append("app.post(\'/post");
+                      String _name = p.getName();
+                      _builder_1.append(_name);
+                      _builder_1.append("\') { ");
+                      String _firstLower = StringExtensions.toFirstLower(p.getName());
+                      _builder_1.append(_firstLower);
+                      _builder_1.append("Controller.post");
+                      String _name_1 = p.getName();
+                      _builder_1.append(_name_1);
+                      _builder_1.append("() }");
+                      _switchResult = _builder_1;
+                      break;
+                    case "R":
+                      StringConcatenation _builder_2 = new StringConcatenation();
+                      _builder_2.append("app.get(\'/get");
+                      String _name_2 = p.getName();
+                      _builder_2.append(_name_2);
+                      _builder_2.append("\') { ");
+                      String _firstLower_1 = StringExtensions.toFirstLower(p.getName());
+                      _builder_2.append(_firstLower_1);
+                      _builder_2.append("Controller.get");
+                      String _name_3 = p.getName();
+                      _builder_2.append(_name_3);
+                      _builder_2.append("() }");
+                      _switchResult = _builder_2;
+                      break;
+                    case "U":
+                      StringConcatenation _builder_3 = new StringConcatenation();
+                      _builder_3.append("app.put(\'/put");
+                      String _name_4 = p.getName();
+                      _builder_3.append(_name_4);
+                      _builder_3.append("\') { ");
+                      String _firstLower_2 = StringExtensions.toFirstLower(p.getName());
+                      _builder_3.append(_firstLower_2);
+                      _builder_3.append("Controller.put");
+                      String _name_5 = p.getName();
+                      _builder_3.append(_name_5);
+                      _builder_3.append("() }");
+                      _switchResult = _builder_3;
+                      break;
+                    case "D":
+                      StringConcatenation _builder_4 = new StringConcatenation();
+                      _builder_4.append("app.delete(\'/delete");
+                      String _name_6 = p.getName();
+                      _builder_4.append(_name_6);
+                      _builder_4.append("\') { ");
+                      String _firstLower_3 = StringExtensions.toFirstLower(p.getName());
+                      _builder_4.append(_firstLower_3);
+                      _builder_4.append("Controller.delete");
+                      String _name_7 = p.getName();
+                      _builder_4.append(_name_7);
+                      _builder_4.append("() }");
+                      _switchResult = _builder_4;
+                      break;
+                  }
+                }
+                _builder.append(_switchResult);
+                _builder.newLineIfNotEmpty();
               }
             }
-            _builder.append(_switchResult);
-            _builder.newLineIfNotEmpty();
           }
         }
       }
