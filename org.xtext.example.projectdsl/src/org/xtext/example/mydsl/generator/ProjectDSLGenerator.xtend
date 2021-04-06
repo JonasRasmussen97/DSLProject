@@ -48,11 +48,11 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		const port = 3000	
 		«FOR p:entity.parameters»
 		«FOR t:p.type»
-		«switch p.type.toString {
-			case '[C]': '''app.post('/post«p.name»') { «p.name.toFirstLower»Controller.post«p.name» }'''
-			case '[R]': '''app.read('/read«p.name»') {«p.name.toFirstLower»Controller.read«p.name» }'''
-			case '[U]': '''app.put('/put«p.name»') { «p.name.toFirstLower»Controller.put«p.name» }'''
-			case '[D]': '''app.delete('/delete«p.name»') { «p.name.toFirstLower»Controller.delete«p.name» }'''
+		«switch t.toString {
+			case 'C': '''app.post('/post«p.name»') { «p.name.toFirstLower»Controller.post«p.name» }'''
+			case 'R': '''app.read('/read«p.name»') {«p.name.toFirstLower»Controller.read«p.name» }'''
+			case 'U': '''app.put('/put«p.name»') { «p.name.toFirstLower»Controller.put«p.name» }'''
+			case 'D': '''app.delete('/delete«p.name»') { «p.name.toFirstLower»Controller.delete«p.name» }'''
 		}»
 		«ENDFOR»
 		«ENDFOR»

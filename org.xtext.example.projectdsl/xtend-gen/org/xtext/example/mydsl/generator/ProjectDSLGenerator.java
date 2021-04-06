@@ -64,10 +64,10 @@ public class ProjectDSLGenerator extends AbstractGenerator {
           EList<String> _type = p.getType();
           for(final String t : _type) {
             CharSequence _switchResult = null;
-            String _string = p.getType().toString();
+            String _string = t.toString();
             if (_string != null) {
               switch (_string) {
-                case "[C]":
+                case "C":
                   StringConcatenation _builder_1 = new StringConcatenation();
                   _builder_1.append("app.post(\'/post");
                   String _name = p.getName();
@@ -81,7 +81,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                   _builder_1.append(" }");
                   _switchResult = _builder_1;
                   break;
-                case "[R]":
+                case "R":
                   StringConcatenation _builder_2 = new StringConcatenation();
                   _builder_2.append("app.read(\'/read");
                   String _name_2 = p.getName();
@@ -95,7 +95,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                   _builder_2.append(" }");
                   _switchResult = _builder_2;
                   break;
-                case "[U]":
+                case "U":
                   StringConcatenation _builder_3 = new StringConcatenation();
                   _builder_3.append("app.put(\'/put");
                   String _name_4 = p.getName();
@@ -109,7 +109,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                   _builder_3.append(" }");
                   _switchResult = _builder_3;
                   break;
-                case "[D]":
+                case "D":
                   StringConcatenation _builder_4 = new StringConcatenation();
                   _builder_4.append("app.delete(\'/delete");
                   String _name_6 = p.getName();
