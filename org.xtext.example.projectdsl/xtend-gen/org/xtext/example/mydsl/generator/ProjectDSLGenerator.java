@@ -3,10 +3,23 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
+import java.util.function.Consumer;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.xtext.example.mydsl.projectDSL.Controller;
+import org.xtext.example.mydsl.projectDSL.Entity;
+import org.xtext.example.mydsl.projectDSL.RestAPI;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +30,91 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class ProjectDSLGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    final RestAPI modelInstance = Iterators.<RestAPI>filter(resource.getAllContents(), RestAPI.class).next();
+    final Iterable<Entity> entity = Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class);
+    this.generateApp(fsa, ((Entity[])Conversions.unwrapArray(entity, Entity.class))[0]);
+    final Consumer<Controller> _function = (Controller it) -> {
+      this.generateControllers(fsa);
+    };
+    Iterables.<Controller>filter(modelInstance.getDeclarations(), Controller.class).forEach(_function);
+  }
+  
+  public void generateApp(final IFileSystemAccess2 access1, final Entity entity) {
+    access1.generateFile("app.js", this.generateEntity(entity));
+  }
+  
+  public Object generateControllers(final IFileSystemAccess2 access2) {
+    return null;
+  }
+  
+  public CharSequence generateBase(final Entity entity) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("const express = require(\'express\')");
+    _builder.newLine();
+    _builder.append("const app = express()");
+    _builder.newLine();
+    _builder.append("const port = 3000");
+    return _builder;
+  }
+  
+  public CharSequence generateEntity(final Entity entity) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("const express = require(\'express\')");
+    _builder.newLine();
+    _builder.append("const app = express()");
+    _builder.newLine();
+    _builder.append("const port = 3000\t");
+    _builder.newLine();
+    System.out.println(entity.getParameters().get(0).getType());
+    _builder.append("\t");
+    _builder.newLineIfNotEmpty();
+    String _string = entity.getParameters().get(0).getType().toString();
+    boolean _equals = Objects.equal(_string, "[C]");
+    System.out.println(_equals);
+    _builder.append("\t");
+    _builder.newLineIfNotEmpty();
+    CharSequence _switchResult = null;
+    String _string_1 = entity.getParameters().get(0).getType().toString();
+    if (_string_1 != null) {
+      switch (_string_1) {
+        case "[C]":
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("app.post(/post");
+          String _name = entity.getParameters().get(0).getName();
+          _builder_1.append(_name);
+          _builder_1.append(")");
+          _switchResult = _builder_1;
+          break;
+        case "[R]":
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("\'app.read()");
+          _switchResult = _builder_2;
+          break;
+        case "[U]":
+          StringConcatenation _builder_3 = new StringConcatenation();
+          _builder_3.append("app.put()");
+          _switchResult = _builder_3;
+          break;
+        case "[D]":
+          StringConcatenation _builder_4 = new StringConcatenation();
+          _builder_4.append("app.delete()");
+          _switchResult = _builder_4;
+          break;
+      }
+    }
+    _builder.append(_switchResult);
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public void display(final EObject model) {
+    try {
+      final XMLResourceImpl res = new XMLResourceImpl();
+      res.getContents().add(EcoreUtil.<EObject>copy(model));
+      System.out.println("Dump of model:");
+      res.save(System.out, null);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

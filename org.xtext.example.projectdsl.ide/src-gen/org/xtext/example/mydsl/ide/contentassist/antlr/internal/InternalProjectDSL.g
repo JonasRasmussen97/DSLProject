@@ -319,24 +319,6 @@ rule__Type__Alternatives
 		'D'
 		{ after(grammarAccess.getTypeAccess().getDKeyword_3()); }
 	)
-	|
-	(
-		{ before(grammarAccess.getTypeAccess().getCRKeyword_4()); }
-		'CR'
-		{ after(grammarAccess.getTypeAccess().getCRKeyword_4()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getTypeAccess().getCRUKeyword_5()); }
-		'CRU'
-		{ after(grammarAccess.getTypeAccess().getCRUKeyword_5()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getTypeAccess().getCRUDKeyword_6()); }
-		'CRUD'
-		{ after(grammarAccess.getTypeAccess().getCRUDKeyword_6()); }
-	)
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -968,9 +950,16 @@ rule__Parameter__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getParameterAccess().getTypeAssignment_2()); }
-	(rule__Parameter__TypeAssignment_2)
-	{ after(grammarAccess.getParameterAccess().getTypeAssignment_2()); }
+	(
+		{ before(grammarAccess.getParameterAccess().getTypeAssignment_2()); }
+		(rule__Parameter__TypeAssignment_2)
+		{ after(grammarAccess.getParameterAccess().getTypeAssignment_2()); }
+	)
+	(
+		{ before(grammarAccess.getParameterAccess().getTypeAssignment_2()); }
+		(rule__Parameter__TypeAssignment_2)*
+		{ after(grammarAccess.getParameterAccess().getTypeAssignment_2()); }
+	)
 )
 ;
 finally {

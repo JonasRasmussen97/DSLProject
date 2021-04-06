@@ -7,6 +7,13 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.xtext.example.mydsl.projectDSL.RestAPI
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.xtext.example.mydsl.projectDSL.Entity
+import org.xtext.example.mydsl.projectDSL.Controller
+import org.xtext.example.mydsl.projectDSL.Parameter
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +23,51 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class ProjectDSLGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		val RestAPI modelInstance = resource.allContents.filter(RestAPI).next
+		val entity = modelInstance.declarations.filter(Entity)
+		generateApp(fsa, entity.get(0))
+		// Generate each of the controller files
+		modelInstance.declarations.filter(Controller).forEach[generateControllers(fsa)]
+		// modelInstance.display
+	}
+	
+	// Generates the app.js file
+	def generateApp(IFileSystemAccess2 access1, Entity entity) {
+		access1.generateFile('app.js', entity.generateEntity);
+	}
+	
+	// Generates the controller js files
+	def generateControllers(IFileSystemAccess2 access2) {
+		
+	}
+	
+	def generateBase(Entity entity) {
+		'''
+		const express = require('express')
+		const app = express()
+		const port = 3000'''
+	}
+	
+	// Appends the entity data to the app.js file
+	def generateEntity(Entity entity) '''
+		const express = require('express')
+		const app = express()
+		const port = 3000	
+		«System::out.println(entity.parameters.get(0).type)»	
+		«System::out.println(entity.parameters.get(0).type.toString == '[C]')»	
+		«switch entity.parameters.get(0).type.toString {
+			case '[C]': '''app.post(/post«entity.parameters.get(0).name»)'''
+			case "[R]": ''''app.read()'''
+			case "[U]": '''app.put()'''
+			case "[D]": '''app.delete()'''
+		}»
+	'''
+	
+	
+	def display(EObject model) {
+		val res = new XMLResourceImpl
+		res.contents.add(EcoreUtil::copy(model))
+		System::out.println("Dump of model:")
+		res.save(System.out, null)
 	}
 }

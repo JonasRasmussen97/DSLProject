@@ -253,7 +253,7 @@ public interface ProjectDSLPackage extends EPackage
   int PARAMETER__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -466,10 +466,10 @@ public interface ProjectDSLPackage extends EPackage
   EAttribute getParameter_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
+   * @return the meta object for the attribute list '<em>Type</em>'.
    * @see org.xtext.example.mydsl.projectDSL.Parameter#getType()
    * @see #getParameter()
    * @generated
@@ -667,7 +667,7 @@ public interface ProjectDSLPackage extends EPackage
     EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

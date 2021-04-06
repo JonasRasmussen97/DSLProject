@@ -3,6 +3,8 @@
  */
 package org.xtext.example.mydsl.projectDSL;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -48,26 +50,16 @@ public interface Parameter extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Type</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' attribute.
-   * @see #setType(String)
+   * @return the value of the '<em>Type</em>' attribute list.
    * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Type()
-   * @model
+   * @model unique="false"
    * @generated
    */
-  String getType();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' attribute.
-   * @see #getType()
-   * @generated
-   */
-  void setType(String value);
+  EList<String> getType();
 
   /**
    * Returns the value of the '<em><b>Base</b></em>' containment reference.

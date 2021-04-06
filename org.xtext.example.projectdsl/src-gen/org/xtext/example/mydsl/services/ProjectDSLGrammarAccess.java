@@ -227,10 +227,10 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cBaseRedirectParserRuleCall_3_1_0 = (RuleCall)cBaseAssignment_3_1.eContents().get(0);
 		
 		//Parameter:
-		//	name=ID ':' type=Type ('redirect' base=Redirect)?;
+		//	name=ID ':' type+=Type+ ('redirect' base=Redirect)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' type=Type ('redirect' base=Redirect)?
+		//name=ID ':' type+=Type+ ('redirect' base=Redirect)?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -242,7 +242,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 		
-		//type=Type
+		//type+=Type+
 		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
 		
 		//Type
@@ -299,16 +299,13 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cRKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cUKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		private final Keyword cDKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cCRKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cCRUKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		private final Keyword cCRUDKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		
 		//// Indicates the different CRUD operations. 
 		//Type:
-		//	'C' | 'R' | 'U' | 'D' | 'CR' | 'CRU' | 'CRUD';
+		//	'C' | 'R' | 'U' | 'D';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'C' | 'R' | 'U' | 'D' | 'CR' | 'CRU' | 'CRUD'
+		//'C' | 'R' | 'U' | 'D'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'C'
@@ -322,15 +319,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//'D'
 		public Keyword getDKeyword_3() { return cDKeyword_3; }
-		
-		//'CR'
-		public Keyword getCRKeyword_4() { return cCRKeyword_4; }
-		
-		//'CRU'
-		public Keyword getCRUKeyword_5() { return cCRUKeyword_5; }
-		
-		//'CRUD'
-		public Keyword getCRUDKeyword_6() { return cCRUDKeyword_6; }
 	}
 	
 	
@@ -443,7 +431,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Parameter:
-	//	name=ID ':' type=Type ('redirect' base=Redirect)?;
+	//	name=ID ':' type+=Type+ ('redirect' base=Redirect)?;
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -465,7 +453,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//// Indicates the different CRUD operations. 
 	//Type:
-	//	'C' | 'R' | 'U' | 'D' | 'CR' | 'CRU' | 'CRUD';
+	//	'C' | 'R' | 'U' | 'D';
 	public TypeElements getTypeAccess() {
 		return pType;
 	}

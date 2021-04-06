@@ -417,7 +417,7 @@ ruleParameter returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getParameterRule());
 					}
-					set(
+					add(
 						$current,
 						"type",
 						lv_type_2_0,
@@ -425,7 +425,7 @@ ruleParameter returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
+		)+
 		(
 			otherlv_3='redirect'
 			{
@@ -543,24 +543,6 @@ ruleType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 		{
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getTypeAccess().getDKeyword_3());
-		}
-		    |
-		kw='CR'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getTypeAccess().getCRKeyword_4());
-		}
-		    |
-		kw='CRU'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getTypeAccess().getCRUKeyword_5());
-		}
-		    |
-		kw='CRUD'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getTypeAccess().getCRUDKeyword_6());
 		}
 	)
 ;

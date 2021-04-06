@@ -3,14 +3,20 @@
  */
 package org.xtext.example.mydsl.projectDSL.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
@@ -54,24 +60,14 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected String type = TYPE_EDEFAULT;
+  protected EList<String> type;
 
   /**
    * The cached value of the '{@link #getBase() <em>Base</em>}' containment reference.
@@ -135,23 +131,13 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public String getType()
+  public EList<String> getType()
   {
+    if (type == null)
+    {
+      type = new EDataTypeEList<String>(String.class, this, ProjectDSLPackage.PARAMETER__TYPE);
+    }
     return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setType(String newType)
-  {
-    String oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__TYPE, oldType, type));
   }
 
   /**
@@ -245,6 +231,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -254,7 +241,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         setName((String)newValue);
         return;
       case ProjectDSLPackage.PARAMETER__TYPE:
-        setType((String)newValue);
+        getType().clear();
+        getType().addAll((Collection<? extends String>)newValue);
         return;
       case ProjectDSLPackage.PARAMETER__BASE:
         setBase((Redirect)newValue);
@@ -277,7 +265,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         setName(NAME_EDEFAULT);
         return;
       case ProjectDSLPackage.PARAMETER__TYPE:
-        setType(TYPE_EDEFAULT);
+        getType().clear();
         return;
       case ProjectDSLPackage.PARAMETER__BASE:
         setBase((Redirect)null);
@@ -299,7 +287,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case ProjectDSLPackage.PARAMETER__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        return type != null && !type.isEmpty();
       case ProjectDSLPackage.PARAMETER__BASE:
         return base != null;
     }
