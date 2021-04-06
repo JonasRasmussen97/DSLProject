@@ -40,27 +40,22 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	def generateControllers(IFileSystemAccess2 access2) {
 		
 	}
-	
-	def generateBase(Entity entity) {
-		'''
-		const express = require('express')
-		const app = express()
-		const port = 3000'''
-	}
-	
+		
 	// Appends the entity data to the app.js file
 	def generateEntity(Entity entity) '''
 		const express = require('express')
 		const app = express()
 		const port = 3000	
-		«System::out.println(entity.parameters.get(0).type)»	
-		«System::out.println(entity.parameters.get(0).type.toString == '[C]')»	
-		«switch entity.parameters.get(0).type.toString {
-			case '[C]': '''app.post(/post«entity.parameters.get(0).name»)'''
-			case "[R]": ''''app.read()'''
-			case "[U]": '''app.put()'''
-			case "[D]": '''app.delete()'''
+		«FOR p:entity.parameters»
+		«FOR t:p.type»
+		«switch p.type.toString {
+			case '[C]': '''app.post('/post«p.name»') { «p.name.toFirstLower»Controller.post«p.name» }'''
+			case '[R]': '''app.read('/read«p.name»') {«p.name.toFirstLower»Controller.read«p.name» }'''
+			case '[U]': '''app.put('/put«p.name»') { «p.name.toFirstLower»Controller.put«p.name» }'''
+			case '[D]': '''app.delete('/delete«p.name»') { «p.name.toFirstLower»Controller.delete«p.name» }'''
 		}»
+		«ENDFOR»
+		«ENDFOR»
 	'''
 	
 	
