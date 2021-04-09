@@ -267,9 +267,9 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EAttribute getEndpoint_Name()
+  public EReference getEndpoint_Endpoint()
   {
-    return (EAttribute)endpointEClass.getEStructuralFeatures().get(0);
+    return (EReference)endpointEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -395,7 +395,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     createEReference(controllerEClass, CONTROLLER__ENDPOINT);
 
     endpointEClass = createEClass(ENDPOINT);
-    createEAttribute(endpointEClass, ENDPOINT__NAME);
+    createEReference(endpointEClass, ENDPOINT__ENDPOINT);
 
     parameterEClass = createEClass(PARAMETER);
     createEAttribute(parameterEClass, PARAMETER__NAME);
@@ -455,7 +455,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     initEReference(getController_Endpoint(), this.getEndpoint(), null, "endpoint", null, 0, -1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(endpointEClass, Endpoint.class, "Endpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEndpoint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEndpoint_Endpoint(), this.getParameter(), null, "endpoint", null, 0, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

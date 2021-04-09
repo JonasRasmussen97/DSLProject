@@ -216,13 +216,13 @@ public interface ProjectDSLPackage extends EPackage
   int ENDPOINT = 4;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Endpoint</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENDPOINT__NAME = 0;
+  int ENDPOINT__ENDPOINT = 0;
 
   /**
    * The number of structural features of the '<em>Endpoint</em>' class.
@@ -434,15 +434,15 @@ public interface ProjectDSLPackage extends EPackage
   EClass getEndpoint();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Endpoint#getName <em>Name</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Endpoint#getEndpoint <em>Endpoint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Endpoint#getName()
+   * @return the meta object for the reference '<em>Endpoint</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Endpoint#getEndpoint()
    * @see #getEndpoint()
    * @generated
    */
-  EAttribute getEndpoint_Name();
+  EReference getEndpoint_Endpoint();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Parameter <em>Parameter</em>}'.
@@ -641,12 +641,12 @@ public interface ProjectDSLPackage extends EPackage
     EClass ENDPOINT = eINSTANCE.getEndpoint();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Endpoint</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ENDPOINT__NAME = eINSTANCE.getEndpoint_Name();
+    EReference ENDPOINT__ENDPOINT = eINSTANCE.getEndpoint_Endpoint();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl <em>Parameter</em>}' class.

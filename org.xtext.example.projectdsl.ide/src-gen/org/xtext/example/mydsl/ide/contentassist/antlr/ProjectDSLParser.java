@@ -49,7 +49,7 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getControllerAccess().getBaseAssignment_3(), "rule__Controller__BaseAssignment_3");
 			builder.put(grammarAccess.getControllerAccess().getBaseAssignment_4_1(), "rule__Controller__BaseAssignment_4_1");
 			builder.put(grammarAccess.getControllerAccess().getEndpointAssignment_6_1(), "rule__Controller__EndpointAssignment_6_1");
-			builder.put(grammarAccess.getEndpointAccess().getNameAssignment(), "rule__Endpoint__NameAssignment");
+			builder.put(grammarAccess.getEndpointAccess().getEndpointAssignment(), "rule__Endpoint__EndpointAssignment");
 			builder.put(grammarAccess.getParameterAccess().getNameAssignment_0(), "rule__Parameter__NameAssignment_0");
 			builder.put(grammarAccess.getParameterAccess().getTypeAssignment_2(), "rule__Parameter__TypeAssignment_2");
 			builder.put(grammarAccess.getParameterAccess().getBaseAssignment_3_1(), "rule__Parameter__BaseAssignment_3_1");

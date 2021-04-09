@@ -46,7 +46,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 			«FOR b:controller.base»
 				«FOR p:b.parameters» 
 				««« Only create the functions in the controller js file that have "make" in the controller. *)		
-					«IF p.name == e.name»
+					«IF p.name == e.endpoint»
 						«FOR t:p.type»
 							«switch t.toString {
 						case 'C': '''post«p.name»: function(req, res) {},'''

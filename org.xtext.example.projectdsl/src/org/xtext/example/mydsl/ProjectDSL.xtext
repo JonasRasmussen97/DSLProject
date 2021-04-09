@@ -22,7 +22,7 @@ Controller:
 
 // Are used for all the endpoints in controllers e.g., make 'Weather' 
 Endpoint:
-	name=ID
+	endpoint=[Parameter]
 ;
 
 Parameter: 

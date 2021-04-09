@@ -6,11 +6,13 @@ package org.xtext.example.mydsl.projectDSL.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.projectDSL.Endpoint;
+import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 
 /**
@@ -21,7 +23,7 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.EndpointImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.EndpointImpl#getEndpoint <em>Endpoint</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +31,14 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoint
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getEndpoint() <em>Endpoint</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getEndpoint()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected Parameter endpoint;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,9 +67,29 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
    * @generated
    */
   @Override
-  public String getName()
+  public Parameter getEndpoint()
   {
-    return name;
+    if (endpoint != null && endpoint.eIsProxy())
+    {
+      InternalEObject oldEndpoint = (InternalEObject)endpoint;
+      endpoint = (Parameter)eResolveProxy(oldEndpoint);
+      if (endpoint != oldEndpoint)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectDSLPackage.ENDPOINT__ENDPOINT, oldEndpoint, endpoint));
+      }
+    }
+    return endpoint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Parameter basicGetEndpoint()
+  {
+    return endpoint;
   }
 
   /**
@@ -86,12 +98,12 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setEndpoint(Parameter newEndpoint)
   {
-    String oldName = name;
-    name = newName;
+    Parameter oldEndpoint = endpoint;
+    endpoint = newEndpoint;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.ENDPOINT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.ENDPOINT__ENDPOINT, oldEndpoint, endpoint));
   }
 
   /**
@@ -104,8 +116,9 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.ENDPOINT__NAME:
-        return getName();
+      case ProjectDSLPackage.ENDPOINT__ENDPOINT:
+        if (resolve) return getEndpoint();
+        return basicGetEndpoint();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +133,8 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.ENDPOINT__NAME:
-        setName((String)newValue);
+      case ProjectDSLPackage.ENDPOINT__ENDPOINT:
+        setEndpoint((Parameter)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +150,8 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.ENDPOINT__NAME:
-        setName(NAME_EDEFAULT);
+      case ProjectDSLPackage.ENDPOINT__ENDPOINT:
+        setEndpoint((Parameter)null);
         return;
     }
     super.eUnset(featureID);
@@ -154,27 +167,10 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.ENDPOINT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ProjectDSLPackage.ENDPOINT__ENDPOINT:
+        return endpoint != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //EndpointImpl

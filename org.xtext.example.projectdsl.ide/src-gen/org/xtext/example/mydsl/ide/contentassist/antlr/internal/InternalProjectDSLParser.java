@@ -421,31 +421,31 @@ public class InternalProjectDSLParser extends AbstractInternalContentAssistParse
 
 
     // $ANTLR start "ruleEndpoint"
-    // InternalProjectDSL.g:162:1: ruleEndpoint : ( ( rule__Endpoint__NameAssignment ) ) ;
+    // InternalProjectDSL.g:162:1: ruleEndpoint : ( ( rule__Endpoint__EndpointAssignment ) ) ;
     public final void ruleEndpoint() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalProjectDSL.g:166:2: ( ( ( rule__Endpoint__NameAssignment ) ) )
-            // InternalProjectDSL.g:167:2: ( ( rule__Endpoint__NameAssignment ) )
+            // InternalProjectDSL.g:166:2: ( ( ( rule__Endpoint__EndpointAssignment ) ) )
+            // InternalProjectDSL.g:167:2: ( ( rule__Endpoint__EndpointAssignment ) )
             {
-            // InternalProjectDSL.g:167:2: ( ( rule__Endpoint__NameAssignment ) )
-            // InternalProjectDSL.g:168:3: ( rule__Endpoint__NameAssignment )
+            // InternalProjectDSL.g:167:2: ( ( rule__Endpoint__EndpointAssignment ) )
+            // InternalProjectDSL.g:168:3: ( rule__Endpoint__EndpointAssignment )
             {
-             before(grammarAccess.getEndpointAccess().getNameAssignment()); 
-            // InternalProjectDSL.g:169:3: ( rule__Endpoint__NameAssignment )
-            // InternalProjectDSL.g:169:4: rule__Endpoint__NameAssignment
+             before(grammarAccess.getEndpointAccess().getEndpointAssignment()); 
+            // InternalProjectDSL.g:169:3: ( rule__Endpoint__EndpointAssignment )
+            // InternalProjectDSL.g:169:4: rule__Endpoint__EndpointAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__Endpoint__NameAssignment();
+            rule__Endpoint__EndpointAssignment();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getEndpointAccess().getNameAssignment()); 
+             after(grammarAccess.getEndpointAccess().getEndpointAssignment()); 
 
             }
 
@@ -3538,22 +3538,30 @@ public class InternalProjectDSLParser extends AbstractInternalContentAssistParse
     // $ANTLR end "rule__Controller__EndpointAssignment_6_1"
 
 
-    // $ANTLR start "rule__Endpoint__NameAssignment"
-    // InternalProjectDSL.g:1178:1: rule__Endpoint__NameAssignment : ( RULE_ID ) ;
-    public final void rule__Endpoint__NameAssignment() throws RecognitionException {
+    // $ANTLR start "rule__Endpoint__EndpointAssignment"
+    // InternalProjectDSL.g:1178:1: rule__Endpoint__EndpointAssignment : ( ( RULE_ID ) ) ;
+    public final void rule__Endpoint__EndpointAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalProjectDSL.g:1182:1: ( ( RULE_ID ) )
-            // InternalProjectDSL.g:1183:2: ( RULE_ID )
+            // InternalProjectDSL.g:1182:1: ( ( ( RULE_ID ) ) )
+            // InternalProjectDSL.g:1183:2: ( ( RULE_ID ) )
             {
-            // InternalProjectDSL.g:1183:2: ( RULE_ID )
-            // InternalProjectDSL.g:1184:3: RULE_ID
+            // InternalProjectDSL.g:1183:2: ( ( RULE_ID ) )
+            // InternalProjectDSL.g:1184:3: ( RULE_ID )
             {
-             before(grammarAccess.getEndpointAccess().getNameIDTerminalRuleCall_0()); 
+             before(grammarAccess.getEndpointAccess().getEndpointParameterCrossReference_0()); 
+            // InternalProjectDSL.g:1185:3: ( RULE_ID )
+            // InternalProjectDSL.g:1186:4: RULE_ID
+            {
+             before(grammarAccess.getEndpointAccess().getEndpointParameterIDTerminalRuleCall_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getEndpointAccess().getNameIDTerminalRuleCall_0()); 
+             after(grammarAccess.getEndpointAccess().getEndpointParameterIDTerminalRuleCall_0_1()); 
+
+            }
+
+             after(grammarAccess.getEndpointAccess().getEndpointParameterCrossReference_0()); 
 
             }
 
@@ -3572,21 +3580,21 @@ public class InternalProjectDSLParser extends AbstractInternalContentAssistParse
         }
         return ;
     }
-    // $ANTLR end "rule__Endpoint__NameAssignment"
+    // $ANTLR end "rule__Endpoint__EndpointAssignment"
 
 
     // $ANTLR start "rule__Parameter__NameAssignment_0"
-    // InternalProjectDSL.g:1193:1: rule__Parameter__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalProjectDSL.g:1197:1: rule__Parameter__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Parameter__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalProjectDSL.g:1197:1: ( ( RULE_ID ) )
-            // InternalProjectDSL.g:1198:2: ( RULE_ID )
+            // InternalProjectDSL.g:1201:1: ( ( RULE_ID ) )
+            // InternalProjectDSL.g:1202:2: ( RULE_ID )
             {
-            // InternalProjectDSL.g:1198:2: ( RULE_ID )
-            // InternalProjectDSL.g:1199:3: RULE_ID
+            // InternalProjectDSL.g:1202:2: ( RULE_ID )
+            // InternalProjectDSL.g:1203:3: RULE_ID
             {
              before(grammarAccess.getParameterAccess().getNameIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -3613,17 +3621,17 @@ public class InternalProjectDSLParser extends AbstractInternalContentAssistParse
 
 
     // $ANTLR start "rule__Parameter__TypeAssignment_2"
-    // InternalProjectDSL.g:1208:1: rule__Parameter__TypeAssignment_2 : ( ruleType ) ;
+    // InternalProjectDSL.g:1212:1: rule__Parameter__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__Parameter__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalProjectDSL.g:1212:1: ( ( ruleType ) )
-            // InternalProjectDSL.g:1213:2: ( ruleType )
+            // InternalProjectDSL.g:1216:1: ( ( ruleType ) )
+            // InternalProjectDSL.g:1217:2: ( ruleType )
             {
-            // InternalProjectDSL.g:1213:2: ( ruleType )
-            // InternalProjectDSL.g:1214:3: ruleType
+            // InternalProjectDSL.g:1217:2: ( ruleType )
+            // InternalProjectDSL.g:1218:3: ruleType
             {
              before(grammarAccess.getParameterAccess().getTypeTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -3654,17 +3662,17 @@ public class InternalProjectDSLParser extends AbstractInternalContentAssistParse
 
 
     // $ANTLR start "rule__Parameter__BaseAssignment_3_1"
-    // InternalProjectDSL.g:1223:1: rule__Parameter__BaseAssignment_3_1 : ( ruleRedirect ) ;
+    // InternalProjectDSL.g:1227:1: rule__Parameter__BaseAssignment_3_1 : ( ruleRedirect ) ;
     public final void rule__Parameter__BaseAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalProjectDSL.g:1227:1: ( ( ruleRedirect ) )
-            // InternalProjectDSL.g:1228:2: ( ruleRedirect )
+            // InternalProjectDSL.g:1231:1: ( ( ruleRedirect ) )
+            // InternalProjectDSL.g:1232:2: ( ruleRedirect )
             {
-            // InternalProjectDSL.g:1228:2: ( ruleRedirect )
-            // InternalProjectDSL.g:1229:3: ruleRedirect
+            // InternalProjectDSL.g:1232:2: ( ruleRedirect )
+            // InternalProjectDSL.g:1233:3: ruleRedirect
             {
              before(grammarAccess.getParameterAccess().getBaseRedirectParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -3695,21 +3703,21 @@ public class InternalProjectDSLParser extends AbstractInternalContentAssistParse
 
 
     // $ANTLR start "rule__Redirect__NameAssignment_0"
-    // InternalProjectDSL.g:1238:1: rule__Redirect__NameAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalProjectDSL.g:1242:1: rule__Redirect__NameAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__Redirect__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalProjectDSL.g:1242:1: ( ( ( RULE_ID ) ) )
-            // InternalProjectDSL.g:1243:2: ( ( RULE_ID ) )
+            // InternalProjectDSL.g:1246:1: ( ( ( RULE_ID ) ) )
+            // InternalProjectDSL.g:1247:2: ( ( RULE_ID ) )
             {
-            // InternalProjectDSL.g:1243:2: ( ( RULE_ID ) )
-            // InternalProjectDSL.g:1244:3: ( RULE_ID )
+            // InternalProjectDSL.g:1247:2: ( ( RULE_ID ) )
+            // InternalProjectDSL.g:1248:3: ( RULE_ID )
             {
              before(grammarAccess.getRedirectAccess().getNameControllerCrossReference_0_0()); 
-            // InternalProjectDSL.g:1245:3: ( RULE_ID )
-            // InternalProjectDSL.g:1246:4: RULE_ID
+            // InternalProjectDSL.g:1249:3: ( RULE_ID )
+            // InternalProjectDSL.g:1250:4: RULE_ID
             {
              before(grammarAccess.getRedirectAccess().getNameControllerIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -3740,17 +3748,17 @@ public class InternalProjectDSLParser extends AbstractInternalContentAssistParse
 
 
     // $ANTLR start "rule__Redirect__UrlAssignment_1"
-    // InternalProjectDSL.g:1257:1: rule__Redirect__UrlAssignment_1 : ( RULE_STRING ) ;
+    // InternalProjectDSL.g:1261:1: rule__Redirect__UrlAssignment_1 : ( RULE_STRING ) ;
     public final void rule__Redirect__UrlAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalProjectDSL.g:1261:1: ( ( RULE_STRING ) )
-            // InternalProjectDSL.g:1262:2: ( RULE_STRING )
+            // InternalProjectDSL.g:1265:1: ( ( RULE_STRING ) )
+            // InternalProjectDSL.g:1266:2: ( RULE_STRING )
             {
-            // InternalProjectDSL.g:1262:2: ( RULE_STRING )
-            // InternalProjectDSL.g:1263:3: RULE_STRING
+            // InternalProjectDSL.g:1266:2: ( RULE_STRING )
+            // InternalProjectDSL.g:1267:3: RULE_STRING
             {
              before(grammarAccess.getRedirectAccess().getUrlSTRINGTerminalRuleCall_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 

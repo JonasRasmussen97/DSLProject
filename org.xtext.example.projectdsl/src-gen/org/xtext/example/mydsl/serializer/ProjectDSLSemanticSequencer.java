@@ -77,15 +77,15 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Endpoint returns Endpoint
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     endpoint=[Parameter|ID]
 	 */
 	protected void sequence_Endpoint(ISerializationContext context, Endpoint semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.ENDPOINT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.ENDPOINT__NAME));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.ENDPOINT__ENDPOINT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.ENDPOINT__ENDPOINT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEndpointAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getEndpointAccess().getEndpointParameterIDTerminalRuleCall_0_1(), semanticObject.eGet(ProjectDSLPackage.Literals.ENDPOINT__ENDPOINT, false));
 		feeder.finish();
 	}
 	

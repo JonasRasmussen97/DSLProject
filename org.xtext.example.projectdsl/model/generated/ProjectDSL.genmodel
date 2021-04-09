@@ -21,7 +21,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Controller/endpoint"/>
     </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//Endpoint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Endpoint/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Endpoint/endpoint"/>
     </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/name"/>

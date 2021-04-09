@@ -203,20 +203,24 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	public class EndpointElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Endpoint");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		private final Assignment cEndpointAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cEndpointParameterCrossReference_0 = (CrossReference)cEndpointAssignment.eContents().get(0);
+		private final RuleCall cEndpointParameterIDTerminalRuleCall_0_1 = (RuleCall)cEndpointParameterCrossReference_0.eContents().get(1);
 		
 		//// Are used for all the endpoints in controllers e.g., make 'Weather'
 		//Endpoint:
-		//    name=ID
+		//    endpoint=[Parameter]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID
-		public Assignment getNameAssignment() { return cNameAssignment; }
+		//endpoint=[Parameter]
+		public Assignment getEndpointAssignment() { return cEndpointAssignment; }
+		
+		//[Parameter]
+		public CrossReference getEndpointParameterCrossReference_0() { return cEndpointParameterCrossReference_0; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
+		public RuleCall getEndpointParameterIDTerminalRuleCall_0_1() { return cEndpointParameterIDTerminalRuleCall_0_1; }
 	}
 	public class ParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Parameter");
@@ -433,7 +437,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//// Are used for all the endpoints in controllers e.g., make 'Weather'
 	//Endpoint:
-	//    name=ID
+	//    endpoint=[Parameter]
 	//;
 	public EndpointElements getEndpointAccess() {
 		return pEndpoint;
