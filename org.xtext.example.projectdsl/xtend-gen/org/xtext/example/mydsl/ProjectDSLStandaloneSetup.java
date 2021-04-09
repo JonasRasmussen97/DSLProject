@@ -3,6 +3,8 @@
  */
 package org.xtext.example.mydsl;
 
+import org.xtext.example.mydsl.ProjectDSLStandaloneSetupGenerated;
+
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
  */

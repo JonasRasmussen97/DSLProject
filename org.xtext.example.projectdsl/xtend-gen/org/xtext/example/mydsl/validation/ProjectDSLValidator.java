@@ -3,6 +3,8 @@
  */
 package org.xtext.example.mydsl.validation;
 
+import org.xtext.example.mydsl.validation.AbstractProjectDSLValidator;
+
 /**
  * This class contains custom validation rules.
  * 

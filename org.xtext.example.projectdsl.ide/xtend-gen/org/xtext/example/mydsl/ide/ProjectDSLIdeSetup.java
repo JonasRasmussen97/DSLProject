@@ -8,6 +8,7 @@ import com.google.inject.Injector;
 import org.eclipse.xtext.util.Modules2;
 import org.xtext.example.mydsl.ProjectDSLRuntimeModule;
 import org.xtext.example.mydsl.ProjectDSLStandaloneSetup;
+import org.xtext.example.mydsl.ide.ProjectDSLIdeModule;
 
 /**
  * Initialization support for running Xtext languages as language servers.

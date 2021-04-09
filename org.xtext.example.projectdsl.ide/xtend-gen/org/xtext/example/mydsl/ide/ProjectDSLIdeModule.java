@@ -3,6 +3,8 @@
  */
 package org.xtext.example.mydsl.ide;
 
+import org.xtext.example.mydsl.ide.AbstractProjectDSLIdeModule;
+
 /**
  * Use this class to register ide components.
  */

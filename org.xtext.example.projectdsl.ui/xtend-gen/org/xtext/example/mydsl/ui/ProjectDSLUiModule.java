@@ -5,6 +5,7 @@ package org.xtext.example.mydsl.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
+import org.xtext.example.mydsl.ui.AbstractProjectDSLUiModule;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -13,7 +14,6 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
 @SuppressWarnings("all")
 public class ProjectDSLUiModule extends AbstractProjectDSLUiModule {
   public ProjectDSLUiModule(final AbstractUIPlugin plugin) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe type ProjectDSLUiModule is already defined in ProjectDSLUiModule.java.");
+    super(plugin);
   }
 }
