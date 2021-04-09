@@ -72,10 +72,10 @@ class ProjectDSLGenerator extends AbstractGenerator {
 			«FOR p:e.parameters»
 				«FOR t:p.type»
 					«switch t.toString {
-							case 'C': '''app.post('/post«p.name»') { «p.name.toFirstLower»Controller.post«p.name»() }'''
-							case 'R': '''app.get('/get«p.name»') { «p.name.toFirstLower»Controller.get«p.name»() }'''
-							case 'U': '''app.put('/put«p.name»') { «p.name.toFirstLower»Controller.put«p.name»() }'''
-							case 'D': '''app.delete('/delete«p.name»') { «p.name.toFirstLower»Controller.delete«p.name»() }'''
+							case 'C': '''app.post('/post«e.name.toFirstUpper»«p.name.toFirstUpper»') { «p.name.toFirstLower»Controller.post«p.name»() }'''
+							case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»') { «p.name.toFirstLower»Controller.get«p.name»() }'''
+							case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»') { «p.name.toFirstLower»Controller.put«p.name»() }'''
+							case 'D': '''app.delete('/delete«e.name.toFirstUpper»«p.name.toFirstUpper»') { «p.name.toFirstLower»Controller.delete«p.name»() }'''
 						}»
 				«ENDFOR»
 			«ENDFOR»
