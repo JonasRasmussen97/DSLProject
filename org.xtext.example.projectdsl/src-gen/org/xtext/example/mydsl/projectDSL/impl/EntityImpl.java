@@ -5,6 +5,7 @@ package org.xtext.example.mydsl.projectDSL.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,9 +13,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.xtext.example.mydsl.projectDSL.Controller;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
@@ -27,6 +31,7 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.EntityImpl#getCtrlr <em>Ctrlr</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.EntityImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
@@ -34,6 +39,16 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
  */
 public class EntityImpl extends DeclarationImpl implements Entity
 {
+  /**
+   * The cached value of the '{@link #getCtrlr() <em>Ctrlr</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCtrlr()
+   * @generated
+   * @ordered
+   */
+  protected Controller ctrlr;
+
   /**
    * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -63,6 +78,51 @@ public class EntityImpl extends DeclarationImpl implements Entity
   protected EClass eStaticClass()
   {
     return ProjectDSLPackage.Literals.ENTITY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Controller getCtrlr()
+  {
+    if (ctrlr != null && ctrlr.eIsProxy())
+    {
+      InternalEObject oldCtrlr = (InternalEObject)ctrlr;
+      ctrlr = (Controller)eResolveProxy(oldCtrlr);
+      if (ctrlr != oldCtrlr)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectDSLPackage.ENTITY__CTRLR, oldCtrlr, ctrlr));
+      }
+    }
+    return ctrlr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Controller basicGetCtrlr()
+  {
+    return ctrlr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setCtrlr(Controller newCtrlr)
+  {
+    Controller oldCtrlr = ctrlr;
+    ctrlr = newCtrlr;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.ENTITY__CTRLR, oldCtrlr, ctrlr));
   }
 
   /**
@@ -106,6 +166,9 @@ public class EntityImpl extends DeclarationImpl implements Entity
   {
     switch (featureID)
     {
+      case ProjectDSLPackage.ENTITY__CTRLR:
+        if (resolve) return getCtrlr();
+        return basicGetCtrlr();
       case ProjectDSLPackage.ENTITY__PARAMETERS:
         return getParameters();
     }
@@ -123,6 +186,9 @@ public class EntityImpl extends DeclarationImpl implements Entity
   {
     switch (featureID)
     {
+      case ProjectDSLPackage.ENTITY__CTRLR:
+        setCtrlr((Controller)newValue);
+        return;
       case ProjectDSLPackage.ENTITY__PARAMETERS:
         getParameters().clear();
         getParameters().addAll((Collection<? extends Parameter>)newValue);
@@ -141,6 +207,9 @@ public class EntityImpl extends DeclarationImpl implements Entity
   {
     switch (featureID)
     {
+      case ProjectDSLPackage.ENTITY__CTRLR:
+        setCtrlr((Controller)null);
+        return;
       case ProjectDSLPackage.ENTITY__PARAMETERS:
         getParameters().clear();
         return;
@@ -158,6 +227,8 @@ public class EntityImpl extends DeclarationImpl implements Entity
   {
     switch (featureID)
     {
+      case ProjectDSLPackage.ENTITY__CTRLR:
+        return ctrlr != null;
       case ProjectDSLPackage.ENTITY__PARAMETERS:
         return parameters != null && !parameters.isEmpty();
     }

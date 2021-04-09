@@ -80,16 +80,20 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cEntityKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cParametersAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cParametersParameterParserRuleCall_3_0 = (RuleCall)cParametersAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cRequiresKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cCtrlrAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cCtrlrControllerCrossReference_3_0 = (CrossReference)cCtrlrAssignment_3.eContents().get(0);
+		private final RuleCall cCtrlrControllerIDTerminalRuleCall_3_0_1 = (RuleCall)cCtrlrControllerCrossReference_3_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cParametersAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cParametersParameterParserRuleCall_5_0 = (RuleCall)cParametersAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Entity:
-		//	'entity' name=ID '{' parameters+=Parameter+ '}';
+		//	'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'entity' name=ID '{' parameters+=Parameter+ '}'
+		//'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'entity'
@@ -101,17 +105,29 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
+		//'requires'
+		public Keyword getRequiresKeyword_2() { return cRequiresKeyword_2; }
+		
+		//ctrlr=[Controller]
+		public Assignment getCtrlrAssignment_3() { return cCtrlrAssignment_3; }
+		
+		//[Controller]
+		public CrossReference getCtrlrControllerCrossReference_3_0() { return cCtrlrControllerCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getCtrlrControllerIDTerminalRuleCall_3_0_1() { return cCtrlrControllerIDTerminalRuleCall_3_0_1; }
+		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
 		//parameters+=Parameter+
-		public Assignment getParametersAssignment_3() { return cParametersAssignment_3; }
+		public Assignment getParametersAssignment_5() { return cParametersAssignment_5; }
 		
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_3_0() { return cParametersParameterParserRuleCall_3_0; }
+		public RuleCall getParametersParameterParserRuleCall_5_0() { return cParametersParameterParserRuleCall_5_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 	public class ControllerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Controller");
@@ -403,7 +419,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Entity:
-	//	'entity' name=ID '{' parameters+=Parameter+ '}';
+	//	'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}';
 	public EntityElements getEntityAccess() {
 		return pEntity;
 	}

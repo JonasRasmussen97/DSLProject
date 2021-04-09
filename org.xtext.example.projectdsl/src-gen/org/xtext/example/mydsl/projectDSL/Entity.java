@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Entity#getCtrlr <em>Ctrlr</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Entity#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
@@ -23,6 +24,28 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Entity extends Declaration
 {
+  /**
+   * Returns the value of the '<em><b>Ctrlr</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ctrlr</em>' reference.
+   * @see #setCtrlr(Controller)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getEntity_Ctrlr()
+   * @model
+   * @generated
+   */
+  Controller getCtrlr();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Entity#getCtrlr <em>Ctrlr</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ctrlr</em>' reference.
+   * @see #getCtrlr()
+   * @generated
+   */
+  void setCtrlr(Controller value);
+
   /**
    * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.projectDSL.Parameter}.

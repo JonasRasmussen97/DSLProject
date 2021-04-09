@@ -14,6 +14,7 @@ import java.util.ArrayList
 import org.xtext.example.mydsl.projectDSL.Parameter
 import org.eclipse.xtext.scoping.Scopes
 
+
 /**
  * This class contains custom scoping description.
  * 

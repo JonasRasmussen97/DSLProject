@@ -212,9 +212,20 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EReference getEntity_Parameters()
+  public EReference getEntity_Ctrlr()
   {
     return (EReference)entityEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntity_Parameters()
+  {
+    return (EReference)entityEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -388,6 +399,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     createEAttribute(declarationEClass, DECLARATION__NAME);
 
     entityEClass = createEClass(ENTITY);
+    createEReference(entityEClass, ENTITY__CTRLR);
     createEReference(entityEClass, ENTITY__PARAMETERS);
 
     controllerEClass = createEClass(CONTROLLER);
@@ -448,6 +460,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEntity_Ctrlr(), this.getController(), null, "ctrlr", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(controllerEClass, Controller.class, "Controller", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

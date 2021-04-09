@@ -194,16 +194,33 @@ ruleEntity returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='{'
+		otherlv_2='requires'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getEntityAccess().getLeftCurlyBracketKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getEntityAccess().getRequiresKeyword_2());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getEntityAccess().getParametersParameterParserRuleCall_3_0());
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getEntityRule());
+					}
 				}
-				lv_parameters_3_0=ruleParameter
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getEntityAccess().getCtrlrControllerCrossReference_3_0());
+				}
+			)
+		)
+		otherlv_4='{'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getEntityAccess().getLeftCurlyBracketKeyword_4());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getEntityAccess().getParametersParameterParserRuleCall_5_0());
+				}
+				lv_parameters_5_0=ruleParameter
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getEntityRule());
@@ -211,15 +228,15 @@ ruleEntity returns [EObject current=null]
 					add(
 						$current,
 						"parameters",
-						lv_parameters_3_0,
+						lv_parameters_5_0,
 						"org.xtext.example.mydsl.ProjectDSL.Parameter");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)+
-		otherlv_4='}'
+		otherlv_6='}'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getEntityAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getEntityAccess().getRightCurlyBracketKeyword_6());
 		}
 	)
 ;
