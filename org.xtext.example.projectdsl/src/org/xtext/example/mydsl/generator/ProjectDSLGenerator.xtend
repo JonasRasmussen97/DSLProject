@@ -32,7 +32,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 
 	// Generates the app.js file
 	def generateApp(IFileSystemAccess2 access1, Iterable<Entity> entities) {
-		access1.generateFile('app.js', entities.generateEntity);
+		access1.generateFile('app.js', entities.generateCore);
 	}
 
 	// Generates the controller js files
@@ -64,7 +64,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	'''
 
 	// Appends the entity data to the app.js file
-	def generateEntity(Iterable<Entity> entities) '''
+	def generateCore(Iterable<Entity> entities) '''
 		const express = require('express')
 		const app = express()
 		const port = 3000	
@@ -72,10 +72,10 @@ class ProjectDSLGenerator extends AbstractGenerator {
 			«FOR p:e.parameters»
 				«FOR t:p.type»
 					«switch t.toString {
-							case 'C': '''app.post('/post«e.name.toFirstUpper»«p.name.toFirstUpper»') { «p.name.toFirstLower»Controller.post«p.name»() }'''
-							case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»') { «p.name.toFirstLower»Controller.get«p.name»() }'''
-							case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»') { «p.name.toFirstLower»Controller.put«p.name»() }'''
-							case 'D': '''app.delete('/delete«e.name.toFirstUpper»«p.name.toFirstUpper»') { «p.name.toFirstLower»Controller.delete«p.name»() }'''
+							case 'C': '''app.post('/post«e.name.toFirstUpper»«p.name.toFirstUpper»') { «e.name.toFirstUpper»Controller.post«p.name»() }'''
+							case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»') { «e.name.toFirstUpper»Controller.get«p.name»() }'''
+							case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»') { «e.name.toFirstUpper»Controller.put«p.name»() }'''
+							case 'D': '''app.delete('/delete«e.name.toFirstUpper»«p.name.toFirstUpper»') { «e.name.toFirstUpper»Controller.delete«p.name»() }'''
 						}»
 				«ENDFOR»
 			«ENDFOR»

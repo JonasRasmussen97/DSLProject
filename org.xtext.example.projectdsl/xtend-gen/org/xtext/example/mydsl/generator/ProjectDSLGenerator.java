@@ -43,7 +43,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   }
   
   public void generateApp(final IFileSystemAccess2 access1, final Iterable<Entity> entities) {
-    access1.generateFile("app.js", this.generateEntity(entities));
+    access1.generateFile("app.js", this.generateCore(entities));
   }
   
   public void generateControllers(final Controller controller, final IFileSystemAccess2 access2) {
@@ -135,7 +135,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence generateEntity(final Iterable<Entity> entities) {
+  public CharSequence generateCore(final Iterable<Entity> entities) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("const express = require(\'express\')");
     _builder.newLine();
@@ -163,8 +163,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       String _firstUpper_1 = StringExtensions.toFirstUpper(p.getName());
                       _builder_1.append(_firstUpper_1);
                       _builder_1.append("\') { ");
-                      String _firstLower = StringExtensions.toFirstLower(p.getName());
-                      _builder_1.append(_firstLower);
+                      String _firstUpper_2 = StringExtensions.toFirstUpper(e.getName());
+                      _builder_1.append(_firstUpper_2);
                       _builder_1.append("Controller.post");
                       String _name = p.getName();
                       _builder_1.append(_name);
@@ -174,13 +174,13 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                     case "R":
                       StringConcatenation _builder_2 = new StringConcatenation();
                       _builder_2.append("app.get(\'/get");
-                      String _firstUpper_2 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_2.append(_firstUpper_2);
-                      String _firstUpper_3 = StringExtensions.toFirstUpper(p.getName());
+                      String _firstUpper_3 = StringExtensions.toFirstUpper(e.getName());
                       _builder_2.append(_firstUpper_3);
+                      String _firstUpper_4 = StringExtensions.toFirstUpper(p.getName());
+                      _builder_2.append(_firstUpper_4);
                       _builder_2.append("\') { ");
-                      String _firstLower_1 = StringExtensions.toFirstLower(p.getName());
-                      _builder_2.append(_firstLower_1);
+                      String _firstUpper_5 = StringExtensions.toFirstUpper(e.getName());
+                      _builder_2.append(_firstUpper_5);
                       _builder_2.append("Controller.get");
                       String _name_1 = p.getName();
                       _builder_2.append(_name_1);
@@ -190,13 +190,13 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                     case "U":
                       StringConcatenation _builder_3 = new StringConcatenation();
                       _builder_3.append("app.put(\'/put");
-                      String _firstUpper_4 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_3.append(_firstUpper_4);
-                      String _firstUpper_5 = StringExtensions.toFirstUpper(p.getName());
-                      _builder_3.append(_firstUpper_5);
+                      String _firstUpper_6 = StringExtensions.toFirstUpper(e.getName());
+                      _builder_3.append(_firstUpper_6);
+                      String _firstUpper_7 = StringExtensions.toFirstUpper(p.getName());
+                      _builder_3.append(_firstUpper_7);
                       _builder_3.append("\') { ");
-                      String _firstLower_2 = StringExtensions.toFirstLower(p.getName());
-                      _builder_3.append(_firstLower_2);
+                      String _firstUpper_8 = StringExtensions.toFirstUpper(e.getName());
+                      _builder_3.append(_firstUpper_8);
                       _builder_3.append("Controller.put");
                       String _name_2 = p.getName();
                       _builder_3.append(_name_2);
@@ -206,13 +206,13 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                     case "D":
                       StringConcatenation _builder_4 = new StringConcatenation();
                       _builder_4.append("app.delete(\'/delete");
-                      String _firstUpper_6 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_4.append(_firstUpper_6);
-                      String _firstUpper_7 = StringExtensions.toFirstUpper(p.getName());
-                      _builder_4.append(_firstUpper_7);
+                      String _firstUpper_9 = StringExtensions.toFirstUpper(e.getName());
+                      _builder_4.append(_firstUpper_9);
+                      String _firstUpper_10 = StringExtensions.toFirstUpper(p.getName());
+                      _builder_4.append(_firstUpper_10);
                       _builder_4.append("\') { ");
-                      String _firstLower_3 = StringExtensions.toFirstLower(p.getName());
-                      _builder_4.append(_firstLower_3);
+                      String _firstUpper_11 = StringExtensions.toFirstUpper(e.getName());
+                      _builder_4.append(_firstUpper_11);
                       _builder_4.append("Controller.delete");
                       String _name_3 = p.getName();
                       _builder_4.append(_name_3);
