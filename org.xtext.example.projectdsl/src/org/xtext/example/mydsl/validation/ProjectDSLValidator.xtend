@@ -3,6 +3,15 @@
  */
 package org.xtext.example.mydsl.validation
 
+import org.eclipse.xtext.validation.Check
+import org.xtext.example.mydsl.projectDSL.Controller
+import java.util.ArrayList
+import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage.Literals
+import org.xtext.example.mydsl.projectDSL.Entity
+import org.eclipse.emf.common.util.EList
+import java.util.HashSet
+import java.util.HashMap
+import org.xtext.example.mydsl.projectDSL.Parameter
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +20,40 @@ package org.xtext.example.mydsl.validation
  */
 class ProjectDSLValidator extends AbstractProjectDSLValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					ProjectDSLPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	@Check
+	def checkMakeOperations(Controller c) {
+		val endpointNames = new ArrayList<String>
+		// We add the names of each of the endpoints.
+		c.endpoint.forEach[if(endpointNames.contains(it.endpoint.name)) {error ("Endpoint already exists!", it.eContainmentFeature)} else {endpointNames.add(it.endpoint.name)}]
+	}
 	
+	@Check
+	def checkCRUDNames(Entity e) {
+		val entityParameterNames = new ArrayList<String>
+		e.parameters.forEach[if(entityParameterNames.contains(it.name)) {error ("Parameter already exists!", null)} else {entityParameterNames.add(it.name)}]
+	}
+	
+	@Check
+    def checkForMaxOneType(Entity entity){
+        checkTypeClash(entity.parameters)
+    }
+
+    def checkTypeClash(EList<Parameter> parameters){
+        parameters.forEach[
+            for(var i = 0; i < type.length; i++){
+                for(var j = i+1; j < type.length; j++){
+                    if(type.get(i) == type.get(j)){
+                        error("Parameters contains duplicates", null)
+                    }
+                }
+            }
+        ]
+    }
+	
+	 
+
+	
+	
+
+	 
 }
