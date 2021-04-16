@@ -24,30 +24,36 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 	def checkMakeOperations(Controller c) {
 		val endpointNames = new ArrayList<String>
 		// We add the names of each of the endpoints.
-		c.endpoint.forEach[if(endpointNames.contains(it.endpoint.name)) {error ("Endpoint already exists!", it.eContainmentFeature)} else {endpointNames.add(it.endpoint.name)}]
+		c.endpoint.forEach[
+			if(endpointNames.contains(it.endpoint.name)) {
+				error ("Endpoint already exists!", it, Literals.ENDPOINT__ENDPOINT)
+			} else {
+				endpointNames.add(it.endpoint.name)
+			}
+		]
 	}
 	
 	@Check
 	def checkCRUDNames(Entity e) {
 		val entityParameterNames = new ArrayList<String>
-		e.parameters.forEach[if(entityParameterNames.contains(it.name)) {error ("Parameter already exists!", null)} else {entityParameterNames.add(it.name)}]
+		e.parameters.forEach[
+			if(entityParameterNames.contains(it.name)) {
+				error ("Parameter already exists!", it, Literals.PARAMETER__NAME)
+			} else {
+				entityParameterNames.add(it.name)
+			}
+		]
 	}
-	
-	@Check
-    def checkForMaxOneType(Entity entity){
-        checkTypeClash(entity.parameters)
-    }
-
-    def checkTypeClash(EList<Parameter> parameters){
-        parameters.forEach[
-            for(var i = 0; i < type.length; i++){
-                for(var j = i+1; j < type.length; j++){
-                    if(type.get(i) == type.get(j)){
-                        error("Parameters contains duplicates", null)
-                    }
+    
+    @Check
+    def checkCRUDParameters(Parameter parameter){
+    	for(var i = 0; i < parameter.type.length; i++){
+            for(var j = 0; j < parameter.type.length; j++){
+                if(i != j && parameter.type.get(i) == parameter.type.get(j)){
+                    error("Parameters contains duplicates of " + parameter.type.get(i), parameter, Literals.PARAMETER__NAME)
                 }
             }
-        ]
+        }
     }
 	
 	 

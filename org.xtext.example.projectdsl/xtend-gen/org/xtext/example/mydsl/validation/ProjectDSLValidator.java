@@ -6,14 +6,13 @@ package org.xtext.example.mydsl.validation;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.xtext.example.mydsl.projectDSL.Controller;
 import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Parameter;
-import org.xtext.example.mydsl.validation.AbstractProjectDSLValidator;
+import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 
 /**
  * This class contains custom validation rules.
@@ -28,7 +27,7 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
     final Consumer<Endpoint> _function = (Endpoint it) -> {
       boolean _contains = endpointNames.contains(it.getEndpoint().getName());
       if (_contains) {
-        this.error("Endpoint already exists!", it.eContainmentFeature());
+        this.error("Endpoint already exists!", it, ProjectDSLPackage.Literals.ENDPOINT__ENDPOINT);
       } else {
         endpointNames.add(it.getEndpoint().getName());
       }
@@ -42,7 +41,7 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
     final Consumer<Parameter> _function = (Parameter it) -> {
       boolean _contains = entityParameterNames.contains(it.getName());
       if (_contains) {
-        this.error("Parameter already exists!", null);
+        this.error("Parameter already exists!", it, ProjectDSLPackage.Literals.PARAMETER__NAME);
       } else {
         entityParameterNames.add(it.getName());
       }
@@ -51,23 +50,15 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
   }
   
   @Check
-  public void checkForMaxOneType(final Entity entity) {
-    this.checkTypeClash(entity.getParameters());
-  }
-  
-  public void checkTypeClash(final EList<Parameter> parameters) {
-    final Consumer<Parameter> _function = (Parameter it) -> {
-      for (int i = 0; (i < ((Object[])Conversions.unwrapArray(it.getType(), Object.class)).length); i++) {
-        for (int j = (i + 1); (j < ((Object[])Conversions.unwrapArray(it.getType(), Object.class)).length); j++) {
-          String _get = it.getType().get(i);
-          String _get_1 = it.getType().get(j);
-          boolean _equals = Objects.equal(_get, _get_1);
-          if (_equals) {
-            this.error("Parameters contains duplicates", null);
-          }
+  public void checkCRUDParameters(final Parameter parameter) {
+    for (int i = 0; (i < ((Object[])Conversions.unwrapArray(parameter.getType(), Object.class)).length); i++) {
+      for (int j = 0; (j < ((Object[])Conversions.unwrapArray(parameter.getType(), Object.class)).length); j++) {
+        if (((i != j) && Objects.equal(parameter.getType().get(i), parameter.getType().get(j)))) {
+          String _get = parameter.getType().get(i);
+          String _plus = ("Parameters contains duplicates of " + _get);
+          this.error(_plus, parameter, ProjectDSLPackage.Literals.PARAMETER__NAME);
         }
       }
-    };
-    parameters.forEach(_function);
+    }
   }
 }
