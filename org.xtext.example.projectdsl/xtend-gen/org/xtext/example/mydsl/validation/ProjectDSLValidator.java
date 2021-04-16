@@ -13,6 +13,7 @@ import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
+import org.xtext.example.mydsl.validation.AbstractProjectDSLValidator;
 
 /**
  * This class contains custom validation rules.
@@ -33,6 +34,20 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
       }
     };
     c.getEndpoint().forEach(_function);
+  }
+  
+  @Check
+  public void checkDuplicateUsesStatement(final Controller c) {
+    final ArrayList<String> entitiesUsed = new ArrayList<String>();
+    final Consumer<Entity> _function = (Entity it) -> {
+      boolean _contains = entitiesUsed.contains(it.getName());
+      if (_contains) {
+        this.error("Duplicate entities not allowed!", c, ProjectDSLPackage.Literals.CONTROLLER__BASE);
+      } else {
+        entitiesUsed.add(it.getName());
+      }
+    };
+    c.getBase().forEach(_function);
   }
   
   @Check

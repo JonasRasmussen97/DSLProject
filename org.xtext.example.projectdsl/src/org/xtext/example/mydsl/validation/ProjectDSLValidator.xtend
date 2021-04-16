@@ -20,6 +20,8 @@ import org.xtext.example.mydsl.projectDSL.Parameter
  */
 class ProjectDSLValidator extends AbstractProjectDSLValidator {
 	
+	
+	
 	@Check
 	def checkMakeOperations(Controller c) {
 		val endpointNames = new ArrayList<String>
@@ -29,6 +31,18 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 				error ("Endpoint already exists!", it, Literals.ENDPOINT__ENDPOINT)
 			} else {
 				endpointNames.add(it.endpoint.name)
+			}
+		]
+	}
+	
+	@Check
+	def checkDuplicateUsesStatement(Controller c) {
+		val entitiesUsed = new ArrayList<String>
+		c.base.forEach[
+			if(entitiesUsed.contains(it.name)){
+				error ("Duplicate entities not allowed!", c, Literals.CONTROLLER__BASE)
+			} else {
+				entitiesUsed.add(it.name)
 			}
 		]
 	}
@@ -56,10 +70,4 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
         }
     }
 	
-	 
-
-	
-	
-
-	 
 }
