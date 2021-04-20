@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getBase <em>Base</em>}</li>
  * </ul>
@@ -48,6 +49,28 @@ public interface Parameter extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Data Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Data Type</em>' attribute.
+   * @see #setDataType(String)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_DataType()
+   * @model
+   * @generated
+   */
+  String getDataType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getDataType <em>Data Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Data Type</em>' attribute.
+   * @see #getDataType()
+   * @generated
+   */
+  void setDataType(String value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute list.

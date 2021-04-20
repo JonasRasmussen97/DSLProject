@@ -40,7 +40,7 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getControllerAccess().getGroup_4(), "rule__Controller__Group_4__0");
 			builder.put(grammarAccess.getControllerAccess().getGroup_6(), "rule__Controller__Group_6__0");
 			builder.put(grammarAccess.getParameterAccess().getGroup(), "rule__Parameter__Group__0");
-			builder.put(grammarAccess.getParameterAccess().getGroup_3(), "rule__Parameter__Group_3__0");
+			builder.put(grammarAccess.getParameterAccess().getGroup_5(), "rule__Parameter__Group_5__0");
 			builder.put(grammarAccess.getRestAPIAccess().getNameAssignment_1(), "rule__RestAPI__NameAssignment_1");
 			builder.put(grammarAccess.getRestAPIAccess().getDeclarationsAssignment_2(), "rule__RestAPI__DeclarationsAssignment_2");
 			builder.put(grammarAccess.getEntityAccess().getNameAssignment_1(), "rule__Entity__NameAssignment_1");
@@ -52,8 +52,9 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getControllerAccess().getEndpointAssignment_6_1(), "rule__Controller__EndpointAssignment_6_1");
 			builder.put(grammarAccess.getEndpointAccess().getEndpointAssignment(), "rule__Endpoint__EndpointAssignment");
 			builder.put(grammarAccess.getParameterAccess().getNameAssignment_0(), "rule__Parameter__NameAssignment_0");
-			builder.put(grammarAccess.getParameterAccess().getTypeAssignment_2(), "rule__Parameter__TypeAssignment_2");
-			builder.put(grammarAccess.getParameterAccess().getBaseAssignment_3_1(), "rule__Parameter__BaseAssignment_3_1");
+			builder.put(grammarAccess.getParameterAccess().getDataTypeAssignment_2(), "rule__Parameter__DataTypeAssignment_2");
+			builder.put(grammarAccess.getParameterAccess().getTypeAssignment_4(), "rule__Parameter__TypeAssignment_4");
+			builder.put(grammarAccess.getParameterAccess().getBaseAssignment_5_1(), "rule__Parameter__BaseAssignment_5_1");
 			builder.put(grammarAccess.getRedirectAccess().getNameAssignment_0(), "rule__Redirect__NameAssignment_0");
 			builder.put(grammarAccess.getRedirectAccess().getUrlAssignment_1(), "rule__Redirect__UrlAssignment_1");
 		}

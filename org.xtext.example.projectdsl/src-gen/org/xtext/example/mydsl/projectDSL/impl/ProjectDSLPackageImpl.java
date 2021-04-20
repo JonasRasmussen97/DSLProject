@@ -311,7 +311,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EAttribute getParameter_Type()
+  public EAttribute getParameter_DataType()
   {
     return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
   }
@@ -322,9 +322,20 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
+  public EAttribute getParameter_Type()
+  {
+    return (EAttribute)parameterEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getParameter_Base()
   {
-    return (EReference)parameterEClass.getEStructuralFeatures().get(2);
+    return (EReference)parameterEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -411,6 +422,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
 
     parameterEClass = createEClass(PARAMETER);
     createEAttribute(parameterEClass, PARAMETER__NAME);
+    createEAttribute(parameterEClass, PARAMETER__DATA_TYPE);
     createEAttribute(parameterEClass, PARAMETER__TYPE);
     createEReference(parameterEClass, PARAMETER__BASE);
 
@@ -472,6 +484,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
 
     initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getParameter_DataType(), ecorePackage.getEString(), "dataType", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getParameter_Type(), ecorePackage.getEString(), "type", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameter_Base(), this.getRedirect(), null, "base", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

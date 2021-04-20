@@ -415,16 +415,38 @@ ruleParameter returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1=':'
+		otherlv_1='='
 		{
-			newLeafNode(otherlv_1, grammarAccess.getParameterAccess().getColonKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getParameterAccess().getEqualsSignKeyword_1());
+		}
+		(
+			(
+				lv_dataType_2_0=RULE_ID
+				{
+					newLeafNode(lv_dataType_2_0, grammarAccess.getParameterAccess().getDataTypeIDTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getParameterRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"dataType",
+						lv_dataType_2_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_3=':'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getParameterAccess().getColonKeyword_3());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getParameterAccess().getTypeTypeParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getParameterAccess().getTypeTypeParserRuleCall_4_0());
 				}
-				lv_type_2_0=ruleType
+				lv_type_4_0=ruleType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getParameterRule());
@@ -432,23 +454,23 @@ ruleParameter returns [EObject current=null]
 					add(
 						$current,
 						"type",
-						lv_type_2_0,
+						lv_type_4_0,
 						"org.xtext.example.mydsl.ProjectDSL.Type");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)+
 		(
-			otherlv_3='redirect'
+			otherlv_5='redirect'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getParameterAccess().getRedirectKeyword_3_0());
+				newLeafNode(otherlv_5, grammarAccess.getParameterAccess().getRedirectKeyword_5_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getParameterAccess().getBaseRedirectParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getParameterAccess().getBaseRedirectParserRuleCall_5_1_0());
 					}
-					lv_base_4_0=ruleRedirect
+					lv_base_6_0=ruleRedirect
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getParameterRule());
@@ -456,7 +478,7 @@ ruleParameter returns [EObject current=null]
 						set(
 							$current,
 							"base",
-							lv_base_4_0,
+							lv_base_6_0,
 							"org.xtext.example.mydsl.ProjectDSL.Redirect");
 						afterParserOrEnumRuleCall();
 					}
@@ -533,28 +555,16 @@ ruleType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 	leaveRule();
 }:
 	(
-		kw='C'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getTypeAccess().getCKeyword_0());
-		}
-		    |
 		kw='R'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getTypeAccess().getRKeyword_1());
+			newLeafNode(kw, grammarAccess.getTypeAccess().getRKeyword_0());
 		}
 		    |
 		kw='U'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getTypeAccess().getUKeyword_2());
-		}
-		    |
-		kw='D'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getTypeAccess().getDKeyword_3());
+			newLeafNode(kw, grammarAccess.getTypeAccess().getUKeyword_1());
 		}
 	)
 ;

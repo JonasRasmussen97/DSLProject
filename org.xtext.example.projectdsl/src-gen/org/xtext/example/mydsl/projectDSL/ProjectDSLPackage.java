@@ -262,13 +262,22 @@ public interface ProjectDSLPackage extends EPackage
   int PARAMETER__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Data Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER__DATA_TYPE = 1;
+
+  /**
    * The feature id for the '<em><b>Type</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PARAMETER__TYPE = 1;
+  int PARAMETER__TYPE = 2;
 
   /**
    * The feature id for the '<em><b>Base</b></em>' containment reference.
@@ -277,7 +286,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAMETER__BASE = 2;
+  int PARAMETER__BASE = 3;
 
   /**
    * The number of structural features of the '<em>Parameter</em>' class.
@@ -286,7 +295,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAMETER_FEATURE_COUNT = 3;
+  int PARAMETER_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.
@@ -484,6 +493,17 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    */
   EAttribute getParameter_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Parameter#getDataType <em>Data Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Data Type</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Parameter#getDataType()
+   * @see #getParameter()
+   * @generated
+   */
+  EAttribute getParameter_DataType();
 
   /**
    * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}'.
@@ -693,6 +713,14 @@ public interface ProjectDSLPackage extends EPackage
      * @generated
      */
     EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Data Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAMETER__DATA_TYPE = eINSTANCE.getParameter_DataType();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute list feature.

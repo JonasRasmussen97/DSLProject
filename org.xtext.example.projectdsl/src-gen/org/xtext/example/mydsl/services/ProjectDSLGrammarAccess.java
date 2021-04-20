@@ -238,19 +238,22 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cRedirectKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cBaseAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cBaseRedirectParserRuleCall_3_1_0 = (RuleCall)cBaseAssignment_3_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cDataTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cDataTypeIDTerminalRuleCall_2_0 = (RuleCall)cDataTypeAssignment_2.eContents().get(0);
+		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cTypeTypeParserRuleCall_4_0 = (RuleCall)cTypeAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cRedirectKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cBaseAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cBaseRedirectParserRuleCall_5_1_0 = (RuleCall)cBaseAssignment_5_1.eContents().get(0);
 		
 		//Parameter:
-		//	name=ID ':' type+=Type+ ('redirect' base=Redirect)?;
+		//	name=ID '=' dataType=ID ':' type+=Type+ ('redirect' base=Redirect)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID ':' type+=Type+ ('redirect' base=Redirect)?
+		//name=ID '=' dataType=ID ':' type+=Type+ ('redirect' base=Redirect)?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -259,26 +262,35 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 		
+		//'='
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+		
+		//dataType=ID
+		public Assignment getDataTypeAssignment_2() { return cDataTypeAssignment_2; }
+		
+		//ID
+		public RuleCall getDataTypeIDTerminalRuleCall_2_0() { return cDataTypeIDTerminalRuleCall_2_0; }
+		
 		//':'
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
 		
 		//type+=Type+
-		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		public Assignment getTypeAssignment_4() { return cTypeAssignment_4; }
 		
 		//Type
-		public RuleCall getTypeTypeParserRuleCall_2_0() { return cTypeTypeParserRuleCall_2_0; }
+		public RuleCall getTypeTypeParserRuleCall_4_0() { return cTypeTypeParserRuleCall_4_0; }
 		
 		//('redirect' base=Redirect)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//'redirect'
-		public Keyword getRedirectKeyword_3_0() { return cRedirectKeyword_3_0; }
+		public Keyword getRedirectKeyword_5_0() { return cRedirectKeyword_5_0; }
 		
 		//base=Redirect
-		public Assignment getBaseAssignment_3_1() { return cBaseAssignment_3_1; }
+		public Assignment getBaseAssignment_5_1() { return cBaseAssignment_5_1; }
 		
 		//Redirect
-		public RuleCall getBaseRedirectParserRuleCall_3_1_0() { return cBaseRedirectParserRuleCall_3_1_0; }
+		public RuleCall getBaseRedirectParserRuleCall_5_1_0() { return cBaseRedirectParserRuleCall_5_1_0; }
 	}
 	public class RedirectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Redirect");
@@ -315,30 +327,22 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	public class TypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Type");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cCKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cRKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cUKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cDKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cRKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cUKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//// Indicates the different CRUD operations. 
 		//Type:
-		//	'C' | 'R' | 'U' | 'D';
+		//	'R' | 'U';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'C' | 'R' | 'U' | 'D'
+		//'R' | 'U'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'C'
-		public Keyword getCKeyword_0() { return cCKeyword_0; }
-		
 		//'R'
-		public Keyword getRKeyword_1() { return cRKeyword_1; }
+		public Keyword getRKeyword_0() { return cRKeyword_0; }
 		
 		//'U'
-		public Keyword getUKeyword_2() { return cUKeyword_2; }
-		
-		//'D'
-		public Keyword getDKeyword_3() { return cDKeyword_3; }
+		public Keyword getUKeyword_1() { return cUKeyword_1; }
 	}
 	
 	
@@ -451,7 +455,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Parameter:
-	//	name=ID ':' type+=Type+ ('redirect' base=Redirect)?;
+	//	name=ID '=' dataType=ID ':' type+=Type+ ('redirect' base=Redirect)?;
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -473,7 +477,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//// Indicates the different CRUD operations. 
 	//Type:
-	//	'C' | 'R' | 'U' | 'D';
+	//	'R' | 'U';
 	public TypeElements getTypeAccess() {
 		return pType;
 	}

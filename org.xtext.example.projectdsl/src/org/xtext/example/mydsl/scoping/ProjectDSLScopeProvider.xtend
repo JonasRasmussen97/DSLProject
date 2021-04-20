@@ -21,6 +21,7 @@ import org.eclipse.xtext.scoping.Scopes
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
  * on how and when to use it.
  */
+ 
 class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
 	
 	override IScope getScope(EObject context, EReference reference) {

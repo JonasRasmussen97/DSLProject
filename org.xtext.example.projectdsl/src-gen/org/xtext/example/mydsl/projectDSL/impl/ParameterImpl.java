@@ -31,6 +31,7 @@ import org.xtext.example.mydsl.projectDSL.Redirect;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getBase <em>Base</em>}</li>
  * </ul>
@@ -58,6 +59,26 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDataType()
+   * @generated
+   * @ordered
+   */
+  protected static final String DATA_TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDataType()
+   * @generated
+   * @ordered
+   */
+  protected String dataType = DATA_TYPE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute list.
@@ -123,6 +144,31 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getDataType()
+  {
+    return dataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setDataType(String newDataType)
+  {
+    String oldDataType = dataType;
+    dataType = newDataType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__DATA_TYPE, oldDataType, dataType));
   }
 
   /**
@@ -218,6 +264,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     {
       case ProjectDSLPackage.PARAMETER__NAME:
         return getName();
+      case ProjectDSLPackage.PARAMETER__DATA_TYPE:
+        return getDataType();
       case ProjectDSLPackage.PARAMETER__TYPE:
         return getType();
       case ProjectDSLPackage.PARAMETER__BASE:
@@ -239,6 +287,9 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     {
       case ProjectDSLPackage.PARAMETER__NAME:
         setName((String)newValue);
+        return;
+      case ProjectDSLPackage.PARAMETER__DATA_TYPE:
+        setDataType((String)newValue);
         return;
       case ProjectDSLPackage.PARAMETER__TYPE:
         getType().clear();
@@ -264,6 +315,9 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case ProjectDSLPackage.PARAMETER__DATA_TYPE:
+        setDataType(DATA_TYPE_EDEFAULT);
+        return;
       case ProjectDSLPackage.PARAMETER__TYPE:
         getType().clear();
         return;
@@ -286,6 +340,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     {
       case ProjectDSLPackage.PARAMETER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ProjectDSLPackage.PARAMETER__DATA_TYPE:
+        return DATA_TYPE_EDEFAULT == null ? dataType != null : !DATA_TYPE_EDEFAULT.equals(dataType);
       case ProjectDSLPackage.PARAMETER__TYPE:
         return type != null && !type.isEmpty();
       case ProjectDSLPackage.PARAMETER__BASE:
@@ -307,6 +363,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", dataType: ");
+    result.append(dataType);
     result.append(", type: ");
     result.append(type);
     result.append(')');

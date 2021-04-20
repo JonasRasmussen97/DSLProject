@@ -25,6 +25,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		val RestAPI modelInstance = resource.allContents.filter(RestAPI).next
 		val entities = modelInstance.declarations.filter(Entity)
 		generateApp(fsa, entities)
+
 		// Generate each of the controller files
 		modelInstance.declarations.filter(Controller).forEach[generateControllers(fsa)]
 	// modelInstance.display
@@ -41,26 +42,29 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	}
 
 	def generateController(Controller controller) '''
-		var «controller.name» = {
-		«FOR e : controller.endpoint»
-			«FOR b:controller.base»
-				«FOR p:b.parameters» 
-				««« Only create the functions in the controller js file that have "make" in the controller. *)		
-					«IF p.name == e.endpoint.name»
-						«FOR t:p.type»
-							«switch t.toString {
-						case 'C': '''post«p.name»: function(req, res) {},'''
-						case 'R': '''get«p.name»: function(req, res) {},'''
-						case 'U': '''put«p.name»: function(req, res) {},'''
-						case 'D': '''delete«p.name»: function(req, res) {},'''
-					}»
-						«ENDFOR»
-					«ENDIF»
-				«ENDFOR»
-			«ENDFOR»
-		«ENDFOR»
-		}
-		module.exports = «controller.name»
+	var mongoose = require('mongoose');
+	        var «controller.name» = {
+	        «FOR base:controller.base»
+	        create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {«base.name.toFirstUpper».collection.insertOne();}
+	        delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {«base.name.toFirstUpper».collection.deleteOne();}
+	        «ENDFOR»
+	        «FOR e : controller.endpoint»
+	            «FOR b:controller.base»
+	                «FOR p:b.parameters» 
+«««	                Only create the functions in the controller js file that have "make" in the controller. *)
+	                «IF p.name == e.endpoint.name»
+	                        «FOR t:p.type»
+	                            «switch t.toString {
+	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {«b.name.toFirstUpper».collection.findOne({Id: req.params.id}, function(err, result){ if(err) {res.send("There was an error!"} else res.send("Success!")});},'''
+	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {«b.name.toFirstUpper».collection.findOneAndUpdate();},'''
+	                    }»
+	                        «ENDFOR»
+	                    «ENDIF»
+	                «ENDFOR»
+	            «ENDFOR»
+	        «ENDFOR»
+	        }
+	        module.exports = «controller.name»
 	'''
 
 	// Appends the entity data to the app.js file
@@ -68,17 +72,47 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		const express = require('express')
 		const app = express()
 		const port = 3000	
+		
+		// Controllers
+		
 		«FOR e : entities»
+			var «e.ctrlr.name.toFirstLower» = requires('./«e.ctrlr.name.toFirstUpper».js');
+		«ENDFOR»
+		
+		// Mongoose Schemas
+		
+		«FOR e : entities»
+			var «e.name.toFirstLower»Schema = new mongoose.Schema({
+				«FOR p: e.parameters»
+				«p.name»: «p.dataType»,
+				«ENDFOR»
+			}, {
+				collection: '«e.name.toFirstLower»s'
+			});
+			
+		«ENDFOR»
+		
+		// Mongoose Models
+		
+		«FOR e : entities»
+		var «e.name.toFirstUpper» = mongoose.model('«e.name.toFirstUpper»', «e.name.toFirstLower»Schema);
+		«ENDFOR»
+		
+		//Endpoints
+		
+		«FOR e : entities»
+		// «e.name.toFirstUpper»
 			«FOR p:e.parameters»
 				«FOR t:p.type»
 					«switch t.toString {
-							case 'C': '''app.post('/post«e.name.toFirstUpper»«p.name.toFirstUpper»') { «e.name.toFirstUpper»Controller.post«p.name»() }'''
-							case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»') { «e.name.toFirstUpper»Controller.get«p.name»() }'''
-							case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»') { «e.name.toFirstUpper»Controller.put«p.name»() }'''
-							case 'D': '''app.delete('/delete«e.name.toFirstUpper»«p.name.toFirstUpper»') { «e.name.toFirstUpper»Controller.delete«p.name»() }'''
+							case 'C': '''app.post('/post«e.name.toFirstUpper»«p.name.toFirstUpper»'), function (req, res) { «e.name.toFirstUpper»Controller.post«p.name»(«e.name.toFirstUpper», req, res) }'''
+							case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»') function (req, res)  { «e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res) }'''
+							case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»') function (req, res)  { «e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res) }'''
+							case 'D': '''app.delete('/delete«e.name.toFirstUpper»«p.name.toFirstUpper»') function (req, res)  { «e.name.toFirstUpper»Controller.delete«p.name»(«e.name.toFirstUpper», req, res) }'''
 						}»
 				«ENDFOR»
 			«ENDFOR»
+			
 		«ENDFOR»
 	'''
 

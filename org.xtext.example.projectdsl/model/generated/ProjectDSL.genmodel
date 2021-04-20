@@ -26,6 +26,7 @@
     </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/dataType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Parameter/base"/>
     </genClasses>

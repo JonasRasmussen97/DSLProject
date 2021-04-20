@@ -26,7 +26,7 @@ Endpoint:
 ;
 
 Parameter: 
-	name=ID ':' type+=Type+ ('redirect' base=Redirect)?
+	name=ID '=' dataType=ID ':' type+=Type+ ('redirect' base=Redirect)?
 ; 
 
 // Redirect can either be a controller reference or a string. 
@@ -37,5 +37,5 @@ Redirect:
 
 // Indicates the different CRUD operations. 
 Type: 
-	'C' | 'R' | 'U' | 'D' 
+	'R' | 'U'
 ;

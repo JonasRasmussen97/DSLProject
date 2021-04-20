@@ -54,17 +54,49 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   
   public CharSequence generateController(final Controller controller) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("var mongoose = require(\'mongoose\');");
+    _builder.newLine();
+    _builder.append("        ");
     _builder.append("var ");
     String _name = controller.getName();
-    _builder.append(_name);
+    _builder.append(_name, "        ");
     _builder.append(" = {");
     _builder.newLineIfNotEmpty();
+    {
+      EList<Entity> _base = controller.getBase();
+      for(final Entity base : _base) {
+        _builder.append("        ");
+        _builder.append("create");
+        String _firstUpper = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper, "        ");
+        _builder.append(": function(");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_1, "        ");
+        _builder.append(", req, res) {");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_2, "        ");
+        _builder.append(".collection.insertOne();}");
+        _builder.newLineIfNotEmpty();
+        _builder.append("        ");
+        _builder.append("delete");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_3, "        ");
+        _builder.append(": function(");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_4, "        ");
+        _builder.append(", req, res) {");
+        String _firstUpper_5 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_5, "        ");
+        _builder.append(".collection.deleteOne();}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     {
       EList<Endpoint> _endpoint = controller.getEndpoint();
       for(final Endpoint e : _endpoint) {
         {
-          EList<Entity> _base = controller.getBase();
-          for(final Entity b : _base) {
+          EList<Entity> _base_1 = controller.getBase();
+          for(final Entity b : _base_1) {
             {
               EList<Parameter> _parameters = b.getParameters();
               for(final Parameter p : _parameters) {
@@ -76,45 +108,42 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                     {
                       EList<String> _type = p.getType();
                       for(final String t : _type) {
+                        _builder.append("        ");
                         CharSequence _switchResult = null;
                         String _string = t.toString();
                         if (_string != null) {
                           switch (_string) {
-                            case "C":
+                            case "R":
                               StringConcatenation _builder_1 = new StringConcatenation();
-                              _builder_1.append("post");
+                              _builder_1.append("get");
                               String _name_3 = p.getName();
                               _builder_1.append(_name_3);
-                              _builder_1.append(": function(req, res) {},");
+                              _builder_1.append(": function(");
+                              String _firstUpper_6 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_1.append(_firstUpper_6);
+                              _builder_1.append(", req, res) {");
+                              String _firstUpper_7 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_1.append(_firstUpper_7);
+                              _builder_1.append(".collection.findOne({Id: req.params.id}, function(err, result){ if(err) {res.send(\"There was an error!\"} else res.send(\"Success!\")});},");
                               _switchResult = _builder_1;
                               break;
-                            case "R":
+                            case "U":
                               StringConcatenation _builder_2 = new StringConcatenation();
-                              _builder_2.append("get");
+                              _builder_2.append("put");
                               String _name_4 = p.getName();
                               _builder_2.append(_name_4);
-                              _builder_2.append(": function(req, res) {},");
+                              _builder_2.append(": function(");
+                              String _firstUpper_8 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_2.append(_firstUpper_8);
+                              _builder_2.append(", req, res) {");
+                              String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_2.append(_firstUpper_9);
+                              _builder_2.append(".collection.findOneAndUpdate();},");
                               _switchResult = _builder_2;
-                              break;
-                            case "U":
-                              StringConcatenation _builder_3 = new StringConcatenation();
-                              _builder_3.append("put");
-                              String _name_5 = p.getName();
-                              _builder_3.append(_name_5);
-                              _builder_3.append(": function(req, res) {},");
-                              _switchResult = _builder_3;
-                              break;
-                            case "D":
-                              StringConcatenation _builder_4 = new StringConcatenation();
-                              _builder_4.append("delete");
-                              String _name_6 = p.getName();
-                              _builder_4.append(_name_6);
-                              _builder_4.append(": function(req, res) {},");
-                              _switchResult = _builder_4;
                               break;
                           }
                         }
-                        _builder.append(_switchResult);
+                        _builder.append(_switchResult, "        ");
                         _builder.newLineIfNotEmpty();
                       }
                     }
@@ -126,11 +155,13 @@ public class ProjectDSLGenerator extends AbstractGenerator {
         }
       }
     }
+    _builder.append("        ");
     _builder.append("}");
     _builder.newLine();
+    _builder.append("        ");
     _builder.append("module.exports = ");
-    String _name_7 = controller.getName();
-    _builder.append(_name_7);
+    String _name_5 = controller.getName();
+    _builder.append(_name_5, "        ");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -143,14 +174,95 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("const port = 3000\t");
     _builder.newLine();
+    _builder.newLine();
+    _builder.append("// Controllers");
+    _builder.newLine();
+    _builder.newLine();
     {
       for(final Entity e : entities) {
+        _builder.append("var ");
+        String _firstLower = StringExtensions.toFirstLower(e.getCtrlr().getName());
+        _builder.append(_firstLower);
+        _builder.append(" = requires(\'./");
+        String _firstUpper = StringExtensions.toFirstUpper(e.getCtrlr().getName());
+        _builder.append(_firstUpper);
+        _builder.append(".js\');");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("// Mongoose Schemas");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      for(final Entity e_1 : entities) {
+        _builder.append("var ");
+        String _firstLower_1 = StringExtensions.toFirstLower(e_1.getName());
+        _builder.append(_firstLower_1);
+        _builder.append("Schema = new mongoose.Schema({");
+        _builder.newLineIfNotEmpty();
         {
-          EList<Parameter> _parameters = e.getParameters();
+          EList<Parameter> _parameters = e_1.getParameters();
           for(final Parameter p : _parameters) {
+            _builder.append("\t");
+            String _name = p.getName();
+            _builder.append(_name, "\t");
+            _builder.append(": ");
+            String _dataType = p.getDataType();
+            _builder.append(_dataType, "\t");
+            _builder.append(",");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("}, {");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("collection: \'");
+        String _firstLower_2 = StringExtensions.toFirstLower(e_1.getName());
+        _builder.append(_firstLower_2, "\t");
+        _builder.append("s\'");
+        _builder.newLineIfNotEmpty();
+        _builder.append("});");
+        _builder.newLine();
+        _builder.newLine();
+      }
+    }
+    _builder.newLine();
+    _builder.append("// Mongoose Models");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      for(final Entity e_2 : entities) {
+        _builder.append("var ");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(e_2.getName());
+        _builder.append(_firstUpper_1);
+        _builder.append(" = mongoose.model(\'");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(e_2.getName());
+        _builder.append(_firstUpper_2);
+        _builder.append("\', ");
+        String _firstLower_3 = StringExtensions.toFirstLower(e_2.getName());
+        _builder.append(_firstLower_3);
+        _builder.append("Schema);");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("//Endpoints");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      for(final Entity e_3 : entities) {
+        _builder.append("// ");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(e_3.getName());
+        _builder.append(_firstUpper_3);
+        _builder.newLineIfNotEmpty();
+        {
+          EList<Parameter> _parameters_1 = e_3.getParameters();
+          for(final Parameter p_1 : _parameters_1) {
             {
-              EList<String> _type = p.getType();
+              EList<String> _type = p_1.getType();
               for(final String t : _type) {
+                _builder.append("\t");
                 CharSequence _switchResult = null;
                 String _string = t.toString();
                 if (_string != null) {
@@ -158,75 +270,89 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                     case "C":
                       StringConcatenation _builder_1 = new StringConcatenation();
                       _builder_1.append("app.post(\'/post");
-                      String _firstUpper = StringExtensions.toFirstUpper(e.getName());
-                      _builder_1.append(_firstUpper);
-                      String _firstUpper_1 = StringExtensions.toFirstUpper(p.getName());
-                      _builder_1.append(_firstUpper_1);
-                      _builder_1.append("\') { ");
-                      String _firstUpper_2 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_1.append(_firstUpper_2);
+                      String _firstUpper_4 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_1.append(_firstUpper_4);
+                      String _firstUpper_5 = StringExtensions.toFirstUpper(p_1.getName());
+                      _builder_1.append(_firstUpper_5);
+                      _builder_1.append("\'), function (req, res) { ");
+                      String _firstUpper_6 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_1.append(_firstUpper_6);
                       _builder_1.append("Controller.post");
-                      String _name = p.getName();
-                      _builder_1.append(_name);
-                      _builder_1.append("() }");
+                      String _name_1 = p_1.getName();
+                      _builder_1.append(_name_1);
+                      _builder_1.append("(");
+                      String _firstUpper_7 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_1.append(_firstUpper_7);
+                      _builder_1.append(", req, res) }");
                       _switchResult = _builder_1;
                       break;
                     case "R":
                       StringConcatenation _builder_2 = new StringConcatenation();
                       _builder_2.append("app.get(\'/get");
-                      String _firstUpper_3 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_2.append(_firstUpper_3);
-                      String _firstUpper_4 = StringExtensions.toFirstUpper(p.getName());
-                      _builder_2.append(_firstUpper_4);
-                      _builder_2.append("\') { ");
-                      String _firstUpper_5 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_2.append(_firstUpper_5);
+                      String _firstUpper_8 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_2.append(_firstUpper_8);
+                      String _firstUpper_9 = StringExtensions.toFirstUpper(p_1.getName());
+                      _builder_2.append(_firstUpper_9);
+                      _builder_2.append("\') function (req, res)  { ");
+                      String _firstUpper_10 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_2.append(_firstUpper_10);
                       _builder_2.append("Controller.get");
-                      String _name_1 = p.getName();
-                      _builder_2.append(_name_1);
-                      _builder_2.append("() }");
+                      String _name_2 = p_1.getName();
+                      _builder_2.append(_name_2);
+                      _builder_2.append("(");
+                      String _firstUpper_11 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_2.append(_firstUpper_11);
+                      _builder_2.append(", req, res) }");
                       _switchResult = _builder_2;
                       break;
                     case "U":
                       StringConcatenation _builder_3 = new StringConcatenation();
                       _builder_3.append("app.put(\'/put");
-                      String _firstUpper_6 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_3.append(_firstUpper_6);
-                      String _firstUpper_7 = StringExtensions.toFirstUpper(p.getName());
-                      _builder_3.append(_firstUpper_7);
-                      _builder_3.append("\') { ");
-                      String _firstUpper_8 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_3.append(_firstUpper_8);
+                      String _firstUpper_12 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_3.append(_firstUpper_12);
+                      String _firstUpper_13 = StringExtensions.toFirstUpper(p_1.getName());
+                      _builder_3.append(_firstUpper_13);
+                      _builder_3.append("\') function (req, res)  { ");
+                      String _firstUpper_14 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_3.append(_firstUpper_14);
                       _builder_3.append("Controller.put");
-                      String _name_2 = p.getName();
-                      _builder_3.append(_name_2);
-                      _builder_3.append("() }");
+                      String _name_3 = p_1.getName();
+                      _builder_3.append(_name_3);
+                      _builder_3.append("(");
+                      String _firstUpper_15 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_3.append(_firstUpper_15);
+                      _builder_3.append(", req, res) }");
                       _switchResult = _builder_3;
                       break;
                     case "D":
                       StringConcatenation _builder_4 = new StringConcatenation();
                       _builder_4.append("app.delete(\'/delete");
-                      String _firstUpper_9 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_4.append(_firstUpper_9);
-                      String _firstUpper_10 = StringExtensions.toFirstUpper(p.getName());
-                      _builder_4.append(_firstUpper_10);
-                      _builder_4.append("\') { ");
-                      String _firstUpper_11 = StringExtensions.toFirstUpper(e.getName());
-                      _builder_4.append(_firstUpper_11);
+                      String _firstUpper_16 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_4.append(_firstUpper_16);
+                      String _firstUpper_17 = StringExtensions.toFirstUpper(p_1.getName());
+                      _builder_4.append(_firstUpper_17);
+                      _builder_4.append("\') function (req, res)  { ");
+                      String _firstUpper_18 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_4.append(_firstUpper_18);
                       _builder_4.append("Controller.delete");
-                      String _name_3 = p.getName();
-                      _builder_4.append(_name_3);
-                      _builder_4.append("() }");
+                      String _name_4 = p_1.getName();
+                      _builder_4.append(_name_4);
+                      _builder_4.append("(");
+                      String _firstUpper_19 = StringExtensions.toFirstUpper(e_3.getName());
+                      _builder_4.append(_firstUpper_19);
+                      _builder_4.append(", req, res) }");
                       _switchResult = _builder_4;
                       break;
                   }
                 }
-                _builder.append(_switchResult);
+                _builder.append(_switchResult, "\t");
                 _builder.newLineIfNotEmpty();
               }
             }
           }
         }
+        _builder.append("\t");
+        _builder.newLine();
       }
     }
     return _builder;
