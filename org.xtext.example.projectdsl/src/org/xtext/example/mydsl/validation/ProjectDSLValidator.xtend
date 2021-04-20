@@ -12,6 +12,10 @@ import org.eclipse.emf.common.util.EList
 import java.util.HashSet
 import java.util.HashMap
 import org.xtext.example.mydsl.projectDSL.Parameter
+import org.xtext.example.mydsl.projectDSL.Declaration
+import org.xtext.example.mydsl.projectDSL.RestAPI
+import org.xtext.example.mydsl.projectDSL.impl.EntityImpl
+import org.xtext.example.mydsl.projectDSL.impl.ControllerImpl
 
 /**
  * This class contains custom validation rules. 
@@ -19,8 +23,6 @@ import org.xtext.example.mydsl.projectDSL.Parameter
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ProjectDSLValidator extends AbstractProjectDSLValidator {
-	
-	
 	
 	@Check
 	def checkMakeOperations(Controller c) {
@@ -68,6 +70,23 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
                 }
             }
         }
+    }
+    
+    @Check
+    def checkDuplicateEntitiesOrControllers(RestAPI api){
+    	val entityNames = new ArrayList<String>
+    	val controllerNames = new ArrayList<String>
+    	api.declarations.forEach[
+    		if(it.class == EntityImpl && !entityNames.contains(it.name)){
+    			entityNames.add(it.name)
+    			println("Entity")
+    		}else if(it.class == ControllerImpl && !controllerNames.contains(it.name)){
+    			controllerNames.add(it.name)
+    			println("Controller")
+    		}else{
+    			error("Already exists", it, null)
+    		}
+    	]
     }
 	
 }

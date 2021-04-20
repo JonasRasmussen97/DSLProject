@@ -8,12 +8,16 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.projectDSL.Controller;
+import org.xtext.example.mydsl.projectDSL.Declaration;
 import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
-import org.xtext.example.mydsl.validation.AbstractProjectDSLValidator;
+import org.xtext.example.mydsl.projectDSL.RestAPI;
+import org.xtext.example.mydsl.projectDSL.impl.ControllerImpl;
+import org.xtext.example.mydsl.projectDSL.impl.EntityImpl;
 
 /**
  * This class contains custom validation rules.
@@ -75,5 +79,25 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
         }
       }
     }
+  }
+  
+  @Check
+  public void checkDuplicateEntitiesOrControllers(final RestAPI api) {
+    final ArrayList<String> entityNames = new ArrayList<String>();
+    final ArrayList<String> controllerNames = new ArrayList<String>();
+    final Consumer<Declaration> _function = (Declaration it) -> {
+      if ((Objects.equal(it.getClass(), EntityImpl.class) && (!entityNames.contains(it.getName())))) {
+        entityNames.add(it.getName());
+        InputOutput.<String>println("Entity");
+      } else {
+        if ((Objects.equal(it.getClass(), ControllerImpl.class) && (!controllerNames.contains(it.getName())))) {
+          controllerNames.add(it.getName());
+          InputOutput.<String>println("Controller");
+        } else {
+          this.error("Already exists", it, null);
+        }
+      }
+    };
+    api.getDeclarations().forEach(_function);
   }
 }
