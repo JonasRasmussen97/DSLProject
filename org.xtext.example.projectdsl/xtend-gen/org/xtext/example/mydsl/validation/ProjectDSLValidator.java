@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.xtext.example.mydsl.projectDSL.Controller;
 import org.xtext.example.mydsl.projectDSL.Declaration;
 import org.xtext.example.mydsl.projectDSL.Endpoint;
@@ -88,11 +87,9 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
     final Consumer<Declaration> _function = (Declaration it) -> {
       if ((Objects.equal(it.getClass(), EntityImpl.class) && (!entityNames.contains(it.getName())))) {
         entityNames.add(it.getName());
-        InputOutput.<String>println("Entity");
       } else {
         if ((Objects.equal(it.getClass(), ControllerImpl.class) && (!controllerNames.contains(it.getName())))) {
           controllerNames.add(it.getName());
-          InputOutput.<String>println("Controller");
         } else {
           this.error("Already exists", it, null);
         }

@@ -79,10 +79,8 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
     	api.declarations.forEach[
     		if(it.class == EntityImpl && !entityNames.contains(it.name)){
     			entityNames.add(it.name)
-    			println("Entity")
     		}else if(it.class == ControllerImpl && !controllerNames.contains(it.name)){
     			controllerNames.add(it.name)
-    			println("Controller")
     		}else{
     			error("Already exists", it, null)
     		}
