@@ -56,7 +56,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	                        «FOR t:p.type»
 	                            «switch t.toString {
 	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {«b.name.toFirstUpper».collection.findOne({Id: req.params.id}, function(err, result){ if(err) {res.send("There was an error!"} else res.send("Success!")});},'''
-	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {«b.name.toFirstUpper».collection.findOneAndUpdate();},'''
+	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {«b.name.toFirstUpper».collection.findOneAndUpdate({«p.name»:req.body.«p.name.toLowerCase»}, {$set: {«p.name»:req.body.value}});},'''
 	                    }»
 	                        «ENDFOR»
 	                    «ENDIF»

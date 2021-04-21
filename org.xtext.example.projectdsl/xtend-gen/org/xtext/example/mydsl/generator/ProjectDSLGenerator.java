@@ -138,7 +138,16 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_2.append(", req, res) {");
                               String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
                               _builder_2.append(_firstUpper_9);
-                              _builder_2.append(".collection.findOneAndUpdate();},");
+                              _builder_2.append(".collection.findOneAndUpdate({");
+                              String _name_5 = p.getName();
+                              _builder_2.append(_name_5);
+                              _builder_2.append(":req.body.");
+                              String _lowerCase = p.getName().toLowerCase();
+                              _builder_2.append(_lowerCase);
+                              _builder_2.append("}, {$set: {");
+                              String _name_6 = p.getName();
+                              _builder_2.append(_name_6);
+                              _builder_2.append(":req.body.value}});},");
                               _switchResult = _builder_2;
                               break;
                           }
@@ -160,8 +169,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("        ");
     _builder.append("module.exports = ");
-    String _name_5 = controller.getName();
-    _builder.append(_name_5, "        ");
+    String _name_7 = controller.getName();
+    _builder.append(_name_7, "        ");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
