@@ -75,7 +75,19 @@ public class ProjectDSLGenerator extends AbstractGenerator {
         _builder.append(", req, res) {");
         String _firstUpper_2 = StringExtensions.toFirstUpper(base.getName());
         _builder.append(_firstUpper_2, "        ");
-        _builder.append(".collection.insertOne();}");
+        _builder.append(".collection.insertOne(new User({");
+        {
+          EList<Parameter> _parameters = base.getParameters();
+          for(final Parameter bp : _parameters) {
+            String _name_1 = bp.getName();
+            _builder.append(_name_1, "        ");
+            _builder.append(":req.body.");
+            String _lowerCase = bp.getName().toLowerCase();
+            _builder.append(_lowerCase, "        ");
+            _builder.append(",");
+          }
+        }
+        _builder.append("}));}");
         _builder.newLineIfNotEmpty();
         _builder.append("        ");
         _builder.append("delete");
@@ -87,7 +99,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
         _builder.append(", req, res) {");
         String _firstUpper_5 = StringExtensions.toFirstUpper(base.getName());
         _builder.append(_firstUpper_5, "        ");
-        _builder.append(".collection.deleteOne();}");
+        _builder.append(".collection.deleteOne(req.body.id, function(err, result){if(err) { res.send(\"Error!\")} else { res.send(\"Success!\") }}});}");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -98,12 +110,12 @@ public class ProjectDSLGenerator extends AbstractGenerator {
           EList<Entity> _base_1 = controller.getBase();
           for(final Entity b : _base_1) {
             {
-              EList<Parameter> _parameters = b.getParameters();
-              for(final Parameter p : _parameters) {
+              EList<Parameter> _parameters_1 = b.getParameters();
+              for(final Parameter p : _parameters_1) {
                 {
-                  String _name_1 = p.getName();
-                  String _name_2 = e.getEndpoint().getName();
-                  boolean _equals = Objects.equal(_name_1, _name_2);
+                  String _name_2 = p.getName();
+                  String _name_3 = e.getEndpoint().getName();
+                  boolean _equals = Objects.equal(_name_2, _name_3);
                   if (_equals) {
                     {
                       EList<String> _type = p.getType();
@@ -116,8 +128,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                             case "R":
                               StringConcatenation _builder_1 = new StringConcatenation();
                               _builder_1.append("get");
-                              String _name_3 = p.getName();
-                              _builder_1.append(_name_3);
+                              String _name_4 = p.getName();
+                              _builder_1.append(_name_4);
                               _builder_1.append(": function(");
                               String _firstUpper_6 = StringExtensions.toFirstUpper(b.getName());
                               _builder_1.append(_firstUpper_6);
@@ -130,8 +142,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                             case "U":
                               StringConcatenation _builder_2 = new StringConcatenation();
                               _builder_2.append("put");
-                              String _name_4 = p.getName();
-                              _builder_2.append(_name_4);
+                              String _name_5 = p.getName();
+                              _builder_2.append(_name_5);
                               _builder_2.append(": function(");
                               String _firstUpper_8 = StringExtensions.toFirstUpper(b.getName());
                               _builder_2.append(_firstUpper_8);
@@ -139,14 +151,14 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
                               _builder_2.append(_firstUpper_9);
                               _builder_2.append(".collection.findOneAndUpdate({");
-                              String _name_5 = p.getName();
-                              _builder_2.append(_name_5);
-                              _builder_2.append(":req.body.");
-                              String _lowerCase = p.getName().toLowerCase();
-                              _builder_2.append(_lowerCase);
-                              _builder_2.append("}, {$set: {");
                               String _name_6 = p.getName();
                               _builder_2.append(_name_6);
+                              _builder_2.append(":req.body.");
+                              String _lowerCase_1 = p.getName().toLowerCase();
+                              _builder_2.append(_lowerCase_1);
+                              _builder_2.append("}, {$set: {");
+                              String _name_7 = p.getName();
+                              _builder_2.append(_name_7);
                               _builder_2.append(":req.body.value}});},");
                               _switchResult = _builder_2;
                               break;
@@ -169,8 +181,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("        ");
     _builder.append("module.exports = ");
-    String _name_7 = controller.getName();
-    _builder.append(_name_7, "        ");
+    String _name_8 = controller.getName();
+    _builder.append(_name_8, "        ");
     _builder.newLineIfNotEmpty();
     return _builder;
   }

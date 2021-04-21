@@ -45,8 +45,8 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	var mongoose = require('mongoose');
 	        var «controller.name» = {
 	        «FOR base:controller.base»
-	        create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {«base.name.toFirstUpper».collection.insertOne();}
-	        delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {«base.name.toFirstUpper».collection.deleteOne();}
+	        create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {«base.name.toFirstUpper».collection.insertOne(new User({«FOR bp:base.parameters»«bp.name»:req.body.«bp.name.toLowerCase»,«ENDFOR»}));}
+	        delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {«base.name.toFirstUpper».collection.deleteOne(req.body.id, function(err, result){if(err) { res.send("Error!")} else { res.send("Success!") }}});}
 	        «ENDFOR»
 	        «FOR e : controller.endpoint»
 	            «FOR b:controller.base»
