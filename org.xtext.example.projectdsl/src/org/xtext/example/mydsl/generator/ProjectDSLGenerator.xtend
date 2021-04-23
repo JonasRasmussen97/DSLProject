@@ -13,9 +13,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.xtext.example.mydsl.projectDSL.Entity
 import org.xtext.example.mydsl.projectDSL.Controller
+import org.xtext.example.mydsl.projectDSL.Parameter
+import org.xtext.example.mydsl.projectDSL.Plus
 import org.xtext.example.mydsl.projectDSL.MathExp
 import org.xtext.example.mydsl.projectDSL.Expression
-import org.xtext.example.mydsl.projectDSL.Plus
 import org.xtext.example.mydsl.projectDSL.Minus
 import org.xtext.example.mydsl.projectDSL.Mult
 import org.xtext.example.mydsl.projectDSL.Div
@@ -44,6 +45,13 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	// modelInstance.display
 	}
 	
+	def generateMath(Parameter p) {
+		if(p.op !== null) {
+			'''if(«p.name» «p.op» «p.right»){}'''
+		}
+	}
+	
+	
 	def static int compute(MathExp math) { 
 		math.exp.computeExp
 	}
@@ -59,20 +67,6 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		}
 	}
 	
-	def static String displayMath(MathExp math) {
-		math.exp.d
-	}
-	
-	def static String d(Expression exp) {
-		switch exp {
-			Plus: "("+exp.left.d+"+"+exp.right.d+")"
-			Minus: "("+exp.left.d+"-"+exp.right.d+")"
-			Mult: exp.left.d+"*"+exp.right.d
-			Div: exp.left.d+"/"+exp.right.d
-			Num: Integer.toString(exp.value)
-			default: throw new Error("Internal error")
-		}
-	}
 	
 	// Generates the app.js file
 	def generateApp(IFileSystemAccess2 access1, Iterable<Entity> entities) {
@@ -112,6 +106,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	                        «FOR t:p.type»
 	                            «switch t.toString {
 	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {
+	«p.generateMath»
 	«b.name.toFirstUpper».collection.findOne({
 		Id: req.params.id
 	}, function(err, result){
@@ -122,6 +117,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	});
 },'''
 	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {
+	«p.generateMath»
 	«b.name.toFirstUpper».collection.findOneAndUpdate({
 		«p.name»:req.body.«p.name.toLowerCase»
 	}, {

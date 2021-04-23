@@ -7,6 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -40,7 +41,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * @generated
    * @ordered
    */
-  protected Expression left;
+  protected EObject left;
 
   /**
    * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
@@ -99,7 +100,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * @generated
    */
   @Override
-  public Expression getLeft()
+  public EObject getLeft()
   {
     return left;
   }
@@ -109,9 +110,9 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLeft(Expression newLeft, NotificationChain msgs)
+  public NotificationChain basicSetLeft(EObject newLeft, NotificationChain msgs)
   {
-    Expression oldLeft = left;
+    EObject oldLeft = left;
     left = newLeft;
     if (eNotificationRequired())
     {
@@ -127,7 +128,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * @generated
    */
   @Override
-  public void setLeft(Expression newLeft)
+  public void setLeft(EObject newLeft)
   {
     if (newLeft != left)
     {
@@ -267,7 +268,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case ProjectDSLPackage.EXPRESSION__LEFT:
-        setLeft((Expression)newValue);
+        setLeft((EObject)newValue);
         return;
       case ProjectDSLPackage.EXPRESSION__OP:
         setOp((String)newValue);
@@ -290,7 +291,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case ProjectDSLPackage.EXPRESSION__LEFT:
-        setLeft((Expression)null);
+        setLeft((EObject)null);
         return;
       case ProjectDSLPackage.EXPRESSION__OP:
         setOp(OP_EDEFAULT);

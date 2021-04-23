@@ -468,18 +468,80 @@ ruleParameter returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getParameterAccess().getMathComparisonParserRuleCall_5_1_0());
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getParameterRule());
+						}
 					}
-					lv_math_6_0=ruleComparison
+					otherlv_6=RULE_ID
+					{
+						newLeafNode(otherlv_6, grammarAccess.getParameterAccess().getLeftParameterCrossReference_5_1_0());
+					}
+				)
+			)
+			(
+				(
+					(
+						lv_op_7_1='>='
+						{
+							newLeafNode(lv_op_7_1, grammarAccess.getParameterAccess().getOpGreaterThanSignEqualsSignKeyword_5_2_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getParameterRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_7_1, null);
+						}
+						    |
+						lv_op_7_2='<='
+						{
+							newLeafNode(lv_op_7_2, grammarAccess.getParameterAccess().getOpLessThanSignEqualsSignKeyword_5_2_0_1());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getParameterRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_7_2, null);
+						}
+						    |
+						lv_op_7_3='>'
+						{
+							newLeafNode(lv_op_7_3, grammarAccess.getParameterAccess().getOpGreaterThanSignKeyword_5_2_0_2());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getParameterRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_7_3, null);
+						}
+						    |
+						lv_op_7_4='<'
+						{
+							newLeafNode(lv_op_7_4, grammarAccess.getParameterAccess().getOpLessThanSignKeyword_5_2_0_3());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getParameterRule());
+							}
+							setWithLastConsumed($current, "op", lv_op_7_4, null);
+						}
+					)
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getParameterAccess().getRightExpParserRuleCall_5_3_0());
+					}
+					lv_right_8_0=ruleExp
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getParameterRule());
 						}
 						set(
 							$current,
-							"math",
-							lv_math_6_0,
-							"org.xtext.example.mydsl.ProjectDSL.Comparison");
+							"right",
+							lv_right_8_0,
+							"org.xtext.example.mydsl.ProjectDSL.Exp");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -708,15 +770,15 @@ rulePrimary returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleComparison
-entryRuleComparison returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getComparisonRule()); }
-	iv_ruleComparison=ruleComparison
-	{ $current=$iv_ruleComparison.current; }
+// Entry rule entryRuleCompareType
+entryRuleCompareType returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getCompareTypeRule()); }
+	iv_ruleCompareType=ruleCompareType
+	{ $current=$iv_ruleCompareType.current.getText(); }
 	EOF;
 
-// Rule Comparison
-ruleComparison returns [EObject current=null]
+// Rule CompareType
+ruleCompareType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 @init {
 	enterRule();
 }
@@ -724,93 +786,29 @@ ruleComparison returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getComparisonAccess().getLeftExpParserRuleCall_0_0());
-				}
-				lv_left_0_0=ruleExp
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getComparisonRule());
-					}
-					set(
-						$current,
-						"left",
-						lv_left_0_0,
-						"org.xtext.example.mydsl.ProjectDSL.Exp");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			(
-				(
-					lv_op_1_1='>='
-					{
-						newLeafNode(lv_op_1_1, grammarAccess.getComparisonAccess().getOpGreaterThanSignEqualsSignKeyword_1_0_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getComparisonRule());
-						}
-						setWithLastConsumed($current, "op", lv_op_1_1, null);
-					}
-					    |
-					lv_op_1_2='<='
-					{
-						newLeafNode(lv_op_1_2, grammarAccess.getComparisonAccess().getOpLessThanSignEqualsSignKeyword_1_0_1());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getComparisonRule());
-						}
-						setWithLastConsumed($current, "op", lv_op_1_2, null);
-					}
-					    |
-					lv_op_1_3='>'
-					{
-						newLeafNode(lv_op_1_3, grammarAccess.getComparisonAccess().getOpGreaterThanSignKeyword_1_0_2());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getComparisonRule());
-						}
-						setWithLastConsumed($current, "op", lv_op_1_3, null);
-					}
-					    |
-					lv_op_1_4='<'
-					{
-						newLeafNode(lv_op_1_4, grammarAccess.getComparisonAccess().getOpLessThanSignKeyword_1_0_3());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getComparisonRule());
-						}
-						setWithLastConsumed($current, "op", lv_op_1_4, null);
-					}
-				)
-			)
-		)
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getComparisonAccess().getRightExpParserRuleCall_2_0());
-				}
-				lv_right_2_0=ruleExp
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getComparisonRule());
-					}
-					set(
-						$current,
-						"right",
-						lv_right_2_0,
-						"org.xtext.example.mydsl.ProjectDSL.Exp");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		kw='>='
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getCompareTypeAccess().getGreaterThanSignEqualsSignKeyword_0());
+		}
+		    |
+		kw='<='
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getCompareTypeAccess().getLessThanSignEqualsSignKeyword_1());
+		}
+		    |
+		kw='>'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getCompareTypeAccess().getGreaterThanSignKeyword_2());
+		}
+		    |
+		kw='<'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getCompareTypeAccess().getLessThanSignKeyword_3());
+		}
 	)
 ;
 

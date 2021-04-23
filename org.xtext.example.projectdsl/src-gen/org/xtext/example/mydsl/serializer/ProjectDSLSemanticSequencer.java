@@ -92,10 +92,22 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Comparison returns Expression
 	 *
 	 * Constraint:
-	 *     (left=Exp (op='>=' | op='<=' | op='>' | op='<') right=Exp)
+	 *     (left=Parameter op=CompareType right=Exp)
 	 */
 	protected void sequence_Comparison(ISerializationContext context, Expression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__OP));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getComparisonAccess().getLeftParameterParserRuleCall_0_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getComparisonAccess().getOpCompareTypeParserRuleCall_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getComparisonAccess().getRightExpParserRuleCall_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	
@@ -304,7 +316,7 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (name=ID dataType=ID type+=Type+ math=Comparison?)
+	 *     (name=ID dataType=ID type+=Type+ (left=[Parameter|ID] (op='>=' | op='<=' | op='>' | op='<') right=Exp)?)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.projectDSL.Parameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

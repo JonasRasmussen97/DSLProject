@@ -280,13 +280,31 @@ public interface ProjectDSLPackage extends EPackage
   int PARAMETER__TYPE = 2;
 
   /**
-   * The feature id for the '<em><b>Math</b></em>' containment reference.
+   * The feature id for the '<em><b>Left</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PARAMETER__MATH = 3;
+  int PARAMETER__LEFT = 3;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER__OP = 4;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER__RIGHT = 5;
 
   /**
    * The number of structural features of the '<em>Parameter</em>' class.
@@ -295,7 +313,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAMETER_FEATURE_COUNT = 4;
+  int PARAMETER_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.
@@ -830,15 +848,37 @@ public interface ProjectDSLPackage extends EPackage
   EAttribute getParameter_Type();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Math</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Parameter#getMath()
+   * @return the meta object for the reference '<em>Left</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Parameter#getLeft()
    * @see #getParameter()
    * @generated
    */
-  EReference getParameter_Math();
+  EReference getParameter_Left();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Parameter#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Parameter#getOp()
+   * @see #getParameter()
+   * @generated
+   */
+  EAttribute getParameter_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Parameter#getRight()
+   * @see #getParameter()
+   * @generated
+   */
+  EReference getParameter_Right();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Redirect <em>Redirect</em>}'.
@@ -1169,12 +1209,28 @@ public interface ProjectDSLPackage extends EPackage
     EAttribute PARAMETER__TYPE = eINSTANCE.getParameter_Type();
 
     /**
-     * The meta object literal for the '<em><b>Math</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Left</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PARAMETER__MATH = eINSTANCE.getParameter_Math();
+    EReference PARAMETER__LEFT = eINSTANCE.getParameter_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAMETER__OP = eINSTANCE.getParameter_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARAMETER__RIGHT = eINSTANCE.getParameter_Right();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.

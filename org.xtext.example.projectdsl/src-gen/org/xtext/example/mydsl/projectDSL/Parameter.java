@@ -19,7 +19,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getLeft <em>Left</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getOp <em>Op</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter()
@@ -85,25 +87,69 @@ public interface Parameter extends EObject
   EList<String> getType();
 
   /**
-   * Returns the value of the '<em><b>Math</b></em>' containment reference.
+   * Returns the value of the '<em><b>Left</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Math</em>' containment reference.
-   * @see #setMath(Expression)
-   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Math()
+   * @return the value of the '<em>Left</em>' reference.
+   * @see #setLeft(Parameter)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Left()
+   * @model
+   * @generated
+   */
+  Parameter getLeft();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getLeft <em>Left</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Left</em>' reference.
+   * @see #getLeft()
+   * @generated
+   */
+  void setLeft(Parameter value);
+
+  /**
+   * Returns the value of the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Op</em>' attribute.
+   * @see #setOp(String)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Op()
+   * @model
+   * @generated
+   */
+  String getOp();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getOp <em>Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Op</em>' attribute.
+   * @see #getOp()
+   * @generated
+   */
+  void setOp(String value);
+
+  /**
+   * Returns the value of the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Right</em>' containment reference.
+   * @see #setRight(Expression)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Right()
    * @model containment="true"
    * @generated
    */
-  Expression getMath();
+  Expression getRight();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Math</em>' containment reference.
-   * @see #getMath()
+   * @param value the new value of the '<em>Right</em>' containment reference.
+   * @see #getRight()
    * @generated
    */
-  void setMath(Expression value);
+  void setRight(Expression value);
 
 } // Parameter

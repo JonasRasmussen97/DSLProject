@@ -26,7 +26,7 @@ Endpoint:
 ;
 
 Parameter: 
-	name=ID '=' dataType=ID ':' type+=Type+ ('require' math=Comparison)?
+	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=MathExp)?
 ; 
 
 // Redirect can either be a controller reference or a string. 
@@ -57,7 +57,11 @@ Primary returns Expression:
 ;
 
 Comparison returns Expression:
-	left=Exp op=(">="|"<="|">"|"<") right=Exp
+	left=Parameter op=CompareType right=Exp
+;
+
+CompareType: 
+	'>=' | '<=' | '>' | '<' 
 ;
 
 Parenthesis returns Expression:

@@ -32,12 +32,13 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, ProjectDSLGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getDeclarationAccess().getAlternatives(), "rule__Declaration__Alternatives");
+			builder.put(grammarAccess.getParameterAccess().getOpAlternatives_5_2_0(), "rule__Parameter__OpAlternatives_5_2_0");
 			builder.put(grammarAccess.getRedirectAccess().getAlternatives(), "rule__Redirect__Alternatives");
 			builder.put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
 			builder.put(grammarAccess.getExpAccess().getAlternatives_1_0(), "rule__Exp__Alternatives_1_0");
 			builder.put(grammarAccess.getMulOrDivAccess().getAlternatives_1_0(), "rule__MulOrDiv__Alternatives_1_0");
 			builder.put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
-			builder.put(grammarAccess.getComparisonAccess().getOpAlternatives_1_0(), "rule__Comparison__OpAlternatives_1_0");
+			builder.put(grammarAccess.getCompareTypeAccess().getAlternatives(), "rule__CompareType__Alternatives");
 			builder.put(grammarAccess.getRestAPIAccess().getGroup(), "rule__RestAPI__Group__0");
 			builder.put(grammarAccess.getEntityAccess().getGroup(), "rule__Entity__Group__0");
 			builder.put(grammarAccess.getControllerAccess().getGroup(), "rule__Controller__Group__0");
@@ -69,7 +70,9 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterAccess().getNameAssignment_0(), "rule__Parameter__NameAssignment_0");
 			builder.put(grammarAccess.getParameterAccess().getDataTypeAssignment_2(), "rule__Parameter__DataTypeAssignment_2");
 			builder.put(grammarAccess.getParameterAccess().getTypeAssignment_4(), "rule__Parameter__TypeAssignment_4");
-			builder.put(grammarAccess.getParameterAccess().getMathAssignment_5_1(), "rule__Parameter__MathAssignment_5_1");
+			builder.put(grammarAccess.getParameterAccess().getLeftAssignment_5_1(), "rule__Parameter__LeftAssignment_5_1");
+			builder.put(grammarAccess.getParameterAccess().getOpAssignment_5_2(), "rule__Parameter__OpAssignment_5_2");
+			builder.put(grammarAccess.getParameterAccess().getRightAssignment_5_3(), "rule__Parameter__RightAssignment_5_3");
 			builder.put(grammarAccess.getRedirectAccess().getNameAssignment_0(), "rule__Redirect__NameAssignment_0");
 			builder.put(grammarAccess.getRedirectAccess().getUrlAssignment_1(), "rule__Redirect__UrlAssignment_1");
 			builder.put(grammarAccess.getMathExpAccess().getExpAssignment(), "rule__MathExp__ExpAssignment");

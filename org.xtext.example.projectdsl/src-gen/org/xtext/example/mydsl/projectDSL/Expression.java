@@ -30,12 +30,12 @@ public interface Expression extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(Expression)
+   * @see #setLeft(EObject)
    * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getExpression_Left()
    * @model containment="true"
    * @generated
    */
-  Expression getLeft();
+  EObject getLeft();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Expression#getLeft <em>Left</em>}' containment reference.
@@ -45,7 +45,7 @@ public interface Expression extends EObject
    * @see #getLeft()
    * @generated
    */
-  void setLeft(Expression value);
+  void setLeft(EObject value);
 
   /**
    * Returns the value of the '<em><b>Op</b></em>' attribute.
