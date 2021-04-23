@@ -530,18 +530,18 @@ ruleParameter returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getParameterAccess().getRightExpParserRuleCall_5_3_0());
+						newCompositeNode(grammarAccess.getParameterAccess().getMathMathExpParserRuleCall_5_3_0());
 					}
-					lv_right_8_0=ruleExp
+					lv_math_8_0=ruleMathExp
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getParameterRule());
 						}
 						set(
 							$current,
-							"right",
-							lv_right_8_0,
-							"org.xtext.example.mydsl.ProjectDSL.Exp");
+							"math",
+							lv_math_8_0,
+							"org.xtext.example.mydsl.ProjectDSL.MathExp");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -577,6 +577,42 @@ ruleType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getTypeAccess().getUKeyword_1());
 		}
+	)
+;
+
+// Entry rule entryRuleMathExp
+entryRuleMathExp returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMathExpRule()); }
+	iv_ruleMathExp=ruleMathExp
+	{ $current=$iv_ruleMathExp.current; }
+	EOF;
+
+// Rule MathExp
+ruleMathExp returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getMathExpAccess().getExpExpParserRuleCall_0());
+			}
+			lv_exp_0_0=ruleExp
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getMathExpRule());
+				}
+				set(
+					$current,
+					"exp",
+					lv_exp_0_0,
+					"org.xtext.example.mydsl.ProjectDSL.Exp");
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 
@@ -766,48 +802,6 @@ rulePrimary returns [EObject current=null]
 		{
 			$current = $this_Parenthesis_1.current;
 			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-// Entry rule entryRuleCompareType
-entryRuleCompareType returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getCompareTypeRule()); }
-	iv_ruleCompareType=ruleCompareType
-	{ $current=$iv_ruleCompareType.current.getText(); }
-	EOF;
-
-// Rule CompareType
-ruleCompareType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		kw='>='
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getCompareTypeAccess().getGreaterThanSignEqualsSignKeyword_0());
-		}
-		    |
-		kw='<='
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getCompareTypeAccess().getLessThanSignEqualsSignKeyword_1());
-		}
-		    |
-		kw='>'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getCompareTypeAccess().getGreaterThanSignKeyword_2());
-		}
-		    |
-		kw='<'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getCompareTypeAccess().getLessThanSignKeyword_3());
 		}
 	)
 ;

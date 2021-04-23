@@ -19,11 +19,16 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.projectDSL.Controller;
+import org.xtext.example.mydsl.projectDSL.Div;
 import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Expression;
 import org.xtext.example.mydsl.projectDSL.MathExp;
+import org.xtext.example.mydsl.projectDSL.Minus;
+import org.xtext.example.mydsl.projectDSL.Mult;
+import org.xtext.example.mydsl.projectDSL.Num;
 import org.xtext.example.mydsl.projectDSL.Parameter;
+import org.xtext.example.mydsl.projectDSL.Plus;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
 
 /**
@@ -57,8 +62,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
       String _op_1 = p.getOp();
       _builder.append(_op_1);
       _builder.append(" ");
-      Expression _right = p.getRight();
-      _builder.append(_right);
+      int _compute = ProjectDSLGenerator.compute(p.getMath());
+      _builder.append(_compute);
       _builder.append("){}");
       _xifexpression = _builder;
     }
@@ -70,15 +75,48 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   }
   
   public static int computeExp(final Expression exp) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field computeExp is undefined for the type EObject"
-      + "\nThe method or field computeExp is undefined for the type EObject"
-      + "\nThe method or field computeExp is undefined for the type EObject"
-      + "\nThe method or field computeExp is undefined for the type EObject"
-      + "\n+ cannot be resolved"
-      + "\n- cannot be resolved"
-      + "\n* cannot be resolved"
-      + "\n/ cannot be resolved");
+    int _switchResult = (int) 0;
+    boolean _matched = false;
+    if (exp instanceof Plus) {
+      _matched=true;
+      int _computeExp = ProjectDSLGenerator.computeExp(((Plus)exp).getLeft());
+      int _computeExp_1 = ProjectDSLGenerator.computeExp(((Plus)exp).getRight());
+      _switchResult = (_computeExp + _computeExp_1);
+    }
+    if (!_matched) {
+      if (exp instanceof Minus) {
+        _matched=true;
+        int _computeExp = ProjectDSLGenerator.computeExp(((Minus)exp).getLeft());
+        int _computeExp_1 = ProjectDSLGenerator.computeExp(((Minus)exp).getRight());
+        _switchResult = (_computeExp - _computeExp_1);
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Mult) {
+        _matched=true;
+        int _computeExp = ProjectDSLGenerator.computeExp(((Mult)exp).getLeft());
+        int _computeExp_1 = ProjectDSLGenerator.computeExp(((Mult)exp).getRight());
+        _switchResult = (_computeExp * _computeExp_1);
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Div) {
+        _matched=true;
+        int _computeExp = ProjectDSLGenerator.computeExp(((Div)exp).getLeft());
+        int _computeExp_1 = ProjectDSLGenerator.computeExp(((Div)exp).getRight());
+        _switchResult = (_computeExp / _computeExp_1);
+      }
+    }
+    if (!_matched) {
+      if (exp instanceof Num) {
+        _matched=true;
+        _switchResult = ((Num)exp).getValue();
+      }
+    }
+    if (!_matched) {
+      _switchResult = 0;
+    }
+    return _switchResult;
   }
   
   public void generateApp(final IFileSystemAccess2 access1, final Iterable<Entity> entities) {

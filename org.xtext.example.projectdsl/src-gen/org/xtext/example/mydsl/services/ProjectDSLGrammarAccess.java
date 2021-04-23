@@ -256,14 +256,14 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cOpLessThanSignEqualsSignKeyword_5_2_0_1 = (Keyword)cOpAlternatives_5_2_0.eContents().get(1);
 		private final Keyword cOpGreaterThanSignKeyword_5_2_0_2 = (Keyword)cOpAlternatives_5_2_0.eContents().get(2);
 		private final Keyword cOpLessThanSignKeyword_5_2_0_3 = (Keyword)cOpAlternatives_5_2_0.eContents().get(3);
-		private final Assignment cRightAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
-		private final RuleCall cRightExpParserRuleCall_5_3_0 = (RuleCall)cRightAssignment_5_3.eContents().get(0);
+		private final Assignment cMathAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
+		private final RuleCall cMathMathExpParserRuleCall_5_3_0 = (RuleCall)cMathAssignment_5_3.eContents().get(0);
 		
 		//Parameter:
-		//	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=Exp)?;
+		//	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=Exp)?
+		//name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -290,7 +290,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Type
 		public RuleCall getTypeTypeParserRuleCall_4_0() { return cTypeTypeParserRuleCall_4_0; }
 		
-		//('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=Exp)?
+		//('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'require'
@@ -323,11 +323,11 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'<'
 		public Keyword getOpLessThanSignKeyword_5_2_0_3() { return cOpLessThanSignKeyword_5_2_0_3; }
 		
-		//right=Exp
-		public Assignment getRightAssignment_5_3() { return cRightAssignment_5_3; }
+		//math=MathExp
+		public Assignment getMathAssignment_5_3() { return cMathAssignment_5_3; }
 		
-		//Exp
-		public RuleCall getRightExpParserRuleCall_5_3_0() { return cRightExpParserRuleCall_5_3_0; }
+		//MathExp
+		public RuleCall getMathMathExpParserRuleCall_5_3_0() { return cMathMathExpParserRuleCall_5_3_0; }
 	}
 	public class RedirectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Redirect");
@@ -525,68 +525,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Parenthesis
 		public RuleCall getParenthesisParserRuleCall_1() { return cParenthesisParserRuleCall_1; }
 	}
-	public class ComparisonElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Comparison");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cLeftAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cLeftParameterParserRuleCall_0_0 = (RuleCall)cLeftAssignment_0.eContents().get(0);
-		private final Assignment cOpAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOpCompareTypeParserRuleCall_1_0 = (RuleCall)cOpAssignment_1.eContents().get(0);
-		private final Assignment cRightAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRightExpParserRuleCall_2_0 = (RuleCall)cRightAssignment_2.eContents().get(0);
-		
-		//Comparison Expression:
-		//	left=Parameter op=CompareType right=Exp;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//left=Parameter op=CompareType right=Exp
-		public Group getGroup() { return cGroup; }
-		
-		//left=Parameter
-		public Assignment getLeftAssignment_0() { return cLeftAssignment_0; }
-		
-		//Parameter
-		public RuleCall getLeftParameterParserRuleCall_0_0() { return cLeftParameterParserRuleCall_0_0; }
-		
-		//op=CompareType
-		public Assignment getOpAssignment_1() { return cOpAssignment_1; }
-		
-		//CompareType
-		public RuleCall getOpCompareTypeParserRuleCall_1_0() { return cOpCompareTypeParserRuleCall_1_0; }
-		
-		//right=Exp
-		public Assignment getRightAssignment_2() { return cRightAssignment_2; }
-		
-		//Exp
-		public RuleCall getRightExpParserRuleCall_2_0() { return cRightExpParserRuleCall_2_0; }
-	}
-	public class CompareTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.CompareType");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cGreaterThanSignEqualsSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cLessThanSignEqualsSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cGreaterThanSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cLessThanSignKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		
-		//CompareType:
-		//	'>=' | '<=' | '>' | '<';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'>=' | '<=' | '>' | '<'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'>='
-		public Keyword getGreaterThanSignEqualsSignKeyword_0() { return cGreaterThanSignEqualsSignKeyword_0; }
-		
-		//'<='
-		public Keyword getLessThanSignEqualsSignKeyword_1() { return cLessThanSignEqualsSignKeyword_1; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_2() { return cGreaterThanSignKeyword_2; }
-		
-		//'<'
-		public Keyword getLessThanSignKeyword_3() { return cLessThanSignKeyword_3; }
-	}
 	public class ParenthesisElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Parenthesis");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -647,8 +585,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	private final ExpElements pExp;
 	private final MulOrDivElements pMulOrDiv;
 	private final PrimaryElements pPrimary;
-	private final ComparisonElements pComparison;
-	private final CompareTypeElements pCompareType;
 	private final ParenthesisElements pParenthesis;
 	private final NumberElements pNumber;
 	
@@ -673,8 +609,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.pExp = new ExpElements();
 		this.pMulOrDiv = new MulOrDivElements();
 		this.pPrimary = new PrimaryElements();
-		this.pComparison = new ComparisonElements();
-		this.pCompareType = new CompareTypeElements();
 		this.pParenthesis = new ParenthesisElements();
 		this.pNumber = new NumberElements();
 	}
@@ -760,7 +694,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Parameter:
-	//	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=Exp)?;
+	//	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?;
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -829,26 +763,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	public ParserRule getPrimaryRule() {
 		return getPrimaryAccess().getRule();
-	}
-	
-	//Comparison Expression:
-	//	left=Parameter op=CompareType right=Exp;
-	public ComparisonElements getComparisonAccess() {
-		return pComparison;
-	}
-	
-	public ParserRule getComparisonRule() {
-		return getComparisonAccess().getRule();
-	}
-	
-	//CompareType:
-	//	'>=' | '<=' | '>' | '<';
-	public CompareTypeElements getCompareTypeAccess() {
-		return pCompareType;
-	}
-	
-	public ParserRule getCompareTypeRule() {
-		return getCompareTypeAccess().getRule();
 	}
 	
 	//Parenthesis Expression:

@@ -46,8 +46,9 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	}
 	
 	def generateMath(Parameter p) {
+		// If there is no math expression on the parameter then the operator will be null.
 		if(p.op !== null) {
-			'''if(«p.name» «p.op» «p.right»){}'''
+			'''if(«p.name» «p.op» «p.math.compute»){}'''
 		}
 	}
 	
@@ -55,6 +56,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	def static int compute(MathExp math) { 
 		math.exp.computeExp
 	}
+	
 	
 	def static int computeExp(Expression exp) {
 		switch(exp) {

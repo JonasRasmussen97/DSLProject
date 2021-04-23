@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
-import org.xtext.example.mydsl.projectDSL.Expression;
+import org.xtext.example.mydsl.projectDSL.MathExp;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 
@@ -35,7 +35,7 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getOp <em>Op</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getMath <em>Math</em>}</li>
  * </ul>
  *
  * @generated
@@ -123,14 +123,14 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   protected String op = OP_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
+   * The cached value of the '{@link #getMath() <em>Math</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRight()
+   * @see #getMath()
    * @generated
    * @ordered
    */
-  protected Expression right;
+  protected MathExp math;
 
   /**
    * <!-- begin-user-doc -->
@@ -294,9 +294,9 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public Expression getRight()
+  public MathExp getMath()
   {
-    return right;
+    return math;
   }
 
   /**
@@ -304,13 +304,13 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRight(Expression newRight, NotificationChain msgs)
+  public NotificationChain basicSetMath(MathExp newMath, NotificationChain msgs)
   {
-    Expression oldRight = right;
-    right = newRight;
+    MathExp oldMath = math;
+    math = newMath;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__RIGHT, oldRight, newRight);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__MATH, oldMath, newMath);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -322,20 +322,20 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public void setRight(Expression newRight)
+  public void setMath(MathExp newMath)
   {
-    if (newRight != right)
+    if (newMath != math)
     {
       NotificationChain msgs = null;
-      if (right != null)
-        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__RIGHT, null, msgs);
-      if (newRight != null)
-        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__RIGHT, null, msgs);
-      msgs = basicSetRight(newRight, msgs);
+      if (math != null)
+        msgs = ((InternalEObject)math).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__MATH, null, msgs);
+      if (newMath != null)
+        msgs = ((InternalEObject)newMath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__MATH, null, msgs);
+      msgs = basicSetMath(newMath, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__RIGHT, newRight, newRight));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__MATH, newMath, newMath));
   }
 
   /**
@@ -348,8 +348,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        return basicSetRight(null, msgs);
+      case ProjectDSLPackage.PARAMETER__MATH:
+        return basicSetMath(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -375,8 +375,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         return basicGetLeft();
       case ProjectDSLPackage.PARAMETER__OP:
         return getOp();
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        return getRight();
+      case ProjectDSLPackage.PARAMETER__MATH:
+        return getMath();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -408,8 +408,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__OP:
         setOp((String)newValue);
         return;
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        setRight((Expression)newValue);
+      case ProjectDSLPackage.PARAMETER__MATH:
+        setMath((MathExp)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -440,8 +440,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__OP:
         setOp(OP_EDEFAULT);
         return;
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        setRight((Expression)null);
+      case ProjectDSLPackage.PARAMETER__MATH:
+        setMath((MathExp)null);
         return;
     }
     super.eUnset(featureID);
@@ -467,8 +467,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         return left != null;
       case ProjectDSLPackage.PARAMETER__OP:
         return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        return right != null;
+      case ProjectDSLPackage.PARAMETER__MATH:
+        return math != null;
     }
     return super.eIsSet(featureID);
   }

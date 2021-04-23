@@ -18,7 +18,6 @@ import org.xtext.example.mydsl.projectDSL.Controller;
 import org.xtext.example.mydsl.projectDSL.Div;
 import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
-import org.xtext.example.mydsl.projectDSL.Expression;
 import org.xtext.example.mydsl.projectDSL.MathExp;
 import org.xtext.example.mydsl.projectDSL.Minus;
 import org.xtext.example.mydsl.projectDSL.Mult;
@@ -55,9 +54,6 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 			case ProjectDSLPackage.ENTITY:
 				sequence_Entity(context, (Entity) semanticObject); 
 				return; 
-			case ProjectDSLPackage.EXPRESSION:
-				sequence_Comparison(context, (Expression) semanticObject); 
-				return; 
 			case ProjectDSLPackage.MATH_EXP:
 				sequence_MathExp(context, (MathExp) semanticObject); 
 				return; 
@@ -86,30 +82,6 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
-	
-	/**
-	 * Contexts:
-	 *     Comparison returns Expression
-	 *
-	 * Constraint:
-	 *     (left=Parameter op=CompareType right=Exp)
-	 */
-	protected void sequence_Comparison(ISerializationContext context, Expression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__OP));
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getComparisonAccess().getLeftParameterParserRuleCall_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getComparisonAccess().getOpCompareTypeParserRuleCall_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getComparisonAccess().getRightExpParserRuleCall_2_0(), semanticObject.getRight());
-		feeder.finish();
-	}
-	
 	
 	/**
 	 * Contexts:
@@ -171,10 +143,10 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 */
 	protected void sequence_Exp(ISerializationContext context, Minus semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.MINUS__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.MINUS__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.MINUS__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.MINUS__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExpAccess().getMinusLeftAction_1_0_1_1(), semanticObject.getLeft());
@@ -199,10 +171,10 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 */
 	protected void sequence_Exp(ISerializationContext context, Plus semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.PLUS__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.PLUS__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.PLUS__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.PLUS__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExpAccess().getPlusLeftAction_1_0_0_1(), semanticObject.getLeft());
@@ -245,10 +217,10 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 */
 	protected void sequence_MulOrDiv(ISerializationContext context, Div semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.DIV__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.DIV__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.DIV__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.DIV__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMulOrDivAccess().getDivLeftAction_1_0_1_1(), semanticObject.getLeft());
@@ -273,10 +245,10 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 */
 	protected void sequence_MulOrDiv(ISerializationContext context, Mult semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.EXPRESSION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.MULT__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.MULT__LEFT));
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.MULT__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.MULT__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMulOrDivAccess().getMultLeftAction_1_0_0_1(), semanticObject.getLeft());
@@ -316,7 +288,7 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (name=ID dataType=ID type+=Type+ (left=[Parameter|ID] (op='>=' | op='<=' | op='>' | op='<') right=Exp)?)
+	 *     (name=ID dataType=ID type+=Type+ (left=[Parameter|ID] (op='>=' | op='<=' | op='>' | op='<') math=MathExp)?)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.projectDSL.Parameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

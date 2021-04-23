@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getLeft <em>Left</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getOp <em>Op</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter()
@@ -131,25 +131,25 @@ public interface Parameter extends EObject
   void setOp(String value);
 
   /**
-   * Returns the value of the '<em><b>Right</b></em>' containment reference.
+   * Returns the value of the '<em><b>Math</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(Expression)
-   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Right()
+   * @return the value of the '<em>Math</em>' containment reference.
+   * @see #setMath(MathExp)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Math()
    * @model containment="true"
    * @generated
    */
-  Expression getRight();
+  MathExp getMath();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Right</em>' containment reference.
-   * @see #getRight()
+   * @param value the new value of the '<em>Math</em>' containment reference.
+   * @see #getMath()
    * @generated
    */
-  void setRight(Expression value);
+  void setMath(MathExp value);
 
 } // Parameter

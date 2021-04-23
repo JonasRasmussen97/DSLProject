@@ -26,7 +26,7 @@ Endpoint:
 ;
 
 Parameter: 
-	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=MathExp)?
+	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?
 ; 
 
 // Redirect can either be a controller reference or a string. 
@@ -54,14 +54,6 @@ MulOrDiv returns Expression:
 
 Primary returns Expression:
 	Number | Parenthesis
-;
-
-Comparison returns Expression:
-	left=Parameter op=CompareType right=Exp
-;
-
-CompareType: 
-	'>=' | '<=' | '>' | '<' 
 ;
 
 Parenthesis returns Expression:
