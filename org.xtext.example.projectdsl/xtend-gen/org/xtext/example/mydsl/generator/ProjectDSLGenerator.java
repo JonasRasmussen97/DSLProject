@@ -54,53 +54,88 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   
   public CharSequence generateController(final Controller controller) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
     _builder.append("var mongoose = require(\'mongoose\');");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("\t");
     _builder.append("var ");
     String _name = controller.getName();
-    _builder.append(_name, "        ");
+    _builder.append(_name, "\t");
     _builder.append(" = {");
     _builder.newLineIfNotEmpty();
     {
       EList<Entity> _base = controller.getBase();
       for(final Entity base : _base) {
-        _builder.append("        ");
+        _builder.append("\t\t");
         _builder.append("create");
         String _firstUpper = StringExtensions.toFirstUpper(base.getName());
-        _builder.append(_firstUpper, "        ");
+        _builder.append(_firstUpper, "\t\t");
         _builder.append(": function(");
         String _firstUpper_1 = StringExtensions.toFirstUpper(base.getName());
-        _builder.append(_firstUpper_1, "        ");
+        _builder.append(_firstUpper_1, "\t\t");
         _builder.append(", req, res) {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("\t");
         String _firstUpper_2 = StringExtensions.toFirstUpper(base.getName());
-        _builder.append(_firstUpper_2, "        ");
+        _builder.append(_firstUpper_2, "\t\t\t");
         _builder.append(".collection.insertOne(new User({");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t");
+        _builder.append("\t\t");
         {
           EList<Parameter> _parameters = base.getParameters();
           for(final Parameter bp : _parameters) {
             String _name_1 = bp.getName();
-            _builder.append(_name_1, "        ");
+            _builder.append(_name_1, "\t\t\t\t");
             _builder.append(":req.body.");
             String _lowerCase = bp.getName().toLowerCase();
-            _builder.append(_lowerCase, "        ");
+            _builder.append(_lowerCase, "\t\t\t\t");
             _builder.append(",");
+            _builder.newLineIfNotEmpty();
           }
         }
-        _builder.append("}));}");
-        _builder.newLineIfNotEmpty();
-        _builder.append("        ");
+        _builder.append("\t\t");
+        _builder.append("\t");
+        _builder.append("})");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append(");");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("},");
+        _builder.newLine();
+        _builder.append("\t        ");
+        _builder.newLine();
+        _builder.append("\t\t");
         _builder.append("delete");
         String _firstUpper_3 = StringExtensions.toFirstUpper(base.getName());
-        _builder.append(_firstUpper_3, "        ");
+        _builder.append(_firstUpper_3, "\t\t");
         _builder.append(": function(");
         String _firstUpper_4 = StringExtensions.toFirstUpper(base.getName());
-        _builder.append(_firstUpper_4, "        ");
+        _builder.append(_firstUpper_4, "\t\t");
         _builder.append(", req, res) {");
-        String _firstUpper_5 = StringExtensions.toFirstUpper(base.getName());
-        _builder.append(_firstUpper_5, "        ");
-        _builder.append(".collection.deleteOne(req.body.id, function(err, result){if(err) { res.send(\"Error!\")} else { res.send(\"Success!\") }}});}");
         _builder.newLineIfNotEmpty();
+        _builder.append("\t        ");
+        String _firstUpper_5 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_5, "\t        ");
+        _builder.append(".collection.deleteOne(req.body.id, function(err, result){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t        \t");
+        _builder.append("if(err) { res.send(\"Error!\")");
+        _builder.newLine();
+        _builder.append("\t        \t");
+        _builder.append("} else { res.send(\"Success!\") }");
+        _builder.newLine();
+        _builder.append("\t        ");
+        _builder.append("})");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("};");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("},");
+        _builder.newLine();
       }
     }
     {
@@ -120,7 +155,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                     {
                       EList<String> _type = p.getType();
                       for(final String t : _type) {
-                        _builder.append("        ");
+                        _builder.append("\t        ");
                         CharSequence _switchResult = null;
                         String _string = t.toString();
                         if (_string != null) {
@@ -134,9 +169,34 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               String _firstUpper_6 = StringExtensions.toFirstUpper(b.getName());
                               _builder_1.append(_firstUpper_6);
                               _builder_1.append(", req, res) {");
+                              _builder_1.newLineIfNotEmpty();
+                              _builder_1.append("\t");
                               String _firstUpper_7 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_1.append(_firstUpper_7);
-                              _builder_1.append(".collection.findOne({Id: req.params.id}, function(err, result){ if(err) {res.send(\"There was an error!\"} else res.send(\"Success!\")});},");
+                              _builder_1.append(_firstUpper_7, "\t");
+                              _builder_1.append(".collection.findOne({");
+                              _builder_1.newLineIfNotEmpty();
+                              _builder_1.append("\t\t");
+                              _builder_1.append("Id: req.params.id");
+                              _builder_1.newLine();
+                              _builder_1.append("\t");
+                              _builder_1.append("}, function(err, result){");
+                              _builder_1.newLine();
+                              _builder_1.append("\t\t");
+                              _builder_1.append("if(err) {");
+                              _builder_1.newLine();
+                              _builder_1.append("\t\t\t\t");
+                              _builder_1.append("res.send(\"There was an error!\");");
+                              _builder_1.newLine();
+                              _builder_1.append("\t\t");
+                              _builder_1.append("} else {");
+                              _builder_1.newLine();
+                              _builder_1.append("\t\t\t\t");
+                              _builder_1.append("res.send(\"Success!\");");
+                              _builder_1.newLine();
+                              _builder_1.append("\t");
+                              _builder_1.append("});");
+                              _builder_1.newLine();
+                              _builder_1.append("},");
                               _switchResult = _builder_1;
                               break;
                             case "U":
@@ -148,23 +208,42 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               String _firstUpper_8 = StringExtensions.toFirstUpper(b.getName());
                               _builder_2.append(_firstUpper_8);
                               _builder_2.append(", req, res) {");
+                              _builder_2.newLineIfNotEmpty();
+                              _builder_2.append("\t");
                               String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_2.append(_firstUpper_9);
+                              _builder_2.append(_firstUpper_9, "\t");
                               _builder_2.append(".collection.findOneAndUpdate({");
+                              _builder_2.newLineIfNotEmpty();
+                              _builder_2.append("\t\t");
                               String _name_6 = p.getName();
-                              _builder_2.append(_name_6);
+                              _builder_2.append(_name_6, "\t\t");
                               _builder_2.append(":req.body.");
                               String _lowerCase_1 = p.getName().toLowerCase();
-                              _builder_2.append(_lowerCase_1);
-                              _builder_2.append("}, {$set: {");
+                              _builder_2.append(_lowerCase_1, "\t\t");
+                              _builder_2.newLineIfNotEmpty();
+                              _builder_2.append("\t");
+                              _builder_2.append("}, {");
+                              _builder_2.newLine();
+                              _builder_2.append("\t\t");
+                              _builder_2.append("$set: {");
+                              _builder_2.newLine();
+                              _builder_2.append("\t\t");
                               String _name_7 = p.getName();
-                              _builder_2.append(_name_7);
-                              _builder_2.append(":req.body.value}});},");
+                              _builder_2.append(_name_7, "\t\t");
+                              _builder_2.append(":req.body.value");
+                              _builder_2.newLineIfNotEmpty();
+                              _builder_2.append("\t\t");
+                              _builder_2.append("}");
+                              _builder_2.newLine();
+                              _builder_2.append("\t");
+                              _builder_2.append("});");
+                              _builder_2.newLine();
+                              _builder_2.append("},");
                               _switchResult = _builder_2;
                               break;
                           }
                         }
-                        _builder.append(_switchResult, "        ");
+                        _builder.append(_switchResult, "\t        ");
                         _builder.newLineIfNotEmpty();
                       }
                     }
@@ -176,13 +255,11 @@ public class ProjectDSLGenerator extends AbstractGenerator {
         }
       }
     }
-    _builder.append("        ");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("        ");
     _builder.append("module.exports = ");
     String _name_8 = controller.getName();
-    _builder.append(_name_8, "        ");
+    _builder.append(_name_8);
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -283,7 +360,6 @@ public class ProjectDSLGenerator extends AbstractGenerator {
             {
               EList<String> _type = p_1.getType();
               for(final String t : _type) {
-                _builder.append("\t");
                 CharSequence _switchResult = null;
                 String _string = t.toString();
                 if (_string != null) {
@@ -295,16 +371,20 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_1.append(_firstUpper_4);
                       String _firstUpper_5 = StringExtensions.toFirstUpper(p_1.getName());
                       _builder_1.append(_firstUpper_5);
-                      _builder_1.append("\'), function (req, res) { ");
+                      _builder_1.append("\', function (req, res) {");
+                      _builder_1.newLineIfNotEmpty();
+                      _builder_1.append("\t");
                       String _firstUpper_6 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_1.append(_firstUpper_6);
+                      _builder_1.append(_firstUpper_6, "\t");
                       _builder_1.append("Controller.post");
                       String _name_1 = p_1.getName();
-                      _builder_1.append(_name_1);
+                      _builder_1.append(_name_1, "\t");
                       _builder_1.append("(");
                       String _firstUpper_7 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_1.append(_firstUpper_7);
-                      _builder_1.append(", req, res) }");
+                      _builder_1.append(_firstUpper_7, "\t");
+                      _builder_1.append(", req, res);");
+                      _builder_1.newLineIfNotEmpty();
+                      _builder_1.append("});");
                       _switchResult = _builder_1;
                       break;
                     case "R":
@@ -314,16 +394,20 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_2.append(_firstUpper_8);
                       String _firstUpper_9 = StringExtensions.toFirstUpper(p_1.getName());
                       _builder_2.append(_firstUpper_9);
-                      _builder_2.append("\') function (req, res)  { ");
+                      _builder_2.append("\', function (req, res)  {");
+                      _builder_2.newLineIfNotEmpty();
+                      _builder_2.append("\t");
                       String _firstUpper_10 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_2.append(_firstUpper_10);
+                      _builder_2.append(_firstUpper_10, "\t");
                       _builder_2.append("Controller.get");
                       String _name_2 = p_1.getName();
-                      _builder_2.append(_name_2);
+                      _builder_2.append(_name_2, "\t");
                       _builder_2.append("(");
                       String _firstUpper_11 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_2.append(_firstUpper_11);
-                      _builder_2.append(", req, res) }");
+                      _builder_2.append(_firstUpper_11, "\t");
+                      _builder_2.append(", req, res);");
+                      _builder_2.newLineIfNotEmpty();
+                      _builder_2.append("});");
                       _switchResult = _builder_2;
                       break;
                     case "U":
@@ -333,16 +417,20 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_3.append(_firstUpper_12);
                       String _firstUpper_13 = StringExtensions.toFirstUpper(p_1.getName());
                       _builder_3.append(_firstUpper_13);
-                      _builder_3.append("\') function (req, res)  { ");
+                      _builder_3.append("\', function (req, res)  {");
+                      _builder_3.newLineIfNotEmpty();
+                      _builder_3.append("\t");
                       String _firstUpper_14 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_3.append(_firstUpper_14);
+                      _builder_3.append(_firstUpper_14, "\t");
                       _builder_3.append("Controller.put");
                       String _name_3 = p_1.getName();
-                      _builder_3.append(_name_3);
+                      _builder_3.append(_name_3, "\t");
                       _builder_3.append("(");
                       String _firstUpper_15 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_3.append(_firstUpper_15);
-                      _builder_3.append(", req, res) }");
+                      _builder_3.append(_firstUpper_15, "\t");
+                      _builder_3.append(", req, res);");
+                      _builder_3.newLineIfNotEmpty();
+                      _builder_3.append("});");
                       _switchResult = _builder_3;
                       break;
                     case "D":
@@ -352,27 +440,31 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_4.append(_firstUpper_16);
                       String _firstUpper_17 = StringExtensions.toFirstUpper(p_1.getName());
                       _builder_4.append(_firstUpper_17);
-                      _builder_4.append("\') function (req, res)  { ");
+                      _builder_4.append("\', function (req, res)  {");
+                      _builder_4.newLineIfNotEmpty();
+                      _builder_4.append("\t");
                       String _firstUpper_18 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_4.append(_firstUpper_18);
+                      _builder_4.append(_firstUpper_18, "\t");
                       _builder_4.append("Controller.delete");
                       String _name_4 = p_1.getName();
-                      _builder_4.append(_name_4);
+                      _builder_4.append(_name_4, "\t");
                       _builder_4.append("(");
                       String _firstUpper_19 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_4.append(_firstUpper_19);
-                      _builder_4.append(", req, res) }");
+                      _builder_4.append(_firstUpper_19, "\t");
+                      _builder_4.append(", req, res);");
+                      _builder_4.newLineIfNotEmpty();
+                      _builder_4.append("});");
                       _switchResult = _builder_4;
                       break;
                   }
                 }
-                _builder.append(_switchResult, "\t");
+                _builder.append(_switchResult);
                 _builder.newLineIfNotEmpty();
               }
             }
           }
         }
-        _builder.append("\t");
+        _builder.append("\t\t");
         _builder.newLine();
       }
     }

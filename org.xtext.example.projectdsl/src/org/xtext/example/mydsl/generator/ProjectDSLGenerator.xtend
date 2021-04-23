@@ -43,10 +43,23 @@ class ProjectDSLGenerator extends AbstractGenerator {
 
 	def generateController(Controller controller) '''
 	var mongoose = require('mongoose');
-	        var «controller.name» = {
-	        «FOR base:controller.base»
-	        create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {«base.name.toFirstUpper».collection.insertOne(new User({«FOR bp:base.parameters»«bp.name»:req.body.«bp.name.toLowerCase»,«ENDFOR»}));}
-	        delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {«base.name.toFirstUpper».collection.deleteOne(req.body.id, function(err, result){if(err) { res.send("Error!")} else { res.send("Success!") }}});}
+	var «controller.name» = {
+		«FOR base:controller.base»
+		create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
+			«base.name.toFirstUpper».collection.insertOne(new User({
+				«FOR bp:base.parameters»«bp.name»:req.body.«bp.name.toLowerCase»,
+				«ENDFOR»
+			})
+		);
+		},
+	        
+		delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
+	        «base.name.toFirstUpper».collection.deleteOne(req.body.id, function(err, result){
+	        	if(err) { res.send("Error!")
+	        	} else { res.send("Success!") }
+	        })
+		};
+		},
 	        «ENDFOR»
 	        «FOR e : controller.endpoint»
 	            «FOR b:controller.base»
@@ -55,16 +68,34 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	                «IF p.name == e.endpoint.name»
 	                        «FOR t:p.type»
 	                            «switch t.toString {
-	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {«b.name.toFirstUpper».collection.findOne({Id: req.params.id}, function(err, result){ if(err) {res.send("There was an error!"} else res.send("Success!")});},'''
-	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {«b.name.toFirstUpper».collection.findOneAndUpdate({«p.name»:req.body.«p.name.toLowerCase»}, {$set: {«p.name»:req.body.value}});},'''
-	                    }»
+	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {
+	«b.name.toFirstUpper».collection.findOne({
+		Id: req.params.id
+	}, function(err, result){
+		if(err) {
+				res.send("There was an error!");
+		} else {
+				res.send("Success!");
+	});
+},'''
+	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {
+	«b.name.toFirstUpper».collection.findOneAndUpdate({
+		«p.name»:req.body.«p.name.toLowerCase»
+	}, {
+		$set: {
+		«p.name»:req.body.value
+		}
+	});
+},'''
+
+}»
 	                        «ENDFOR»
 	                    «ENDIF»
 	                «ENDFOR»
 	            «ENDFOR»
 	        «ENDFOR»
-	        }
-	        module.exports = «controller.name»
+}
+module.exports = «controller.name»
 	'''
 
 	// Appends the entity data to the app.js file
@@ -101,18 +132,30 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		//Endpoints
 		
 		«FOR e : entities»
-		// «e.name.toFirstUpper»
+			// «e.name.toFirstUpper»
 			«FOR p:e.parameters»
 				«FOR t:p.type»
 					«switch t.toString {
-							case 'C': '''app.post('/post«e.name.toFirstUpper»«p.name.toFirstUpper»'), function (req, res) { «e.name.toFirstUpper»Controller.post«p.name»(«e.name.toFirstUpper», req, res) }'''
-							case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»') function (req, res)  { «e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res) }'''
-							case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»') function (req, res)  { «e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res) }'''
-							case 'D': '''app.delete('/delete«e.name.toFirstUpper»«p.name.toFirstUpper»') function (req, res)  { «e.name.toFirstUpper»Controller.delete«p.name»(«e.name.toFirstUpper», req, res) }'''
-						}»
+						case 'C': '''app.post('/post«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res) {
+	«e.name.toFirstUpper»Controller.post«p.name»(«e.name.toFirstUpper», req, res);
+});'''
+									
+						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
+});'''
+									
+						case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
+});'''
+									
+						case 'D': '''app.delete('/delete«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.name.toFirstUpper»Controller.delete«p.name»(«e.name.toFirstUpper», req, res);
+});'''
+									
+					}»
 				«ENDFOR»
 			«ENDFOR»
-			
+					
 		«ENDFOR»
 	'''
 
