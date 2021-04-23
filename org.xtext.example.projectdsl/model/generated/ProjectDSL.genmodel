@@ -28,11 +28,26 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/dataType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Parameter/base"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Parameter/math"/>
     </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//Redirect">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Redirect/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Redirect/url"/>
+    </genClasses>
+    <genClasses ecoreClass="ProjectDSL.ecore#//MathExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//MathExp/exp"/>
+    </genClasses>
+    <genClasses ecoreClass="ProjectDSL.ecore#//Expression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Expression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Expression/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Expression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="ProjectDSL.ecore#//Plus"/>
+    <genClasses ecoreClass="ProjectDSL.ecore#//Minus"/>
+    <genClasses ecoreClass="ProjectDSL.ecore#//Mult"/>
+    <genClasses ecoreClass="ProjectDSL.ecore#//Div"/>
+    <genClasses ecoreClass="ProjectDSL.ecore#//Num">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Num/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

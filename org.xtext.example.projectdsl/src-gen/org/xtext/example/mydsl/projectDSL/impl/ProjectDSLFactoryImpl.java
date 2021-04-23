@@ -72,6 +72,13 @@ public class ProjectDSLFactoryImpl extends EFactoryImpl implements ProjectDSLFac
       case ProjectDSLPackage.ENDPOINT: return createEndpoint();
       case ProjectDSLPackage.PARAMETER: return createParameter();
       case ProjectDSLPackage.REDIRECT: return createRedirect();
+      case ProjectDSLPackage.MATH_EXP: return createMathExp();
+      case ProjectDSLPackage.EXPRESSION: return createExpression();
+      case ProjectDSLPackage.PLUS: return createPlus();
+      case ProjectDSLPackage.MINUS: return createMinus();
+      case ProjectDSLPackage.MULT: return createMult();
+      case ProjectDSLPackage.DIV: return createDiv();
+      case ProjectDSLPackage.NUM: return createNum();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -159,6 +166,90 @@ public class ProjectDSLFactoryImpl extends EFactoryImpl implements ProjectDSLFac
   {
     RedirectImpl redirect = new RedirectImpl();
     return redirect;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MathExp createMathExp()
+  {
+    MathExpImpl mathExp = new MathExpImpl();
+    return mathExp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Expression createExpression()
+  {
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Plus createPlus()
+  {
+    PlusImpl plus = new PlusImpl();
+    return plus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Minus createMinus()
+  {
+    MinusImpl minus = new MinusImpl();
+    return minus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Mult createMult()
+  {
+    MultImpl mult = new MultImpl();
+    return mult;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Div createDiv()
+  {
+    DivImpl div = new DivImpl();
+    return div;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Num createNum()
+  {
+    NumImpl num = new NumImpl();
+    return num;
   }
 
   /**

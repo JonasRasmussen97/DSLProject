@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getBase <em>Base</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter()
@@ -85,25 +85,25 @@ public interface Parameter extends EObject
   EList<String> getType();
 
   /**
-   * Returns the value of the '<em><b>Base</b></em>' containment reference.
+   * Returns the value of the '<em><b>Math</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Base</em>' containment reference.
-   * @see #setBase(Redirect)
-   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Base()
+   * @return the value of the '<em>Math</em>' containment reference.
+   * @see #setMath(Expression)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Math()
    * @model containment="true"
    * @generated
    */
-  Redirect getBase();
+  Expression getMath();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getBase <em>Base</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Base</em>' containment reference.
-   * @see #getBase()
+   * @param value the new value of the '<em>Math</em>' containment reference.
+   * @see #getMath()
    * @generated
    */
-  void setBase(Redirect value);
+  void setMath(Expression value);
 
 } // Parameter

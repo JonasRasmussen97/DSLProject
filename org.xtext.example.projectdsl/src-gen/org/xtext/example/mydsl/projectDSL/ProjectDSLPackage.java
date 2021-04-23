@@ -280,13 +280,13 @@ public interface ProjectDSLPackage extends EPackage
   int PARAMETER__TYPE = 2;
 
   /**
-   * The feature id for the '<em><b>Base</b></em>' containment reference.
+   * The feature id for the '<em><b>Math</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PARAMETER__BASE = 3;
+  int PARAMETER__MATH = 3;
 
   /**
    * The number of structural features of the '<em>Parameter</em>' class.
@@ -333,6 +333,319 @@ public interface ProjectDSLPackage extends EPackage
    * @ordered
    */
   int REDIRECT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.MathExpImpl <em>Math Exp</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.MathExpImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMathExp()
+   * @generated
+   */
+  int MATH_EXP = 7;
+
+  /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_EXP__EXP = 0;
+
+  /**
+   * The number of structural features of the '<em>Math Exp</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_EXP_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.ExpressionImpl <em>Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.ExpressionImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getExpression()
+   * @generated
+   */
+  int EXPRESSION = 8;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__LEFT = 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__OP = 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__RIGHT = 2;
+
+  /**
+   * The number of structural features of the '<em>Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.PlusImpl <em>Plus</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.PlusImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getPlus()
+   * @generated
+   */
+  int PLUS = 9;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__OP = EXPRESSION__OP;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__RIGHT = EXPRESSION__RIGHT;
+
+  /**
+   * The number of structural features of the '<em>Plus</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.MinusImpl <em>Minus</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.MinusImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMinus()
+   * @generated
+   */
+  int MINUS = 10;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__OP = EXPRESSION__OP;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__RIGHT = EXPRESSION__RIGHT;
+
+  /**
+   * The number of structural features of the '<em>Minus</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.MultImpl <em>Mult</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.MultImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMult()
+   * @generated
+   */
+  int MULT = 11;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT__OP = EXPRESSION__OP;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT__RIGHT = EXPRESSION__RIGHT;
+
+  /**
+   * The number of structural features of the '<em>Mult</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.DivImpl <em>Div</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.DivImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getDiv()
+   * @generated
+   */
+  int DIV = 12;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV__OP = EXPRESSION__OP;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV__RIGHT = EXPRESSION__RIGHT;
+
+  /**
+   * The number of structural features of the '<em>Div</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.NumImpl <em>Num</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.NumImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getNum()
+   * @generated
+   */
+  int NUM = 13;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUM__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUM__OP = EXPRESSION__OP;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUM__RIGHT = EXPRESSION__RIGHT;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUM__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Num</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUM_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 
   /**
@@ -517,15 +830,15 @@ public interface ProjectDSLPackage extends EPackage
   EAttribute getParameter_Type();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getBase <em>Base</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Base</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Parameter#getBase()
+   * @return the meta object for the containment reference '<em>Math</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Parameter#getMath()
    * @see #getParameter()
    * @generated
    */
-  EReference getParameter_Base();
+  EReference getParameter_Math();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Redirect <em>Redirect</em>}'.
@@ -558,6 +871,131 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    */
   EAttribute getRedirect_Url();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.MathExp <em>Math Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Math Exp</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.MathExp
+   * @generated
+   */
+  EClass getMathExp();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.MathExp#getExp <em>Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exp</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.MathExp#getExp()
+   * @see #getMathExp()
+   * @generated
+   */
+  EReference getMathExp_Exp();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Expression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expression</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Expression
+   * @generated
+   */
+  EClass getExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Expression#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Expression#getLeft()
+   * @see #getExpression()
+   * @generated
+   */
+  EReference getExpression_Left();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Expression#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Expression#getOp()
+   * @see #getExpression()
+   * @generated
+   */
+  EAttribute getExpression_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Expression#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Expression#getRight()
+   * @see #getExpression()
+   * @generated
+   */
+  EReference getExpression_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Plus <em>Plus</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Plus</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Plus
+   * @generated
+   */
+  EClass getPlus();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Minus <em>Minus</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Minus</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Minus
+   * @generated
+   */
+  EClass getMinus();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Mult <em>Mult</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mult</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Mult
+   * @generated
+   */
+  EClass getMult();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Div <em>Div</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Div</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Div
+   * @generated
+   */
+  EClass getDiv();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Num <em>Num</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Num</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Num
+   * @generated
+   */
+  EClass getNum();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Num#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Num#getValue()
+   * @see #getNum()
+   * @generated
+   */
+  EAttribute getNum_Value();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -731,12 +1169,12 @@ public interface ProjectDSLPackage extends EPackage
     EAttribute PARAMETER__TYPE = eINSTANCE.getParameter_Type();
 
     /**
-     * The meta object literal for the '<em><b>Base</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Math</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PARAMETER__BASE = eINSTANCE.getParameter_Base();
+    EReference PARAMETER__MATH = eINSTANCE.getParameter_Math();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.
@@ -763,6 +1201,116 @@ public interface ProjectDSLPackage extends EPackage
      * @generated
      */
     EAttribute REDIRECT__URL = eINSTANCE.getRedirect_Url();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.MathExpImpl <em>Math Exp</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.MathExpImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMathExp()
+     * @generated
+     */
+    EClass MATH_EXP = eINSTANCE.getMathExp();
+
+    /**
+     * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATH_EXP__EXP = eINSTANCE.getMathExp_Exp();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.ExpressionImpl <em>Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.ExpressionImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getExpression()
+     * @generated
+     */
+    EClass EXPRESSION = eINSTANCE.getExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPRESSION__LEFT = eINSTANCE.getExpression_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPRESSION__OP = eINSTANCE.getExpression_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPRESSION__RIGHT = eINSTANCE.getExpression_Right();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.PlusImpl <em>Plus</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.PlusImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getPlus()
+     * @generated
+     */
+    EClass PLUS = eINSTANCE.getPlus();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.MinusImpl <em>Minus</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.MinusImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMinus()
+     * @generated
+     */
+    EClass MINUS = eINSTANCE.getMinus();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.MultImpl <em>Mult</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.MultImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMult()
+     * @generated
+     */
+    EClass MULT = eINSTANCE.getMult();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.DivImpl <em>Div</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.DivImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getDiv()
+     * @generated
+     */
+    EClass DIV = eINSTANCE.getDiv();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.NumImpl <em>Num</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.NumImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getNum()
+     * @generated
+     */
+    EClass NUM = eINSTANCE.getNum();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NUM__VALUE = eINSTANCE.getNum_Value();
 
   }
 

@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
+import org.xtext.example.mydsl.projectDSL.Expression;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
-import org.xtext.example.mydsl.projectDSL.Redirect;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import org.xtext.example.mydsl.projectDSL.Redirect;
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getBase <em>Base</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getMath <em>Math</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,14 +91,14 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   protected EList<String> type;
 
   /**
-   * The cached value of the '{@link #getBase() <em>Base</em>}' containment reference.
+   * The cached value of the '{@link #getMath() <em>Math</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBase()
+   * @see #getMath()
    * @generated
    * @ordered
    */
-  protected Redirect base;
+  protected Expression math;
 
   /**
    * <!-- begin-user-doc -->
@@ -192,9 +192,9 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public Redirect getBase()
+  public Expression getMath()
   {
-    return base;
+    return math;
   }
 
   /**
@@ -202,13 +202,13 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBase(Redirect newBase, NotificationChain msgs)
+  public NotificationChain basicSetMath(Expression newMath, NotificationChain msgs)
   {
-    Redirect oldBase = base;
-    base = newBase;
+    Expression oldMath = math;
+    math = newMath;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__BASE, oldBase, newBase);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__MATH, oldMath, newMath);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -220,20 +220,20 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public void setBase(Redirect newBase)
+  public void setMath(Expression newMath)
   {
-    if (newBase != base)
+    if (newMath != math)
     {
       NotificationChain msgs = null;
-      if (base != null)
-        msgs = ((InternalEObject)base).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__BASE, null, msgs);
-      if (newBase != null)
-        msgs = ((InternalEObject)newBase).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__BASE, null, msgs);
-      msgs = basicSetBase(newBase, msgs);
+      if (math != null)
+        msgs = ((InternalEObject)math).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__MATH, null, msgs);
+      if (newMath != null)
+        msgs = ((InternalEObject)newMath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__MATH, null, msgs);
+      msgs = basicSetMath(newMath, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__BASE, newBase, newBase));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__MATH, newMath, newMath));
   }
 
   /**
@@ -246,8 +246,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.PARAMETER__BASE:
-        return basicSetBase(null, msgs);
+      case ProjectDSLPackage.PARAMETER__MATH:
+        return basicSetMath(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -268,8 +268,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         return getDataType();
       case ProjectDSLPackage.PARAMETER__TYPE:
         return getType();
-      case ProjectDSLPackage.PARAMETER__BASE:
-        return getBase();
+      case ProjectDSLPackage.PARAMETER__MATH:
+        return getMath();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -295,8 +295,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         getType().clear();
         getType().addAll((Collection<? extends String>)newValue);
         return;
-      case ProjectDSLPackage.PARAMETER__BASE:
-        setBase((Redirect)newValue);
+      case ProjectDSLPackage.PARAMETER__MATH:
+        setMath((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -321,8 +321,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__TYPE:
         getType().clear();
         return;
-      case ProjectDSLPackage.PARAMETER__BASE:
-        setBase((Redirect)null);
+      case ProjectDSLPackage.PARAMETER__MATH:
+        setMath((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -344,8 +344,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         return DATA_TYPE_EDEFAULT == null ? dataType != null : !DATA_TYPE_EDEFAULT.equals(dataType);
       case ProjectDSLPackage.PARAMETER__TYPE:
         return type != null && !type.isEmpty();
-      case ProjectDSLPackage.PARAMETER__BASE:
-        return base != null;
+      case ProjectDSLPackage.PARAMETER__MATH:
+        return math != null;
     }
     return super.eIsSet(featureID);
   }

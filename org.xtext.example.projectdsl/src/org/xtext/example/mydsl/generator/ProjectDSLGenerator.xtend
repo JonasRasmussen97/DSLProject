@@ -13,6 +13,13 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.xtext.example.mydsl.projectDSL.Entity
 import org.xtext.example.mydsl.projectDSL.Controller
+import org.xtext.example.mydsl.projectDSL.MathExp
+import org.xtext.example.mydsl.projectDSL.Expression
+import org.xtext.example.mydsl.projectDSL.Plus
+import org.xtext.example.mydsl.projectDSL.Minus
+import org.xtext.example.mydsl.projectDSL.Mult
+import org.xtext.example.mydsl.projectDSL.Div
+import org.xtext.example.mydsl.projectDSL.Num
 
 /**
  * Generates code from your model files on save.
@@ -23,6 +30,12 @@ class ProjectDSLGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val RestAPI modelInstance = resource.allContents.filter(RestAPI).next
+		/* 
+		val math = resource.allContents.filter(MathExp).next	
+		var result = math.compute;
+		System.out.println("Math expression = "+math.displayMath)
+		println(result);
+		*/
 		val entities = modelInstance.declarations.filter(Entity)
 		generateApp(fsa, entities)
 
@@ -30,7 +43,37 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		modelInstance.declarations.filter(Controller).forEach[generateControllers(fsa)]
 	// modelInstance.display
 	}
-
+	
+	def static int compute(MathExp math) { 
+		math.exp.computeExp
+	}
+	
+	def static int computeExp(Expression exp) {
+		switch(exp) {
+			Plus: exp.left.computeExp+exp.right.computeExp
+			Minus: exp.left.computeExp-exp.right.computeExp
+			Mult: exp.left.computeExp*exp.right.computeExp
+			Div: exp.left.computeExp/exp.right.computeExp
+			Num: exp.value
+			default: 0
+		}
+	}
+	
+	def static String displayMath(MathExp math) {
+		math.exp.d
+	}
+	
+	def static String d(Expression exp) {
+		switch exp {
+			Plus: "("+exp.left.d+"+"+exp.right.d+")"
+			Minus: "("+exp.left.d+"-"+exp.right.d+")"
+			Mult: exp.left.d+"*"+exp.right.d
+			Div: exp.left.d+"/"+exp.right.d
+			Num: Integer.toString(exp.value)
+			default: throw new Error("Internal error")
+		}
+	}
+	
 	// Generates the app.js file
 	def generateApp(IFileSystemAccess2 access1, Iterable<Entity> entities) {
 		access1.generateFile('app.js', entities.generateCore);
