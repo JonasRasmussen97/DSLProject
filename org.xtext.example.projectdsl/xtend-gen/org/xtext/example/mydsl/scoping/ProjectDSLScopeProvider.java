@@ -4,10 +4,7 @@
 package org.xtext.example.mydsl.scoping;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Iterables;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -19,6 +16,7 @@ import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
+import org.xtext.example.mydsl.scoping.AbstractProjectDSLScopeProvider;
 
 /**
  * This class contains custom scoping description.
@@ -40,7 +38,7 @@ public class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
           final Controller controller = EcoreUtil2.<Controller>getContainerOfType(context, Controller.class);
           final ArrayList<Parameter> result = new ArrayList<Parameter>();
           final Consumer<Entity> _function = (Entity it) -> {
-            result.addAll(this.allParameters(it));
+            result.addAll(it.getParameters());
           };
           controller.getBase().forEach(_function);
           return Scopes.scopeFor(result);
@@ -49,23 +47,5 @@ public class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
       _xblockexpression = super.getScope(context, reference);
     }
     return _xblockexpression;
-  }
-  
-  public ArrayList<Parameter> allParameters(final Entity entity) {
-    final ArrayList<Parameter> candidates = new ArrayList<Parameter>();
-    final HashSet<Entity> seen = new HashSet<Entity>();
-    Entity e = entity;
-    while ((e != null)) {
-      {
-        boolean _contains = seen.contains(e);
-        if (_contains) {
-          return ((ArrayList<Parameter>) Collections.EMPTY_LIST);
-        }
-        seen.add(e);
-        Iterables.<Parameter>addAll(candidates, Iterables.<Parameter>filter(e.getParameters(), Parameter.class));
-        e = e.getParent();
-      }
-    }
-    return candidates;
   }
 }
