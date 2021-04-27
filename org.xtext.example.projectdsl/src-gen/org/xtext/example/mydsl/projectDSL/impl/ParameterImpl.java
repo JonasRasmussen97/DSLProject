@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
-import org.xtext.example.mydsl.projectDSL.MathExp;
+import org.xtext.example.mydsl.projectDSL.MathContent;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 
@@ -35,9 +35,7 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getOp <em>Op</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getRight <em>Right</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getMathType <em>Math Type</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getMath <em>Math</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getContent <em>Content</em>}</li>
  * </ul>
  *
  * @generated
@@ -125,44 +123,14 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   protected String op = OP_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
+   * The cached value of the '{@link #getContent() <em>Content</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRight()
+   * @see #getContent()
    * @generated
    * @ordered
    */
-  protected Parameter right;
-
-  /**
-   * The default value of the '{@link #getMathType() <em>Math Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMathType()
-   * @generated
-   * @ordered
-   */
-  protected static final String MATH_TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getMathType() <em>Math Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMathType()
-   * @generated
-   * @ordered
-   */
-  protected String mathType = MATH_TYPE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getMath() <em>Math</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMath()
-   * @generated
-   * @ordered
-   */
-  protected MathExp math;
+  protected MathContent content;
 
   /**
    * <!-- begin-user-doc -->
@@ -326,19 +294,9 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public Parameter getRight()
+  public MathContent getContent()
   {
-    if (right != null && right.eIsProxy())
-    {
-      InternalEObject oldRight = (InternalEObject)right;
-      right = (Parameter)eResolveProxy(oldRight);
-      if (right != oldRight)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectDSLPackage.PARAMETER__RIGHT, oldRight, right));
-      }
-    }
-    return right;
+    return content;
   }
 
   /**
@@ -346,73 +304,13 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public Parameter basicGetRight()
+  public NotificationChain basicSetContent(MathContent newContent, NotificationChain msgs)
   {
-    return right;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setRight(Parameter newRight)
-  {
-    Parameter oldRight = right;
-    right = newRight;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__RIGHT, oldRight, right));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getMathType()
-  {
-    return mathType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setMathType(String newMathType)
-  {
-    String oldMathType = mathType;
-    mathType = newMathType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__MATH_TYPE, oldMathType, mathType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public MathExp getMath()
-  {
-    return math;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetMath(MathExp newMath, NotificationChain msgs)
-  {
-    MathExp oldMath = math;
-    math = newMath;
+    MathContent oldContent = content;
+    content = newContent;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__MATH, oldMath, newMath);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__CONTENT, oldContent, newContent);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -424,20 +322,20 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
-  public void setMath(MathExp newMath)
+  public void setContent(MathContent newContent)
   {
-    if (newMath != math)
+    if (newContent != content)
     {
       NotificationChain msgs = null;
-      if (math != null)
-        msgs = ((InternalEObject)math).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__MATH, null, msgs);
-      if (newMath != null)
-        msgs = ((InternalEObject)newMath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__MATH, null, msgs);
-      msgs = basicSetMath(newMath, msgs);
+      if (content != null)
+        msgs = ((InternalEObject)content).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__CONTENT, null, msgs);
+      if (newContent != null)
+        msgs = ((InternalEObject)newContent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProjectDSLPackage.PARAMETER__CONTENT, null, msgs);
+      msgs = basicSetContent(newContent, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__MATH, newMath, newMath));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__CONTENT, newContent, newContent));
   }
 
   /**
@@ -450,8 +348,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.PARAMETER__MATH:
-        return basicSetMath(null, msgs);
+      case ProjectDSLPackage.PARAMETER__CONTENT:
+        return basicSetContent(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -477,13 +375,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         return basicGetLeft();
       case ProjectDSLPackage.PARAMETER__OP:
         return getOp();
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        if (resolve) return getRight();
-        return basicGetRight();
-      case ProjectDSLPackage.PARAMETER__MATH_TYPE:
-        return getMathType();
-      case ProjectDSLPackage.PARAMETER__MATH:
-        return getMath();
+      case ProjectDSLPackage.PARAMETER__CONTENT:
+        return getContent();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -515,14 +408,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__OP:
         setOp((String)newValue);
         return;
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        setRight((Parameter)newValue);
-        return;
-      case ProjectDSLPackage.PARAMETER__MATH_TYPE:
-        setMathType((String)newValue);
-        return;
-      case ProjectDSLPackage.PARAMETER__MATH:
-        setMath((MathExp)newValue);
+      case ProjectDSLPackage.PARAMETER__CONTENT:
+        setContent((MathContent)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -553,14 +440,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__OP:
         setOp(OP_EDEFAULT);
         return;
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        setRight((Parameter)null);
-        return;
-      case ProjectDSLPackage.PARAMETER__MATH_TYPE:
-        setMathType(MATH_TYPE_EDEFAULT);
-        return;
-      case ProjectDSLPackage.PARAMETER__MATH:
-        setMath((MathExp)null);
+      case ProjectDSLPackage.PARAMETER__CONTENT:
+        setContent((MathContent)null);
         return;
     }
     super.eUnset(featureID);
@@ -586,12 +467,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         return left != null;
       case ProjectDSLPackage.PARAMETER__OP:
         return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
-      case ProjectDSLPackage.PARAMETER__RIGHT:
-        return right != null;
-      case ProjectDSLPackage.PARAMETER__MATH_TYPE:
-        return MATH_TYPE_EDEFAULT == null ? mathType != null : !MATH_TYPE_EDEFAULT.equals(mathType);
-      case ProjectDSLPackage.PARAMETER__MATH:
-        return math != null;
+      case ProjectDSLPackage.PARAMETER__CONTENT:
+        return content != null;
     }
     return super.eIsSet(featureID);
   }
@@ -615,8 +492,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     result.append(type);
     result.append(", op: ");
     result.append(op);
-    result.append(", mathType: ");
-    result.append(mathType);
     result.append(')');
     return result.toString();
   }

@@ -87,6 +87,15 @@ public interface ProjectDSLFactory extends EFactory
   Redirect createRedirect();
 
   /**
+   * Returns a new object of class '<em>Math Content</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Math Content</em>'.
+   * @generated
+   */
+  MathContent createMathContent();
+
+  /**
    * Returns a new object of class '<em>Math Exp</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

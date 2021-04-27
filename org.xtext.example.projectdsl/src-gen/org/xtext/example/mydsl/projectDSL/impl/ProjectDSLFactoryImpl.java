@@ -72,6 +72,7 @@ public class ProjectDSLFactoryImpl extends EFactoryImpl implements ProjectDSLFac
       case ProjectDSLPackage.ENDPOINT: return createEndpoint();
       case ProjectDSLPackage.PARAMETER: return createParameter();
       case ProjectDSLPackage.REDIRECT: return createRedirect();
+      case ProjectDSLPackage.MATH_CONTENT: return createMathContent();
       case ProjectDSLPackage.MATH_EXP: return createMathExp();
       case ProjectDSLPackage.EXPRESSION: return createExpression();
       case ProjectDSLPackage.PLUS: return createPlus();
@@ -166,6 +167,18 @@ public class ProjectDSLFactoryImpl extends EFactoryImpl implements ProjectDSLFac
   {
     RedirectImpl redirect = new RedirectImpl();
     return redirect;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MathContent createMathContent()
+  {
+    MathContentImpl mathContent = new MathContentImpl();
+    return mathContent;
   }
 
   /**

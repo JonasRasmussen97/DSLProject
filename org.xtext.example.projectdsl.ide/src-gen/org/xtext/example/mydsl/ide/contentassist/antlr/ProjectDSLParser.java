@@ -35,6 +35,7 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterAccess().getOpAlternatives_5_2_0(), "rule__Parameter__OpAlternatives_5_2_0");
 			builder.put(grammarAccess.getRedirectAccess().getAlternatives(), "rule__Redirect__Alternatives");
 			builder.put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
+			builder.put(grammarAccess.getMathContentAccess().getAlternatives(), "rule__MathContent__Alternatives");
 			builder.put(grammarAccess.getMathTypeAccess().getAlternatives(), "rule__MathType__Alternatives");
 			builder.put(grammarAccess.getExpAccess().getAlternatives_1_0(), "rule__Exp__Alternatives_1_0");
 			builder.put(grammarAccess.getMulOrDivAccess().getAlternatives_1_0(), "rule__MulOrDiv__Alternatives_1_0");
@@ -46,6 +47,7 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getControllerAccess().getGroup_6(), "rule__Controller__Group_6__0");
 			builder.put(grammarAccess.getParameterAccess().getGroup(), "rule__Parameter__Group__0");
 			builder.put(grammarAccess.getParameterAccess().getGroup_5(), "rule__Parameter__Group_5__0");
+			builder.put(grammarAccess.getMathContentAccess().getGroup_1(), "rule__MathContent__Group_1__0");
 			builder.put(grammarAccess.getExpAccess().getGroup(), "rule__Exp__Group__0");
 			builder.put(grammarAccess.getExpAccess().getGroup_1(), "rule__Exp__Group_1__0");
 			builder.put(grammarAccess.getExpAccess().getGroup_1_0_0(), "rule__Exp__Group_1_0_0__0");
@@ -71,11 +73,14 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterAccess().getTypeAssignment_4(), "rule__Parameter__TypeAssignment_4");
 			builder.put(grammarAccess.getParameterAccess().getLeftAssignment_5_1(), "rule__Parameter__LeftAssignment_5_1");
 			builder.put(grammarAccess.getParameterAccess().getOpAssignment_5_2(), "rule__Parameter__OpAssignment_5_2");
-			builder.put(grammarAccess.getParameterAccess().getRightAssignment_5_3(), "rule__Parameter__RightAssignment_5_3");
-			builder.put(grammarAccess.getParameterAccess().getMathTypeAssignment_5_4(), "rule__Parameter__MathTypeAssignment_5_4");
-			builder.put(grammarAccess.getParameterAccess().getMathAssignment_5_5(), "rule__Parameter__MathAssignment_5_5");
+			builder.put(grammarAccess.getParameterAccess().getContentAssignment_5_3(), "rule__Parameter__ContentAssignment_5_3");
 			builder.put(grammarAccess.getRedirectAccess().getNameAssignment_0(), "rule__Redirect__NameAssignment_0");
 			builder.put(grammarAccess.getRedirectAccess().getUrlAssignment_1(), "rule__Redirect__UrlAssignment_1");
+			builder.put(grammarAccess.getMathContentAccess().getRightAssignment_0(), "rule__MathContent__RightAssignment_0");
+			builder.put(grammarAccess.getMathContentAccess().getRightAssignment_1_0(), "rule__MathContent__RightAssignment_1_0");
+			builder.put(grammarAccess.getMathContentAccess().getMathTypeAssignment_1_1(), "rule__MathContent__MathTypeAssignment_1_1");
+			builder.put(grammarAccess.getMathContentAccess().getMathAssignment_1_2(), "rule__MathContent__MathAssignment_1_2");
+			builder.put(grammarAccess.getMathContentAccess().getMathAssignment_2(), "rule__MathContent__MathAssignment_2");
 			builder.put(grammarAccess.getMathExpAccess().getExpAssignment(), "rule__MathExp__ExpAssignment");
 			builder.put(grammarAccess.getExpAccess().getRightAssignment_1_1(), "rule__Exp__RightAssignment_1_1");
 			builder.put(grammarAccess.getMulOrDivAccess().getRightAssignment_1_1(), "rule__MulOrDiv__RightAssignment_1_1");

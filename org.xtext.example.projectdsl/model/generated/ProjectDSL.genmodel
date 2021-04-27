@@ -30,13 +30,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Parameter/left"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/op"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Parameter/right"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Parameter/mathType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Parameter/math"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Parameter/content"/>
     </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//Redirect">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Redirect/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Redirect/url"/>
+    </genClasses>
+    <genClasses ecoreClass="ProjectDSL.ecore#//MathContent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//MathContent/right"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//MathContent/mathType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//MathContent/math"/>
     </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//MathExp">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//MathExp/exp"/>

@@ -50,7 +50,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   
   public CharSequence generateMath(final Parameter p) {
     CharSequence _xifexpression = null;
-    if (((p.getOp() != null) && (p.getRight() != null))) {
+    if (((p.getOp() != null) && (p.getContent().getRight() != null))) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("if(");
       String _name = p.getName();
@@ -59,13 +59,13 @@ public class ProjectDSLGenerator extends AbstractGenerator {
       String _op = p.getOp();
       _builder.append(_op);
       _builder.append(" req.body.");
-      String _name_1 = p.getRight().getName();
+      String _name_1 = p.getContent().getRight().getName();
       _builder.append(_name_1);
       _builder.append(" ");
-      String _mathType = p.getMathType();
+      String _mathType = p.getContent().getMathType();
       _builder.append(_mathType);
       _builder.append(" ");
-      String _generateExp = ProjectDSLGenerator.generateExp(p.getMath().getExp());
+      String _generateExp = ProjectDSLGenerator.generateExp(p.getContent().getMath().getExp());
       _builder.append(_generateExp);
       _builder.append("){}");
       _xifexpression = _builder;

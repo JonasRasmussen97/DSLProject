@@ -111,6 +111,11 @@ public class ProjectDSLAdapterFactory extends AdapterFactoryImpl
         return createRedirectAdapter();
       }
       @Override
+      public Adapter caseMathContent(MathContent object)
+      {
+        return createMathContentAdapter();
+      }
+      @Override
       public Adapter caseMathExp(MathExp object)
       {
         return createMathExpAdapter();
@@ -268,6 +273,21 @@ public class ProjectDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRedirectAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.projectDSL.MathContent <em>Math Content</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.projectDSL.MathContent
+   * @generated
+   */
+  public Adapter createMathContentAdapter()
   {
     return null;
   }

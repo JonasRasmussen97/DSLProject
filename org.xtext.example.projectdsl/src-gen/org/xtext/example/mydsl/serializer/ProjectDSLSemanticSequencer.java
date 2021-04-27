@@ -18,6 +18,7 @@ import org.xtext.example.mydsl.projectDSL.Controller;
 import org.xtext.example.mydsl.projectDSL.Div;
 import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
+import org.xtext.example.mydsl.projectDSL.MathContent;
 import org.xtext.example.mydsl.projectDSL.MathExp;
 import org.xtext.example.mydsl.projectDSL.Minus;
 import org.xtext.example.mydsl.projectDSL.Mult;
@@ -53,6 +54,9 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 				return; 
 			case ProjectDSLPackage.ENTITY:
 				sequence_Entity(context, (Entity) semanticObject); 
+				return; 
+			case ProjectDSLPackage.MATH_CONTENT:
+				sequence_MathContent(context, (MathContent) semanticObject); 
 				return; 
 			case ProjectDSLPackage.MATH_EXP:
 				sequence_MathExp(context, (MathExp) semanticObject); 
@@ -185,6 +189,18 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	
 	/**
 	 * Contexts:
+	 *     MathContent returns MathContent
+	 *
+	 * Constraint:
+	 *     (right=[Parameter|ID] | (right=[Parameter|ID] mathType=MathType math=MathExp) | math=MathExp)
+	 */
+	protected void sequence_MathContent(ISerializationContext context, MathContent semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     MathExp returns MathExp
 	 *
 	 * Constraint:
@@ -288,12 +304,7 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (
-	 *         name=ID 
-	 *         dataType=ID 
-	 *         type+=Type+ 
-	 *         (left=[Parameter|ID] (op='>=' | op='<=' | op='>' | op='<') right=[Parameter|ID]? mathType=MathType? math=MathExp?)?
-	 *     )
+	 *     (name=ID dataType=ID type+=Type+ (left=[Parameter|ID] (op='>=' | op='<=' | op='>' | op='<') content=MathContent)?)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.projectDSL.Parameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -16,6 +16,7 @@ import org.xtext.example.mydsl.projectDSL.Div;
 import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Expression;
+import org.xtext.example.mydsl.projectDSL.MathContent;
 import org.xtext.example.mydsl.projectDSL.MathExp;
 import org.xtext.example.mydsl.projectDSL.Minus;
 import org.xtext.example.mydsl.projectDSL.Mult;
@@ -83,6 +84,13 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   private EClass redirectEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mathContentEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -411,31 +419,9 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EReference getParameter_Right()
+  public EReference getParameter_Content()
   {
     return (EReference)parameterEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getParameter_MathType()
-  {
-    return (EAttribute)parameterEClass.getEStructuralFeatures().get(6);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getParameter_Math()
-  {
-    return (EReference)parameterEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -469,6 +455,50 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
   public EAttribute getRedirect_Url()
   {
     return (EAttribute)redirectEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMathContent()
+  {
+    return mathContentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMathContent_Right()
+  {
+    return (EReference)mathContentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMathContent_MathType()
+  {
+    return (EAttribute)mathContentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMathContent_Math()
+  {
+    return (EReference)mathContentEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -713,13 +743,16 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     createEAttribute(parameterEClass, PARAMETER__TYPE);
     createEReference(parameterEClass, PARAMETER__LEFT);
     createEAttribute(parameterEClass, PARAMETER__OP);
-    createEReference(parameterEClass, PARAMETER__RIGHT);
-    createEAttribute(parameterEClass, PARAMETER__MATH_TYPE);
-    createEReference(parameterEClass, PARAMETER__MATH);
+    createEReference(parameterEClass, PARAMETER__CONTENT);
 
     redirectEClass = createEClass(REDIRECT);
     createEReference(redirectEClass, REDIRECT__NAME);
     createEAttribute(redirectEClass, REDIRECT__URL);
+
+    mathContentEClass = createEClass(MATH_CONTENT);
+    createEReference(mathContentEClass, MATH_CONTENT__RIGHT);
+    createEAttribute(mathContentEClass, MATH_CONTENT__MATH_TYPE);
+    createEReference(mathContentEClass, MATH_CONTENT__MATH);
 
     mathExpEClass = createEClass(MATH_EXP);
     createEReference(mathExpEClass, MATH_EXP__EXP);
@@ -808,13 +841,16 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     initEAttribute(getParameter_Type(), ecorePackage.getEString(), "type", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameter_Left(), this.getParameter(), null, "left", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getParameter_Op(), ecorePackage.getEString(), "op", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getParameter_Right(), this.getParameter(), null, "right", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getParameter_MathType(), ecorePackage.getEString(), "mathType", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getParameter_Math(), this.getMathExp(), null, "math", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParameter_Content(), this.getMathContent(), null, "content", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(redirectEClass, Redirect.class, "Redirect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRedirect_Name(), this.getController(), null, "name", null, 0, 1, Redirect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRedirect_Url(), ecorePackage.getEString(), "url", null, 0, 1, Redirect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mathContentEClass, MathContent.class, "MathContent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMathContent_Right(), this.getParameter(), null, "right", null, 0, 1, MathContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMathContent_MathType(), ecorePackage.getEString(), "mathType", null, 0, 1, MathContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMathContent_Math(), this.getMathExp(), null, "math", null, 0, 1, MathContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mathExpEClass, MathExp.class, "MathExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMathExp_Exp(), this.getExpression(), null, "exp", null, 0, 1, MathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

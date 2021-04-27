@@ -298,31 +298,13 @@ public interface ProjectDSLPackage extends EPackage
   int PARAMETER__OP = 4;
 
   /**
-   * The feature id for the '<em><b>Right</b></em>' reference.
+   * The feature id for the '<em><b>Content</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PARAMETER__RIGHT = 5;
-
-  /**
-   * The feature id for the '<em><b>Math Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARAMETER__MATH_TYPE = 6;
-
-  /**
-   * The feature id for the '<em><b>Math</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARAMETER__MATH = 7;
+  int PARAMETER__CONTENT = 5;
 
   /**
    * The number of structural features of the '<em>Parameter</em>' class.
@@ -331,7 +313,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAMETER_FEATURE_COUNT = 8;
+  int PARAMETER_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.
@@ -371,6 +353,52 @@ public interface ProjectDSLPackage extends EPackage
   int REDIRECT_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.MathContentImpl <em>Math Content</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.MathContentImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMathContent()
+   * @generated
+   */
+  int MATH_CONTENT = 7;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_CONTENT__RIGHT = 0;
+
+  /**
+   * The feature id for the '<em><b>Math Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_CONTENT__MATH_TYPE = 1;
+
+  /**
+   * The feature id for the '<em><b>Math</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_CONTENT__MATH = 2;
+
+  /**
+   * The number of structural features of the '<em>Math Content</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_CONTENT_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.MathExpImpl <em>Math Exp</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -378,7 +406,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMathExp()
    * @generated
    */
-  int MATH_EXP = 7;
+  int MATH_EXP = 8;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -406,7 +434,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 8;
+  int EXPRESSION = 9;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -425,7 +453,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 9;
+  int PLUS = 10;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -462,7 +490,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 10;
+  int MINUS = 11;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -499,7 +527,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMult()
    * @generated
    */
-  int MULT = 11;
+  int MULT = 12;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -536,7 +564,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getDiv()
    * @generated
    */
-  int DIV = 12;
+  int DIV = 13;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -573,7 +601,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getNum()
    * @generated
    */
-  int NUM = 13;
+  int NUM = 14;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -798,37 +826,15 @@ public interface ProjectDSLPackage extends EPackage
   EAttribute getParameter_Op();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getContent <em>Content</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Right</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Parameter#getRight()
+   * @return the meta object for the containment reference '<em>Content</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Parameter#getContent()
    * @see #getParameter()
    * @generated
    */
-  EReference getParameter_Right();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMathType <em>Math Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Math Type</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Parameter#getMathType()
-   * @see #getParameter()
-   * @generated
-   */
-  EAttribute getParameter_MathType();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Math</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Parameter#getMath()
-   * @see #getParameter()
-   * @generated
-   */
-  EReference getParameter_Math();
+  EReference getParameter_Content();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Redirect <em>Redirect</em>}'.
@@ -861,6 +867,49 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    */
   EAttribute getRedirect_Url();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.MathContent <em>Math Content</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Math Content</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.MathContent
+   * @generated
+   */
+  EClass getMathContent();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.MathContent#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.MathContent#getRight()
+   * @see #getMathContent()
+   * @generated
+   */
+  EReference getMathContent_Right();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.MathContent#getMathType <em>Math Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Math Type</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.MathContent#getMathType()
+   * @see #getMathContent()
+   * @generated
+   */
+  EAttribute getMathContent_MathType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.MathContent#getMath <em>Math</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Math</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.MathContent#getMath()
+   * @see #getMathContent()
+   * @generated
+   */
+  EReference getMathContent_Math();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.MathExp <em>Math Exp</em>}'.
@@ -1230,28 +1279,12 @@ public interface ProjectDSLPackage extends EPackage
     EAttribute PARAMETER__OP = eINSTANCE.getParameter_Op();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Content</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PARAMETER__RIGHT = eINSTANCE.getParameter_Right();
-
-    /**
-     * The meta object literal for the '<em><b>Math Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PARAMETER__MATH_TYPE = eINSTANCE.getParameter_MathType();
-
-    /**
-     * The meta object literal for the '<em><b>Math</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PARAMETER__MATH = eINSTANCE.getParameter_Math();
+    EReference PARAMETER__CONTENT = eINSTANCE.getParameter_Content();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.
@@ -1278,6 +1311,40 @@ public interface ProjectDSLPackage extends EPackage
      * @generated
      */
     EAttribute REDIRECT__URL = eINSTANCE.getRedirect_Url();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.MathContentImpl <em>Math Content</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.MathContentImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMathContent()
+     * @generated
+     */
+    EClass MATH_CONTENT = eINSTANCE.getMathContent();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATH_CONTENT__RIGHT = eINSTANCE.getMathContent_Right();
+
+    /**
+     * The meta object literal for the '<em><b>Math Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MATH_CONTENT__MATH_TYPE = eINSTANCE.getMathContent_MathType();
+
+    /**
+     * The meta object literal for the '<em><b>Math</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATH_CONTENT__MATH = eINSTANCE.getMathContent_Math();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.MathExpImpl <em>Math Exp</em>}' class.

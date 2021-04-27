@@ -530,54 +530,22 @@ ruleParameter returns [EObject current=null]
 			(
 				(
 					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getParameterRule());
-						}
+						newCompositeNode(grammarAccess.getParameterAccess().getContentMathContentParserRuleCall_5_3_0());
 					}
-					otherlv_8=RULE_ID
-					{
-						newLeafNode(otherlv_8, grammarAccess.getParameterAccess().getRightParameterCrossReference_5_3_0());
-					}
-				)
-			)?
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getParameterAccess().getMathTypeMathTypeParserRuleCall_5_4_0());
-					}
-					lv_mathType_9_0=ruleMathType
+					lv_content_8_0=ruleMathContent
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getParameterRule());
 						}
 						set(
 							$current,
-							"mathType",
-							lv_mathType_9_0,
-							"org.xtext.example.mydsl.ProjectDSL.MathType");
+							"content",
+							lv_content_8_0,
+							"org.xtext.example.mydsl.ProjectDSL.MathContent");
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)?
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getParameterAccess().getMathMathExpParserRuleCall_5_5_0());
-					}
-					lv_math_10_0=ruleMathExp
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getParameterRule());
-						}
-						set(
-							$current,
-							"math",
-							lv_math_10_0,
-							"org.xtext.example.mydsl.ProjectDSL.MathExp");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)?
+			)
 		)?
 	)
 ;
@@ -609,6 +577,112 @@ ruleType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getTypeAccess().getUKeyword_1());
 		}
+	)
+;
+
+// Entry rule entryRuleMathContent
+entryRuleMathContent returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMathContentRule()); }
+	iv_ruleMathContent=ruleMathContent
+	{ $current=$iv_ruleMathContent.current; }
+	EOF;
+
+// Rule MathContent
+ruleMathContent returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMathContentRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getMathContentAccess().getRightParameterCrossReference_0_0());
+				}
+			)
+		)
+		    |
+		(
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMathContentRule());
+						}
+					}
+					otherlv_1=RULE_ID
+					{
+						newLeafNode(otherlv_1, grammarAccess.getMathContentAccess().getRightParameterCrossReference_1_0_0());
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMathContentAccess().getMathTypeMathTypeParserRuleCall_1_1_0());
+					}
+					lv_mathType_2_0=ruleMathType
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMathContentRule());
+						}
+						set(
+							$current,
+							"mathType",
+							lv_mathType_2_0,
+							"org.xtext.example.mydsl.ProjectDSL.MathType");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMathContentAccess().getMathMathExpParserRuleCall_1_2_0());
+					}
+					lv_math_3_0=ruleMathExp
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMathContentRule());
+						}
+						set(
+							$current,
+							"math",
+							lv_math_3_0,
+							"org.xtext.example.mydsl.ProjectDSL.MathExp");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getMathContentAccess().getMathMathExpParserRuleCall_2_0());
+				}
+				lv_math_4_0=ruleMathExp
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMathContentRule());
+					}
+					set(
+						$current,
+						"math",
+						lv_math_4_0,
+						"org.xtext.example.mydsl.ProjectDSL.MathExp");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
