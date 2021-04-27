@@ -49,64 +49,35 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   }
   
   public CharSequence generateMath(final Parameter p) {
-    CharSequence _xifexpression = null;
-    if ((((p.getOp() != null) && (p.getContent().getRight() != null)) && (p.getContent().getMath() != null))) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("if(");
-      String _name = p.getName();
-      _builder.append(_name);
-      _builder.append(" ");
-      String _op = p.getOp();
-      _builder.append(_op);
-      _builder.append(" req.body.");
-      String _name_1 = p.getContent().getRight().getName();
-      _builder.append(_name_1);
-      _builder.append(" ");
-      String _mathType = p.getContent().getMathType();
-      _builder.append(_mathType);
-      _builder.append(" ");
-      String _generateExp = ProjectDSLGenerator.generateExp(p.getContent().getMath().getExp());
-      _builder.append(_generateExp);
-      _builder.append("){}");
-      _xifexpression = _builder;
-    } else {
-      CharSequence _xifexpression_1 = null;
-      if ((((p.getOp() != null) && (p.getContent().getRight() != null)) && (p.getContent().getMath() == null))) {
-        StringConcatenation _builder_1 = new StringConcatenation();
-        _builder_1.append("if(");
-        String _name_2 = p.getName();
-        _builder_1.append(_name_2);
-        _builder_1.append(" ");
-        String _op_1 = p.getOp();
-        _builder_1.append(_op_1);
-        _builder_1.append(" req.body.");
-        String _name_3 = p.getContent().getRight().getName();
-        _builder_1.append(_name_3);
-        _builder_1.append("){}");
-        _xifexpression_1 = _builder_1;
-      } else {
-        CharSequence _xifexpression_2 = null;
-        if ((((p.getOp() != null) && (p.getContent().getRight() == null)) && (p.getContent().getMath() != null))) {
-          StringConcatenation _builder_2 = new StringConcatenation();
-          _builder_2.append("if(");
-          String _name_4 = p.getName();
-          _builder_2.append(_name_4);
-          _builder_2.append(" ");
-          String _op_2 = p.getOp();
-          _builder_2.append(_op_2);
-          String _mathType_1 = p.getContent().getMathType();
-          _builder_2.append(_mathType_1);
-          _builder_2.append(" ");
-          String _generateExp_1 = ProjectDSLGenerator.generateExp(p.getContent().getMath().getExp());
-          _builder_2.append(_generateExp_1);
-          _builder_2.append("){}");
-          _xifexpression_2 = _builder_2;
-        }
-        _xifexpression_1 = _xifexpression_2;
-      }
-      _xifexpression = _xifexpression_1;
-    }
-    return _xifexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field name is undefined for the type MathExp"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nThe method or field content is undefined for the type Parameter"
+      + "\nmathType cannot be resolved"
+      + "\nmath cannot be resolved"
+      + "\nexp cannot be resolved"
+      + "\ngenerateExp cannot be resolved"
+      + "\nright cannot be resolved"
+      + "\n!== cannot be resolved"
+      + "\nmath cannot be resolved"
+      + "\n=== cannot be resolved"
+      + "\nright cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nright cannot be resolved"
+      + "\n=== cannot be resolved"
+      + "\nmath cannot be resolved"
+      + "\n!== cannot be resolved"
+      + "\nmathType cannot be resolved"
+      + "\nmath cannot be resolved"
+      + "\nexp cannot be resolved"
+      + "\ngenerateExp cannot be resolved");
   }
   
   public static String generateExp(final Expression exp) {

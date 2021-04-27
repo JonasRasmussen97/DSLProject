@@ -26,7 +26,7 @@ Endpoint:
 ;
 
 Parameter: 
-	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') (content=MathContent))?
+	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<') right=MathExp)?
 ; 
 
 // Redirect can either be a controller reference or a string. 
@@ -38,14 +38,6 @@ Redirect:
 // Indicates the different CRUD operations. 
 Type: 
 	'R' | 'U'
-;
-
-MathContent:
-	right=[Parameter] | right=[Parameter] mathType=MathType math=MathExp | math=MathExp
-;
-
-MathType:
-	'+' | '-' | '/' | '*'
 ;
 
 MathExp:
@@ -61,7 +53,11 @@ MulOrDiv returns Expression:
 ;
 
 Primary returns Expression:
-	Number | Parenthesis
+	Number | Parenthesis | Var
+;
+
+Var:
+	var=[Parameter]
 ;
 
 Parenthesis returns Expression:

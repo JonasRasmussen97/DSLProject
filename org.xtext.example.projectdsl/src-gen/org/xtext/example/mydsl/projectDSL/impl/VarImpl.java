@@ -6,53 +6,45 @@ package org.xtext.example.mydsl.projectDSL.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.xtext.example.mydsl.projectDSL.Num;
+import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
+import org.xtext.example.mydsl.projectDSL.Var;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Num</b></em>'.
+ * An implementation of the model object '<em><b>Var</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.NumImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.VarImpl#getVar <em>Var</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NumImpl extends ExpressionImpl implements Num
+public class VarImpl extends ExpressionImpl implements Var
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getVar() <em>Var</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getVar()
    * @generated
    * @ordered
    */
-  protected static final int VALUE_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected int value = VALUE_EDEFAULT;
+  protected Parameter var;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NumImpl()
+  protected VarImpl()
   {
     super();
   }
@@ -65,7 +57,7 @@ public class NumImpl extends ExpressionImpl implements Num
   @Override
   protected EClass eStaticClass()
   {
-    return ProjectDSLPackage.Literals.NUM;
+    return ProjectDSLPackage.Literals.VAR;
   }
 
   /**
@@ -74,9 +66,29 @@ public class NumImpl extends ExpressionImpl implements Num
    * @generated
    */
   @Override
-  public int getValue()
+  public Parameter getVar()
   {
-    return value;
+    if (var != null && var.eIsProxy())
+    {
+      InternalEObject oldVar = (InternalEObject)var;
+      var = (Parameter)eResolveProxy(oldVar);
+      if (var != oldVar)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectDSLPackage.VAR__VAR, oldVar, var));
+      }
+    }
+    return var;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Parameter basicGetVar()
+  {
+    return var;
   }
 
   /**
@@ -85,12 +97,12 @@ public class NumImpl extends ExpressionImpl implements Num
    * @generated
    */
   @Override
-  public void setValue(int newValue)
+  public void setVar(Parameter newVar)
   {
-    int oldValue = value;
-    value = newValue;
+    Parameter oldVar = var;
+    var = newVar;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.NUM__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.VAR__VAR, oldVar, var));
   }
 
   /**
@@ -103,8 +115,9 @@ public class NumImpl extends ExpressionImpl implements Num
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.NUM__VALUE:
-        return getValue();
+      case ProjectDSLPackage.VAR__VAR:
+        if (resolve) return getVar();
+        return basicGetVar();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -119,8 +132,8 @@ public class NumImpl extends ExpressionImpl implements Num
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.NUM__VALUE:
-        setValue((Integer)newValue);
+      case ProjectDSLPackage.VAR__VAR:
+        setVar((Parameter)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,8 +149,8 @@ public class NumImpl extends ExpressionImpl implements Num
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.NUM__VALUE:
-        setValue(VALUE_EDEFAULT);
+      case ProjectDSLPackage.VAR__VAR:
+        setVar((Parameter)null);
         return;
     }
     super.eUnset(featureID);
@@ -153,27 +166,10 @@ public class NumImpl extends ExpressionImpl implements Num
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.NUM__VALUE:
-        return value != VALUE_EDEFAULT;
+      case ProjectDSLPackage.VAR__VAR:
+        return var != null;
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (value: ");
-    result.append(value);
-    result.append(')');
-    return result.toString();
-  }
-
-} //NumImpl
+} //VarImpl

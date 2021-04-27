@@ -16,7 +16,6 @@ import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
-import org.xtext.example.mydsl.scoping.AbstractProjectDSLScopeProvider;
 
 /**
  * This class contains custom scoping description.
