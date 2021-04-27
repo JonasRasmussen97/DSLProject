@@ -17,7 +17,6 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
 import org.xtext.example.mydsl.projectDSL.impl.ControllerImpl;
 import org.xtext.example.mydsl.projectDSL.impl.EntityImpl;
-import org.xtext.example.mydsl.validation.AbstractProjectDSLValidator;
 
 /**
  * This class contains custom validation rules.
