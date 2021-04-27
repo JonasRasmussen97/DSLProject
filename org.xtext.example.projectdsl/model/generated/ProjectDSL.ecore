@@ -44,8 +44,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Var" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//Parameter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Param" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Parameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Plus" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"

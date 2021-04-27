@@ -56,7 +56,7 @@ public class ProjectDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) value=INT
-	 *     (rule start) (ambiguity) var=[Parameter|ID]
+	 *     (rule start) (ambiguity) value=[Parameter|ID]
 	 *     (rule start) (ambiguity) {Div.left=}
 	 *     (rule start) (ambiguity) {Minus.left=}
 	 *     (rule start) (ambiguity) {Mult.left=}
@@ -72,7 +72,7 @@ public class ProjectDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) value=INT
-	 *     (rule start) (ambiguity) var=[Parameter|ID]
+	 *     (rule start) (ambiguity) value=[Parameter|ID]
 	 *     (rule start) (ambiguity) {Div.left=}
 	 *     (rule start) (ambiguity) {Minus.left=}
 	 *     (rule start) (ambiguity) {Mult.left=}

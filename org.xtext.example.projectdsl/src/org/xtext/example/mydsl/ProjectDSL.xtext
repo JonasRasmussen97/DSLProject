@@ -53,11 +53,11 @@ MulOrDiv returns Expression:
 ;
 
 Primary returns Expression:
-	Number | Parenthesis | Var
+	Number | Parenthesis | Param
 ;
 
-Var:
-	var=[Parameter]
+Param:
+	value=[Parameter]
 ;
 
 Parenthesis returns Expression:

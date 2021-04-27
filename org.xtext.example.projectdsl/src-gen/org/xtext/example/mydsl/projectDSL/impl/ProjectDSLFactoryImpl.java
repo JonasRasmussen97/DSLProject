@@ -74,7 +74,7 @@ public class ProjectDSLFactoryImpl extends EFactoryImpl implements ProjectDSLFac
       case ProjectDSLPackage.REDIRECT: return createRedirect();
       case ProjectDSLPackage.MATH_EXP: return createMathExp();
       case ProjectDSLPackage.EXPRESSION: return createExpression();
-      case ProjectDSLPackage.VAR: return createVar();
+      case ProjectDSLPackage.PARAM: return createParam();
       case ProjectDSLPackage.PLUS: return createPlus();
       case ProjectDSLPackage.MINUS: return createMinus();
       case ProjectDSLPackage.MULT: return createMult();
@@ -199,10 +199,10 @@ public class ProjectDSLFactoryImpl extends EFactoryImpl implements ProjectDSLFac
    * @generated
    */
   @Override
-  public Var createVar()
+  public Param createParam()
   {
-    VarImpl var = new VarImpl();
-    return var;
+    ParamImpl param = new ParamImpl();
+    return param;
   }
 
   /**

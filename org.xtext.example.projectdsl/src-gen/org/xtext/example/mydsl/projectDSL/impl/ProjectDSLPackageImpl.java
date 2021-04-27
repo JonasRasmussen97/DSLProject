@@ -20,13 +20,13 @@ import org.xtext.example.mydsl.projectDSL.MathExp;
 import org.xtext.example.mydsl.projectDSL.Minus;
 import org.xtext.example.mydsl.projectDSL.Mult;
 import org.xtext.example.mydsl.projectDSL.Num;
+import org.xtext.example.mydsl.projectDSL.Param;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.Plus;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLFactory;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 import org.xtext.example.mydsl.projectDSL.Redirect;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
-import org.xtext.example.mydsl.projectDSL.Var;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,7 +104,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass varEClass = null;
+  private EClass paramEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -496,9 +496,9 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EClass getVar()
+  public EClass getParam()
   {
-    return varEClass;
+    return paramEClass;
   }
 
   /**
@@ -507,9 +507,9 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EReference getVar_Var()
+  public EReference getParam_Value()
   {
-    return (EReference)varEClass.getEStructuralFeatures().get(0);
+    return (EReference)paramEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -732,8 +732,8 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
 
     expressionEClass = createEClass(EXPRESSION);
 
-    varEClass = createEClass(VAR);
-    createEReference(varEClass, VAR__VAR);
+    paramEClass = createEClass(PARAM);
+    createEReference(paramEClass, PARAM__VALUE);
 
     plusEClass = createEClass(PLUS);
     createEReference(plusEClass, PLUS__LEFT);
@@ -786,7 +786,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     // Add supertypes to classes
     entityEClass.getESuperTypes().add(this.getDeclaration());
     controllerEClass.getESuperTypes().add(this.getDeclaration());
-    varEClass.getESuperTypes().add(this.getExpression());
+    paramEClass.getESuperTypes().add(this.getExpression());
     plusEClass.getESuperTypes().add(this.getExpression());
     minusEClass.getESuperTypes().add(this.getExpression());
     multEClass.getESuperTypes().add(this.getExpression());
@@ -829,8 +829,8 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(varEClass, Var.class, "Var", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getVar_Var(), this.getParameter(), null, "var", null, 0, 1, Var.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(paramEClass, Param.class, "Param", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getParam_Value(), this.getParameter(), null, "value", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(plusEClass, Plus.class, "Plus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPlus_Left(), this.getExpression(), null, "left", null, 0, 1, Plus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

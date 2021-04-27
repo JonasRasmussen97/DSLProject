@@ -22,11 +22,11 @@ import org.xtext.example.mydsl.projectDSL.MathExp;
 import org.xtext.example.mydsl.projectDSL.Minus;
 import org.xtext.example.mydsl.projectDSL.Mult;
 import org.xtext.example.mydsl.projectDSL.Num;
+import org.xtext.example.mydsl.projectDSL.Param;
 import org.xtext.example.mydsl.projectDSL.Plus;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 import org.xtext.example.mydsl.projectDSL.Redirect;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
-import org.xtext.example.mydsl.projectDSL.Var;
 import org.xtext.example.mydsl.services.ProjectDSLGrammarAccess;
 
 @SuppressWarnings("all")
@@ -67,6 +67,9 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 			case ProjectDSLPackage.NUM:
 				sequence_Number(context, (Num) semanticObject); 
 				return; 
+			case ProjectDSLPackage.PARAM:
+				sequence_Param(context, (Param) semanticObject); 
+				return; 
 			case ProjectDSLPackage.PARAMETER:
 				sequence_Parameter(context, (org.xtext.example.mydsl.projectDSL.Parameter) semanticObject); 
 				return; 
@@ -78,9 +81,6 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 				return; 
 			case ProjectDSLPackage.REST_API:
 				sequence_RestAPI(context, (RestAPI) semanticObject); 
-				return; 
-			case ProjectDSLPackage.VAR:
-				sequence_Var(context, (Var) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -289,6 +289,32 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	
 	/**
 	 * Contexts:
+	 *     Exp returns Param
+	 *     Exp.Plus_1_0_0_1 returns Param
+	 *     Exp.Minus_1_0_1_1 returns Param
+	 *     MulOrDiv returns Param
+	 *     MulOrDiv.Mult_1_0_0_1 returns Param
+	 *     MulOrDiv.Div_1_0_1_1 returns Param
+	 *     Primary returns Param
+	 *     Param returns Param
+	 *     Parenthesis returns Param
+	 *
+	 * Constraint:
+	 *     value=[Parameter|ID]
+	 */
+	protected void sequence_Param(ISerializationContext context, Param semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.PARAM__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.PARAM__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getParamAccess().getValueParameterIDTerminalRuleCall_0_1(), semanticObject.eGet(ProjectDSLPackage.Literals.PARAM__VALUE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
@@ -320,32 +346,6 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 */
 	protected void sequence_RestAPI(ISerializationContext context, RestAPI semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Exp returns Var
-	 *     Exp.Plus_1_0_0_1 returns Var
-	 *     Exp.Minus_1_0_1_1 returns Var
-	 *     MulOrDiv returns Var
-	 *     MulOrDiv.Mult_1_0_0_1 returns Var
-	 *     MulOrDiv.Div_1_0_1_1 returns Var
-	 *     Primary returns Var
-	 *     Var returns Var
-	 *     Parenthesis returns Var
-	 *
-	 * Constraint:
-	 *     var=[Parameter|ID]
-	 */
-	protected void sequence_Var(ISerializationContext context, Var semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ProjectDSLPackage.Literals.VAR__VAR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ProjectDSLPackage.Literals.VAR__VAR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getVarAccess().getVarParameterIDTerminalRuleCall_0_1(), semanticObject.eGet(ProjectDSLPackage.Literals.VAR__VAR, false));
-		feeder.finish();
 	}
 	
 	

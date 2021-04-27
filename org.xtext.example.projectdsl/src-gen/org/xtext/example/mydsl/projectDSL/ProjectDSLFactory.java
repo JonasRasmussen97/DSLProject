@@ -105,13 +105,13 @@ public interface ProjectDSLFactory extends EFactory
   Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>Var</em>'.
+   * Returns a new object of class '<em>Param</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Var</em>'.
+   * @return a new object of class '<em>Param</em>'.
    * @generated
    */
-  Var createVar();
+  Param createParam();
 
   /**
    * Returns a new object of class '<em>Plus</em>'.

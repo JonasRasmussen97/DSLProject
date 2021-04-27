@@ -40,8 +40,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//MathExp/exp"/>
     </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//Expression"/>
-    <genClasses ecoreClass="ProjectDSL.ecore#//Var">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Var/var"/>
+    <genClasses ecoreClass="ProjectDSL.ecore#//Param">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Param/value"/>
     </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//Plus">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Plus/left"/>

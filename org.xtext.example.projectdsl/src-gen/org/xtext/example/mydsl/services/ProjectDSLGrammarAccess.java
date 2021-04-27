@@ -518,14 +518,14 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNumberParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cParenthesisParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cVarParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cParamParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Primary returns Expression:
-		//    Number | Parenthesis | Var
+		//    Number | Parenthesis | Param
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Number | Parenthesis | Var
+		//Number | Parenthesis | Param
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Number
@@ -534,28 +534,28 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Parenthesis
 		public RuleCall getParenthesisParserRuleCall_1() { return cParenthesisParserRuleCall_1; }
 		
-		//Var
-		public RuleCall getVarParserRuleCall_2() { return cVarParserRuleCall_2; }
+		//Param
+		public RuleCall getParamParserRuleCall_2() { return cParamParserRuleCall_2; }
 	}
-	public class VarElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Var");
-		private final Assignment cVarAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cVarParameterCrossReference_0 = (CrossReference)cVarAssignment.eContents().get(0);
-		private final RuleCall cVarParameterIDTerminalRuleCall_0_1 = (RuleCall)cVarParameterCrossReference_0.eContents().get(1);
+	public class ParamElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Param");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cValueParameterCrossReference_0 = (CrossReference)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueParameterIDTerminalRuleCall_0_1 = (RuleCall)cValueParameterCrossReference_0.eContents().get(1);
 		
-		//Var:
-		//    var=[Parameter]
+		//Param:
+		//    value=[Parameter]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//var=[Parameter]
-		public Assignment getVarAssignment() { return cVarAssignment; }
+		//value=[Parameter]
+		public Assignment getValueAssignment() { return cValueAssignment; }
 		
 		//[Parameter]
-		public CrossReference getVarParameterCrossReference_0() { return cVarParameterCrossReference_0; }
+		public CrossReference getValueParameterCrossReference_0() { return cValueParameterCrossReference_0; }
 		
 		//ID
-		public RuleCall getVarParameterIDTerminalRuleCall_0_1() { return cVarParameterIDTerminalRuleCall_0_1; }
+		public RuleCall getValueParameterIDTerminalRuleCall_0_1() { return cValueParameterIDTerminalRuleCall_0_1; }
 	}
 	public class ParenthesisElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Parenthesis");
@@ -619,7 +619,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	private final ExpElements pExp;
 	private final MulOrDivElements pMulOrDiv;
 	private final PrimaryElements pPrimary;
-	private final VarElements pVar;
+	private final ParamElements pParam;
 	private final ParenthesisElements pParenthesis;
 	private final NumberElements pNumber;
 	
@@ -644,7 +644,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.pExp = new ExpElements();
 		this.pMulOrDiv = new MulOrDivElements();
 		this.pPrimary = new PrimaryElements();
-		this.pVar = new VarElements();
+		this.pParam = new ParamElements();
 		this.pParenthesis = new ParenthesisElements();
 		this.pNumber = new NumberElements();
 	}
@@ -803,7 +803,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Primary returns Expression:
-	//    Number | Parenthesis | Var
+	//    Number | Parenthesis | Param
 	//;
 	public PrimaryElements getPrimaryAccess() {
 		return pPrimary;
@@ -813,15 +813,15 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getPrimaryAccess().getRule();
 	}
 	
-	//Var:
-	//    var=[Parameter]
+	//Param:
+	//    value=[Parameter]
 	//;
-	public VarElements getVarAccess() {
-		return pVar;
+	public ParamElements getParamAccess() {
+		return pParam;
 	}
 	
-	public ParserRule getVarRule() {
-		return getVarAccess().getRule();
+	public ParserRule getParamRule() {
+		return getParamAccess().getRule();
 	}
 	
 	//Parenthesis returns Expression:

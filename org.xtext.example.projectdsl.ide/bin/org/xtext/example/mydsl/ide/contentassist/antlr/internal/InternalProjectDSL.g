@@ -324,25 +324,25 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleVar
-entryRuleVar
+// Entry rule entryRuleParam
+entryRuleParam
 :
-{ before(grammarAccess.getVarRule()); }
-	 ruleVar
-{ after(grammarAccess.getVarRule()); } 
+{ before(grammarAccess.getParamRule()); }
+	 ruleParam
+{ after(grammarAccess.getParamRule()); } 
 	 EOF 
 ;
 
-// Rule Var
-ruleVar 
+// Rule Param
+ruleParam 
 	@init {
 		int stackSize = keepStackSize();
 	}
 	:
 	(
-		{ before(grammarAccess.getVarAccess().getVarAssignment()); }
-		(rule__Var__VarAssignment)
-		{ after(grammarAccess.getVarAccess().getVarAssignment()); }
+		{ before(grammarAccess.getParamAccess().getValueAssignment()); }
+		(rule__Param__ValueAssignment)
+		{ after(grammarAccess.getParamAccess().getValueAssignment()); }
 	)
 ;
 finally {
@@ -534,9 +534,9 @@ rule__Primary__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getPrimaryAccess().getVarParserRuleCall_2()); }
-		ruleVar
-		{ after(grammarAccess.getPrimaryAccess().getVarParserRuleCall_2()); }
+		{ before(grammarAccess.getPrimaryAccess().getParamParserRuleCall_2()); }
+		ruleParam
+		{ after(grammarAccess.getPrimaryAccess().getParamParserRuleCall_2()); }
 	)
 ;
 finally {
@@ -2296,19 +2296,19 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Var__VarAssignment
+rule__Param__ValueAssignment
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getVarAccess().getVarParameterCrossReference_0()); }
+		{ before(grammarAccess.getParamAccess().getValueParameterCrossReference_0()); }
 		(
-			{ before(grammarAccess.getVarAccess().getVarParameterIDTerminalRuleCall_0_1()); }
+			{ before(grammarAccess.getParamAccess().getValueParameterIDTerminalRuleCall_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getVarAccess().getVarParameterIDTerminalRuleCall_0_1()); }
+			{ after(grammarAccess.getParamAccess().getValueParameterIDTerminalRuleCall_0_1()); }
 		)
-		{ after(grammarAccess.getVarAccess().getVarParameterCrossReference_0()); }
+		{ after(grammarAccess.getParamAccess().getValueParameterCrossReference_0()); }
 	)
 ;
 finally {

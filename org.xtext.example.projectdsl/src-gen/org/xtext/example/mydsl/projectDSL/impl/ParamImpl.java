@@ -10,41 +10,41 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.xtext.example.mydsl.projectDSL.Param;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
-import org.xtext.example.mydsl.projectDSL.Var;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Var</b></em>'.
+ * An implementation of the model object '<em><b>Param</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.VarImpl#getVar <em>Var</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParamImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class VarImpl extends ExpressionImpl implements Var
+public class ParamImpl extends ExpressionImpl implements Param
 {
   /**
-   * The cached value of the '{@link #getVar() <em>Var</em>}' reference.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected Parameter var;
+  protected Parameter value;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected VarImpl()
+  protected ParamImpl()
   {
     super();
   }
@@ -57,7 +57,7 @@ public class VarImpl extends ExpressionImpl implements Var
   @Override
   protected EClass eStaticClass()
   {
-    return ProjectDSLPackage.Literals.VAR;
+    return ProjectDSLPackage.Literals.PARAM;
   }
 
   /**
@@ -66,19 +66,19 @@ public class VarImpl extends ExpressionImpl implements Var
    * @generated
    */
   @Override
-  public Parameter getVar()
+  public Parameter getValue()
   {
-    if (var != null && var.eIsProxy())
+    if (value != null && value.eIsProxy())
     {
-      InternalEObject oldVar = (InternalEObject)var;
-      var = (Parameter)eResolveProxy(oldVar);
-      if (var != oldVar)
+      InternalEObject oldValue = (InternalEObject)value;
+      value = (Parameter)eResolveProxy(oldValue);
+      if (value != oldValue)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectDSLPackage.VAR__VAR, oldVar, var));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectDSLPackage.PARAM__VALUE, oldValue, value));
       }
     }
-    return var;
+    return value;
   }
 
   /**
@@ -86,9 +86,9 @@ public class VarImpl extends ExpressionImpl implements Var
    * <!-- end-user-doc -->
    * @generated
    */
-  public Parameter basicGetVar()
+  public Parameter basicGetValue()
   {
-    return var;
+    return value;
   }
 
   /**
@@ -97,12 +97,12 @@ public class VarImpl extends ExpressionImpl implements Var
    * @generated
    */
   @Override
-  public void setVar(Parameter newVar)
+  public void setValue(Parameter newValue)
   {
-    Parameter oldVar = var;
-    var = newVar;
+    Parameter oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.VAR__VAR, oldVar, var));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAM__VALUE, oldValue, value));
   }
 
   /**
@@ -115,9 +115,9 @@ public class VarImpl extends ExpressionImpl implements Var
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.VAR__VAR:
-        if (resolve) return getVar();
-        return basicGetVar();
+      case ProjectDSLPackage.PARAM__VALUE:
+        if (resolve) return getValue();
+        return basicGetValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -132,8 +132,8 @@ public class VarImpl extends ExpressionImpl implements Var
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.VAR__VAR:
-        setVar((Parameter)newValue);
+      case ProjectDSLPackage.PARAM__VALUE:
+        setValue((Parameter)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -149,8 +149,8 @@ public class VarImpl extends ExpressionImpl implements Var
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.VAR__VAR:
-        setVar((Parameter)null);
+      case ProjectDSLPackage.PARAM__VALUE:
+        setValue((Parameter)null);
         return;
     }
     super.eUnset(featureID);
@@ -166,10 +166,10 @@ public class VarImpl extends ExpressionImpl implements Var
   {
     switch (featureID)
     {
-      case ProjectDSLPackage.VAR__VAR:
-        return var != null;
+      case ProjectDSLPackage.PARAM__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //VarImpl
+} //ParamImpl

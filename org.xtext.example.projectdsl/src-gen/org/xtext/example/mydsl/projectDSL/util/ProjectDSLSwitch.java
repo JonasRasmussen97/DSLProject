@@ -138,11 +138,11 @@ public class ProjectDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProjectDSLPackage.VAR:
+      case ProjectDSLPackage.PARAM:
       {
-        Var var = (Var)theEObject;
-        T result = caseVar(var);
-        if (result == null) result = caseExpression(var);
+        Param param = (Param)theEObject;
+        T result = caseParam(param);
+        if (result == null) result = caseExpression(param);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -335,17 +335,17 @@ public class ProjectDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Var</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Param</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Var</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Param</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVar(Var object)
+  public T caseParam(Param object)
   {
     return null;
   }

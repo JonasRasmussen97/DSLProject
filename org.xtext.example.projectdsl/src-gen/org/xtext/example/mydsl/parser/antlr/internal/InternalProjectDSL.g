@@ -811,25 +811,25 @@ rulePrimary returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimaryAccess().getVarParserRuleCall_2());
+			newCompositeNode(grammarAccess.getPrimaryAccess().getParamParserRuleCall_2());
 		}
-		this_Var_2=ruleVar
+		this_Param_2=ruleParam
 		{
-			$current = $this_Var_2.current;
+			$current = $this_Param_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
 ;
 
-// Entry rule entryRuleVar
-entryRuleVar returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getVarRule()); }
-	iv_ruleVar=ruleVar
-	{ $current=$iv_ruleVar.current; }
+// Entry rule entryRuleParam
+entryRuleParam returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getParamRule()); }
+	iv_ruleParam=ruleParam
+	{ $current=$iv_ruleParam.current; }
 	EOF;
 
-// Rule Var
-ruleVar returns [EObject current=null]
+// Rule Param
+ruleParam returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -840,12 +840,12 @@ ruleVar returns [EObject current=null]
 		(
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getVarRule());
+					$current = createModelElement(grammarAccess.getParamRule());
 				}
 			}
 			otherlv_0=RULE_ID
 			{
-				newLeafNode(otherlv_0, grammarAccess.getVarAccess().getVarParameterCrossReference_0());
+				newLeafNode(otherlv_0, grammarAccess.getParamAccess().getValueParameterCrossReference_0());
 			}
 		)
 	)

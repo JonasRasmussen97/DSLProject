@@ -121,9 +121,9 @@ public class ProjectDSLAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseVar(Var object)
+      public Adapter caseParam(Param object)
       {
-        return createVarAdapter();
+        return createParamAdapter();
       }
       @Override
       public Adapter casePlus(Plus object)
@@ -308,16 +308,16 @@ public class ProjectDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.projectDSL.Var <em>Var</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.projectDSL.Param <em>Param</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.projectDSL.Var
+   * @see org.xtext.example.mydsl.projectDSL.Param
    * @generated
    */
-  public Adapter createVarAdapter()
+  public Adapter createParamAdapter()
   {
     return null;
   }

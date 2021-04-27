@@ -76,7 +76,7 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMathExpAccess().getExpAssignment(), "rule__MathExp__ExpAssignment");
 			builder.put(grammarAccess.getExpAccess().getRightAssignment_1_1(), "rule__Exp__RightAssignment_1_1");
 			builder.put(grammarAccess.getMulOrDivAccess().getRightAssignment_1_1(), "rule__MulOrDiv__RightAssignment_1_1");
-			builder.put(grammarAccess.getVarAccess().getVarAssignment(), "rule__Var__VarAssignment");
+			builder.put(grammarAccess.getParamAccess().getValueAssignment(), "rule__Param__ValueAssignment");
 			builder.put(grammarAccess.getNumberAccess().getValueAssignment_1(), "rule__Number__ValueAssignment_1");
 		}
 	}

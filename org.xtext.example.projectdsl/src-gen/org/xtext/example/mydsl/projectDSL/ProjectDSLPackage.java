@@ -400,32 +400,32 @@ public interface ProjectDSLPackage extends EPackage
   int EXPRESSION_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.VarImpl <em>Var</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.ParamImpl <em>Param</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.projectDSL.impl.VarImpl
-   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getVar()
+   * @see org.xtext.example.mydsl.projectDSL.impl.ParamImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getParam()
    * @generated
    */
-  int VAR = 9;
+  int PARAM = 9;
 
   /**
-   * The feature id for the '<em><b>Var</b></em>' reference.
+   * The feature id for the '<em><b>Value</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR__VAR = EXPRESSION_FEATURE_COUNT + 0;
+  int PARAM__VALUE = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Var</em>' class.
+   * The number of structural features of the '<em>Param</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+  int PARAM_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.PlusImpl <em>Plus</em>}' class.
@@ -882,25 +882,25 @@ public interface ProjectDSLPackage extends EPackage
   EClass getExpression();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Var <em>Var</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Param <em>Param</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Var</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Var
+   * @return the meta object for class '<em>Param</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Param
    * @generated
    */
-  EClass getVar();
+  EClass getParam();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Var#getVar <em>Var</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Param#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Var</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Var#getVar()
-   * @see #getVar()
+   * @return the meta object for the reference '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Param#getValue()
+   * @see #getParam()
    * @generated
    */
-  EReference getVar_Var();
+  EReference getParam_Value();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Plus <em>Plus</em>}'.
@@ -1301,22 +1301,22 @@ public interface ProjectDSLPackage extends EPackage
     EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.VarImpl <em>Var</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.ParamImpl <em>Param</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.projectDSL.impl.VarImpl
-     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getVar()
+     * @see org.xtext.example.mydsl.projectDSL.impl.ParamImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getParam()
      * @generated
      */
-    EClass VAR = eINSTANCE.getVar();
+    EClass PARAM = eINSTANCE.getParam();
 
     /**
-     * The meta object literal for the '<em><b>Var</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Value</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference VAR__VAR = eINSTANCE.getVar_Var();
+    EReference PARAM__VALUE = eINSTANCE.getParam_Value();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.PlusImpl <em>Plus</em>}' class.

@@ -26,6 +26,7 @@ import org.xtext.example.mydsl.projectDSL.Expression;
 import org.xtext.example.mydsl.projectDSL.Minus;
 import org.xtext.example.mydsl.projectDSL.Mult;
 import org.xtext.example.mydsl.projectDSL.Num;
+import org.xtext.example.mydsl.projectDSL.Param;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.Plus;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
@@ -49,35 +50,22 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   }
   
   public CharSequence generateMath(final Parameter p) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field name is undefined for the type MathExp"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nThe method or field content is undefined for the type Parameter"
-      + "\nmathType cannot be resolved"
-      + "\nmath cannot be resolved"
-      + "\nexp cannot be resolved"
-      + "\ngenerateExp cannot be resolved"
-      + "\nright cannot be resolved"
-      + "\n!== cannot be resolved"
-      + "\nmath cannot be resolved"
-      + "\n=== cannot be resolved"
-      + "\nright cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nright cannot be resolved"
-      + "\n=== cannot be resolved"
-      + "\nmath cannot be resolved"
-      + "\n!== cannot be resolved"
-      + "\nmathType cannot be resolved"
-      + "\nmath cannot be resolved"
-      + "\nexp cannot be resolved"
-      + "\ngenerateExp cannot be resolved");
+    CharSequence _xifexpression = null;
+    if (((p.getOp() != null) && (p.getRight() != null))) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("if(");
+      String _generateExp = ProjectDSLGenerator.generateExp(p.getLeft().getExp());
+      _builder.append(_generateExp);
+      _builder.append(" ");
+      String _op = p.getOp();
+      _builder.append(_op);
+      _builder.append(" ");
+      String _generateExp_1 = ProjectDSLGenerator.generateExp(p.getRight().getExp());
+      _builder.append(_generateExp_1);
+      _builder.append("){}");
+      _xifexpression = _builder;
+    }
+    return _xifexpression;
   }
   
   public static String generateExp(final Expression exp) {
@@ -86,35 +74,43 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     if (exp instanceof Plus) {
       _matched=true;
       String _generateExp = ProjectDSLGenerator.generateExp(((Plus)exp).getLeft());
-      String _plus = (_generateExp + "+");
+      String _plus = ("(" + _generateExp);
+      String _plus_1 = (_plus + "+");
       String _generateExp_1 = ProjectDSLGenerator.generateExp(((Plus)exp).getRight());
-      _switchResult = (_plus + _generateExp_1);
+      String _plus_2 = (_plus_1 + _generateExp_1);
+      _switchResult = (_plus_2 + ")");
     }
     if (!_matched) {
       if (exp instanceof Minus) {
         _matched=true;
         String _generateExp = ProjectDSLGenerator.generateExp(((Minus)exp).getLeft());
-        String _plus = (_generateExp + "-");
+        String _plus = ("(" + _generateExp);
+        String _plus_1 = (_plus + "-");
         String _generateExp_1 = ProjectDSLGenerator.generateExp(((Minus)exp).getRight());
-        _switchResult = (_plus + _generateExp_1);
+        String _plus_2 = (_plus_1 + _generateExp_1);
+        _switchResult = (_plus_2 + ")");
       }
     }
     if (!_matched) {
       if (exp instanceof Mult) {
         _matched=true;
         String _generateExp = ProjectDSLGenerator.generateExp(((Mult)exp).getLeft());
-        String _plus = (_generateExp + "*");
+        String _plus = ("(" + _generateExp);
+        String _plus_1 = (_plus + "*");
         String _generateExp_1 = ProjectDSLGenerator.generateExp(((Mult)exp).getRight());
-        _switchResult = (_plus + _generateExp_1);
+        String _plus_2 = (_plus_1 + _generateExp_1);
+        _switchResult = (_plus_2 + ")");
       }
     }
     if (!_matched) {
       if (exp instanceof Div) {
         _matched=true;
         String _generateExp = ProjectDSLGenerator.generateExp(((Div)exp).getLeft());
-        String _plus = (_generateExp + "/");
+        String _plus = ("(" + _generateExp);
+        String _plus_1 = (_plus + "/");
         String _generateExp_1 = ProjectDSLGenerator.generateExp(((Div)exp).getRight());
-        _switchResult = (_plus + _generateExp_1);
+        String _plus_2 = (_plus_1 + _generateExp_1);
+        _switchResult = (_plus_2 + ")");
       }
     }
     if (!_matched) {
@@ -124,10 +120,16 @@ public class ProjectDSLGenerator extends AbstractGenerator {
       }
     }
     if (!_matched) {
+      if (exp instanceof Param) {
+        _matched=true;
+        String _name = ((Param)exp).getValue().getName();
+        _switchResult = ("req.body." + _name);
+      }
+    }
+    if (!_matched) {
       throw new Error("Incorrect expression!");
     }
-    String _plus = ("(" + _switchResult);
-    return (_plus + ")");
+    return _switchResult;
   }
   
   public void generateApp(final IFileSystemAccess2 access1, final Iterable<Entity> entities) {

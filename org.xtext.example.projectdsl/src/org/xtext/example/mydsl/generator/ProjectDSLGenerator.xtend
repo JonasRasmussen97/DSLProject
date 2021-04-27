@@ -21,6 +21,7 @@ import org.xtext.example.mydsl.projectDSL.Minus
 import org.xtext.example.mydsl.projectDSL.Mult
 import org.xtext.example.mydsl.projectDSL.Div
 import org.xtext.example.mydsl.projectDSL.Num
+import org.xtext.example.mydsl.projectDSL.Param
 
 /**
  * Generates code from your model files on save.
@@ -48,24 +49,21 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	def generateMath(Parameter p) { 
 		// If there is no math expression on the parameter then the operator will be null.
 		if(p.op !== null && p.right !== null) {
-			'''if(«p.name» «p.op» req.body.«p.right.name» «p.content.mathType» «p.content.math.exp.generateExp»){}'''
-		} else if(p.op !== null && p.content.right !== null && p.content.math === null) {
-			'''if(«p.name» «p.op» req.body.«p.content.right.name»){}'''
-		} else if(p.op !== null && p.content.right === null && p.content.math !== null) {
-			'''if(«p.name» «p.op»«p.content.mathType» «p.content.math.exp.generateExp»){}'''
-		}
+			'''if(«p.left.exp.generateExp» «p.op» «p.right.exp.generateExp»){}'''
+		} 
 	}
 	
 	
 	def static String generateExp(Expression exp) {
-		"("+ switch(exp) {
-			Plus: exp.left.generateExp+"+"+exp.right.generateExp
-			Minus: exp.left.generateExp+"-"+exp.right.generateExp
-			Mult: exp.left.generateExp+"*"+exp.right.generateExp
-			Div: exp.left.generateExp+"/"+exp.right.generateExp
+		switch(exp) {
+			Plus: "("+exp.left.generateExp+"+"+exp.right.generateExp+")"
+			Minus: "("+exp.left.generateExp+"-"+exp.right.generateExp+")"
+			Mult: "("+exp.left.generateExp+"*"+exp.right.generateExp+")"
+			Div: "("+exp.left.generateExp+"/"+exp.right.generateExp+")"
 			Num: Integer.toString(exp.value)
+			Param: "req.body."+exp.value.name
 			default: throw new Error("Incorrect expression!")
-		}+")"
+		}
 	}
 	
 	
