@@ -29,12 +29,6 @@ Parameter:
 	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<') right=MathExp)?
 ; 
 
-// Redirect can either be a controller reference or a string. 
-Redirect:
-	name=[Controller] | url=STRING
-;
-
-
 // Indicates the different CRUD operations. 
 Type: 
 	'R' | 'U'
@@ -67,6 +61,3 @@ Parenthesis returns Expression:
 Number returns Expression:
 	{Num} value=INT
 ;
-
-
-

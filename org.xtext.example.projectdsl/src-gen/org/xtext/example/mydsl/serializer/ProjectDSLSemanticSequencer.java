@@ -25,7 +25,6 @@ import org.xtext.example.mydsl.projectDSL.Num;
 import org.xtext.example.mydsl.projectDSL.Param;
 import org.xtext.example.mydsl.projectDSL.Plus;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
-import org.xtext.example.mydsl.projectDSL.Redirect;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
 import org.xtext.example.mydsl.services.ProjectDSLGrammarAccess;
 
@@ -75,9 +74,6 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 				return; 
 			case ProjectDSLPackage.PLUS:
 				sequence_Exp(context, (Plus) semanticObject); 
-				return; 
-			case ProjectDSLPackage.REDIRECT:
-				sequence_Redirect(context, (Redirect) semanticObject); 
 				return; 
 			case ProjectDSLPackage.REST_API:
 				sequence_RestAPI(context, (RestAPI) semanticObject); 
@@ -321,18 +317,6 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     (name=ID dataType=ID type+=Type+ (left=MathExp (op='>=' | op='<=' | op='>' | op='<') right=MathExp)?)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.projectDSL.Parameter semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Redirect returns Redirect
-	 *
-	 * Constraint:
-	 *     (name=[Controller|ID] | url=STRING)
-	 */
-	protected void sequence_Redirect(ISerializationContext context, Redirect semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

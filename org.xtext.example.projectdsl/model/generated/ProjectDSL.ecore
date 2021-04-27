@@ -35,10 +35,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//MathExp"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Redirect">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Controller"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MathExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Expression"
         containment="true"/>

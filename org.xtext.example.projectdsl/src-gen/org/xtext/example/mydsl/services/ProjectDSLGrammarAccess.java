@@ -331,39 +331,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//MathExp
 		public RuleCall getRightMathExpParserRuleCall_5_3_0() { return cRightMathExpParserRuleCall_5_3_0; }
 	}
-	public class RedirectElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Redirect");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final CrossReference cNameControllerCrossReference_0_0 = (CrossReference)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cNameControllerIDTerminalRuleCall_0_0_1 = (RuleCall)cNameControllerCrossReference_0_0.eContents().get(1);
-		private final Assignment cUrlAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cUrlSTRINGTerminalRuleCall_1_0 = (RuleCall)cUrlAssignment_1.eContents().get(0);
-		
-		//// Redirect can either be a controller reference or a string.
-		//Redirect:
-		//    name=[Controller] | url=STRING
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=[Controller] | url=STRING
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//name=[Controller]
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//[Controller]
-		public CrossReference getNameControllerCrossReference_0_0() { return cNameControllerCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getNameControllerIDTerminalRuleCall_0_0_1() { return cNameControllerIDTerminalRuleCall_0_0_1; }
-		
-		//url=STRING
-		public Assignment getUrlAssignment_1() { return cUrlAssignment_1; }
-		
-		//STRING
-		public RuleCall getUrlSTRINGTerminalRuleCall_1_0() { return cUrlSTRINGTerminalRuleCall_1_0; }
-	}
 	public class TypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Type");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -613,7 +580,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	private final ControllerElements pController;
 	private final EndpointElements pEndpoint;
 	private final ParameterElements pParameter;
-	private final RedirectElements pRedirect;
 	private final TypeElements pType;
 	private final MathExpElements pMathExp;
 	private final ExpElements pExp;
@@ -638,7 +604,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.pController = new ControllerElements();
 		this.pEndpoint = new EndpointElements();
 		this.pParameter = new ParameterElements();
-		this.pRedirect = new RedirectElements();
 		this.pType = new TypeElements();
 		this.pMathExp = new MathExpElements();
 		this.pExp = new ExpElements();
@@ -743,18 +708,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	public ParserRule getParameterRule() {
 		return getParameterAccess().getRule();
-	}
-	
-	//// Redirect can either be a controller reference or a string.
-	//Redirect:
-	//    name=[Controller] | url=STRING
-	//;
-	public RedirectElements getRedirectAccess() {
-		return pRedirect;
-	}
-	
-	public ParserRule getRedirectRule() {
-		return getRedirectAccess().getRule();
 	}
 	
 	//// Indicates the different CRUD operations.

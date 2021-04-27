@@ -316,43 +316,6 @@ public interface ProjectDSLPackage extends EPackage
   int PARAMETER_FEATURE_COUNT = 6;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.projectDSL.impl.RedirectImpl
-   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getRedirect()
-   * @generated
-   */
-  int REDIRECT = 6;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REDIRECT__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Url</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REDIRECT__URL = 1;
-
-  /**
-   * The number of structural features of the '<em>Redirect</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REDIRECT_FEATURE_COUNT = 2;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.MathExpImpl <em>Math Exp</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -360,7 +323,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMathExp()
    * @generated
    */
-  int MATH_EXP = 7;
+  int MATH_EXP = 6;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -388,7 +351,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 8;
+  int EXPRESSION = 7;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -407,7 +370,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getParam()
    * @generated
    */
-  int PARAM = 9;
+  int PARAM = 8;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -435,7 +398,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 10;
+  int PLUS = 9;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -472,7 +435,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 11;
+  int MINUS = 10;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -509,7 +472,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMult()
    * @generated
    */
-  int MULT = 12;
+  int MULT = 11;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -546,7 +509,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getDiv()
    * @generated
    */
-  int DIV = 13;
+  int DIV = 12;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -583,7 +546,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getNum()
    * @generated
    */
-  int NUM = 14;
+  int NUM = 13;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -817,38 +780,6 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    */
   EReference getParameter_Right();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Redirect <em>Redirect</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Redirect</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Redirect
-   * @generated
-   */
-  EClass getRedirect();
-
-  /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Redirect#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Name</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Redirect#getName()
-   * @see #getRedirect()
-   * @generated
-   */
-  EReference getRedirect_Name();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Redirect#getUrl <em>Url</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Url</em>'.
-   * @see org.xtext.example.mydsl.projectDSL.Redirect#getUrl()
-   * @see #getRedirect()
-   * @generated
-   */
-  EAttribute getRedirect_Url();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.MathExp <em>Math Exp</em>}'.
@@ -1245,32 +1176,6 @@ public interface ProjectDSLPackage extends EPackage
      * @generated
      */
     EReference PARAMETER__RIGHT = eINSTANCE.getParameter_Right();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.projectDSL.impl.RedirectImpl
-     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getRedirect()
-     * @generated
-     */
-    EClass REDIRECT = eINSTANCE.getRedirect();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REDIRECT__NAME = eINSTANCE.getRedirect_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute REDIRECT__URL = eINSTANCE.getRedirect_Url();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.MathExpImpl <em>Math Exp</em>}' class.

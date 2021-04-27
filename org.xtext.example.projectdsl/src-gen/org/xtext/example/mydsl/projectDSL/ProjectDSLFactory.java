@@ -78,15 +78,6 @@ public interface ProjectDSLFactory extends EFactory
   Parameter createParameter();
 
   /**
-   * Returns a new object of class '<em>Redirect</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Redirect</em>'.
-   * @generated
-   */
-  Redirect createRedirect();
-
-  /**
    * Returns a new object of class '<em>Math Exp</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

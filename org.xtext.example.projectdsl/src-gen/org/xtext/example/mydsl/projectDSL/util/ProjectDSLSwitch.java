@@ -117,13 +117,6 @@ public class ProjectDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ProjectDSLPackage.REDIRECT:
-      {
-        Redirect redirect = (Redirect)theEObject;
-        T result = caseRedirect(redirect);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ProjectDSLPackage.MATH_EXP:
       {
         MathExp mathExp = (MathExp)theEObject;
@@ -282,22 +275,6 @@ public class ProjectDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseParameter(Parameter object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Redirect</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Redirect</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRedirect(Redirect object)
   {
     return null;
   }

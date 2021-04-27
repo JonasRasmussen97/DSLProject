@@ -106,11 +106,6 @@ public class ProjectDSLAdapterFactory extends AdapterFactoryImpl
         return createParameterAdapter();
       }
       @Override
-      public Adapter caseRedirect(Redirect object)
-      {
-        return createRedirectAdapter();
-      }
-      @Override
       public Adapter caseMathExp(MathExp object)
       {
         return createMathExpAdapter();
@@ -258,21 +253,6 @@ public class ProjectDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createParameterAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.projectDSL.Redirect <em>Redirect</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.projectDSL.Redirect
-   * @generated
-   */
-  public Adapter createRedirectAdapter()
   {
     return null;
   }
