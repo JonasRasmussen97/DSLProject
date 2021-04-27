@@ -530,9 +530,41 @@ ruleParameter returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getParameterAccess().getMathMathExpParserRuleCall_5_3_0());
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getParameterRule());
+						}
 					}
-					lv_math_8_0=ruleMathExp
+					otherlv_8=RULE_ID
+					{
+						newLeafNode(otherlv_8, grammarAccess.getParameterAccess().getRightParameterCrossReference_5_3_0());
+					}
+				)
+			)?
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getParameterAccess().getMathTypeMathTypeParserRuleCall_5_4_0());
+					}
+					lv_mathType_9_0=ruleMathType
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getParameterRule());
+						}
+						set(
+							$current,
+							"mathType",
+							lv_mathType_9_0,
+							"org.xtext.example.mydsl.ProjectDSL.MathType");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)?
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getParameterAccess().getMathMathExpParserRuleCall_5_5_0());
+					}
+					lv_math_10_0=ruleMathExp
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getParameterRule());
@@ -540,12 +572,12 @@ ruleParameter returns [EObject current=null]
 						set(
 							$current,
 							"math",
-							lv_math_8_0,
+							lv_math_10_0,
 							"org.xtext.example.mydsl.ProjectDSL.MathExp");
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)
+			)?
 		)?
 	)
 ;
@@ -576,6 +608,48 @@ ruleType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 		{
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getTypeAccess().getUKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleMathType
+entryRuleMathType returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getMathTypeRule()); }
+	iv_ruleMathType=ruleMathType
+	{ $current=$iv_ruleMathType.current.getText(); }
+	EOF;
+
+// Rule MathType
+ruleMathType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='+'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getMathTypeAccess().getPlusSignKeyword_0());
+		}
+		    |
+		kw='-'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getMathTypeAccess().getHyphenMinusKeyword_1());
+		}
+		    |
+		kw='/'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getMathTypeAccess().getSolidusKeyword_2());
+		}
+		    |
+		kw='*'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getMathTypeAccess().getAsteriskKeyword_3());
 		}
 	)
 ;

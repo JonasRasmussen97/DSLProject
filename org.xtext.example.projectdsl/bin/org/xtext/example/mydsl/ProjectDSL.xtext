@@ -26,7 +26,7 @@ Endpoint:
 ;
 
 Parameter: 
-	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?
+	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') (right=[Parameter])? (mathType=MathType)? (math=MathExp)?)?
 ; 
 
 // Redirect can either be a controller reference or a string. 
@@ -38,6 +38,10 @@ Redirect:
 // Indicates the different CRUD operations. 
 Type: 
 	'R' | 'U'
+;
+
+MathType:
+	'+' | '-' | '/' | '*'
 ;
 
 MathExp:

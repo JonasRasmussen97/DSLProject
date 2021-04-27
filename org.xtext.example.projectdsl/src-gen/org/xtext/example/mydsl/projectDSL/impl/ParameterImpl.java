@@ -35,6 +35,8 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getOp <em>Op</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getMathType <em>Math Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.ParameterImpl#getMath <em>Math</em>}</li>
  * </ul>
  *
@@ -121,6 +123,36 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @ordered
    */
   protected String op = OP_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRight()
+   * @generated
+   * @ordered
+   */
+  protected Parameter right;
+
+  /**
+   * The default value of the '{@link #getMathType() <em>Math Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMathType()
+   * @generated
+   * @ordered
+   */
+  protected static final String MATH_TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getMathType() <em>Math Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMathType()
+   * @generated
+   * @ordered
+   */
+  protected String mathType = MATH_TYPE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getMath() <em>Math</em>}' containment reference.
@@ -294,6 +326,76 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    */
   @Override
+  public Parameter getRight()
+  {
+    if (right != null && right.eIsProxy())
+    {
+      InternalEObject oldRight = (InternalEObject)right;
+      right = (Parameter)eResolveProxy(oldRight);
+      if (right != oldRight)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectDSLPackage.PARAMETER__RIGHT, oldRight, right));
+      }
+    }
+    return right;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Parameter basicGetRight()
+  {
+    return right;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setRight(Parameter newRight)
+  {
+    Parameter oldRight = right;
+    right = newRight;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__RIGHT, oldRight, right));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getMathType()
+  {
+    return mathType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setMathType(String newMathType)
+  {
+    String oldMathType = mathType;
+    mathType = newMathType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.PARAMETER__MATH_TYPE, oldMathType, mathType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public MathExp getMath()
   {
     return math;
@@ -375,6 +477,11 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         return basicGetLeft();
       case ProjectDSLPackage.PARAMETER__OP:
         return getOp();
+      case ProjectDSLPackage.PARAMETER__RIGHT:
+        if (resolve) return getRight();
+        return basicGetRight();
+      case ProjectDSLPackage.PARAMETER__MATH_TYPE:
+        return getMathType();
       case ProjectDSLPackage.PARAMETER__MATH:
         return getMath();
     }
@@ -408,6 +515,12 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__OP:
         setOp((String)newValue);
         return;
+      case ProjectDSLPackage.PARAMETER__RIGHT:
+        setRight((Parameter)newValue);
+        return;
+      case ProjectDSLPackage.PARAMETER__MATH_TYPE:
+        setMathType((String)newValue);
+        return;
       case ProjectDSLPackage.PARAMETER__MATH:
         setMath((MathExp)newValue);
         return;
@@ -440,6 +553,12 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case ProjectDSLPackage.PARAMETER__OP:
         setOp(OP_EDEFAULT);
         return;
+      case ProjectDSLPackage.PARAMETER__RIGHT:
+        setRight((Parameter)null);
+        return;
+      case ProjectDSLPackage.PARAMETER__MATH_TYPE:
+        setMathType(MATH_TYPE_EDEFAULT);
+        return;
       case ProjectDSLPackage.PARAMETER__MATH:
         setMath((MathExp)null);
         return;
@@ -467,6 +586,10 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         return left != null;
       case ProjectDSLPackage.PARAMETER__OP:
         return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
+      case ProjectDSLPackage.PARAMETER__RIGHT:
+        return right != null;
+      case ProjectDSLPackage.PARAMETER__MATH_TYPE:
+        return MATH_TYPE_EDEFAULT == null ? mathType != null : !MATH_TYPE_EDEFAULT.equals(mathType);
       case ProjectDSLPackage.PARAMETER__MATH:
         return math != null;
     }
@@ -492,6 +615,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     result.append(type);
     result.append(", op: ");
     result.append(op);
+    result.append(", mathType: ");
+    result.append(mathType);
     result.append(')');
     return result.toString();
   }

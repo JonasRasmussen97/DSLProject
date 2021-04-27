@@ -256,14 +256,21 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cOpLessThanSignEqualsSignKeyword_5_2_0_1 = (Keyword)cOpAlternatives_5_2_0.eContents().get(1);
 		private final Keyword cOpGreaterThanSignKeyword_5_2_0_2 = (Keyword)cOpAlternatives_5_2_0.eContents().get(2);
 		private final Keyword cOpLessThanSignKeyword_5_2_0_3 = (Keyword)cOpAlternatives_5_2_0.eContents().get(3);
-		private final Assignment cMathAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
-		private final RuleCall cMathMathExpParserRuleCall_5_3_0 = (RuleCall)cMathAssignment_5_3.eContents().get(0);
+		private final Assignment cRightAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
+		private final CrossReference cRightParameterCrossReference_5_3_0 = (CrossReference)cRightAssignment_5_3.eContents().get(0);
+		private final RuleCall cRightParameterIDTerminalRuleCall_5_3_0_1 = (RuleCall)cRightParameterCrossReference_5_3_0.eContents().get(1);
+		private final Assignment cMathTypeAssignment_5_4 = (Assignment)cGroup_5.eContents().get(4);
+		private final RuleCall cMathTypeMathTypeParserRuleCall_5_4_0 = (RuleCall)cMathTypeAssignment_5_4.eContents().get(0);
+		private final Assignment cMathAssignment_5_5 = (Assignment)cGroup_5.eContents().get(5);
+		private final RuleCall cMathMathExpParserRuleCall_5_5_0 = (RuleCall)cMathAssignment_5_5.eContents().get(0);
 		
 		//Parameter:
-		//	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?;
+		//	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=[Parameter]?
+		//	mathType=MathType? math=MathExp?)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?
+		//name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=[Parameter]?
+		//mathType=MathType? math=MathExp?)?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -290,7 +297,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Type
 		public RuleCall getTypeTypeParserRuleCall_4_0() { return cTypeTypeParserRuleCall_4_0; }
 		
-		//('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?
+		//('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=[Parameter]? mathType=MathType? math=MathExp?)?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'require'
@@ -323,11 +330,26 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'<'
 		public Keyword getOpLessThanSignKeyword_5_2_0_3() { return cOpLessThanSignKeyword_5_2_0_3; }
 		
-		//math=MathExp
-		public Assignment getMathAssignment_5_3() { return cMathAssignment_5_3; }
+		//right=[Parameter]?
+		public Assignment getRightAssignment_5_3() { return cRightAssignment_5_3; }
+		
+		//[Parameter]
+		public CrossReference getRightParameterCrossReference_5_3_0() { return cRightParameterCrossReference_5_3_0; }
+		
+		//ID
+		public RuleCall getRightParameterIDTerminalRuleCall_5_3_0_1() { return cRightParameterIDTerminalRuleCall_5_3_0_1; }
+		
+		//mathType=MathType?
+		public Assignment getMathTypeAssignment_5_4() { return cMathTypeAssignment_5_4; }
+		
+		//MathType
+		public RuleCall getMathTypeMathTypeParserRuleCall_5_4_0() { return cMathTypeMathTypeParserRuleCall_5_4_0; }
+		
+		//math=MathExp?
+		public Assignment getMathAssignment_5_5() { return cMathAssignment_5_5; }
 		
 		//MathExp
-		public RuleCall getMathMathExpParserRuleCall_5_3_0() { return cMathMathExpParserRuleCall_5_3_0; }
+		public RuleCall getMathMathExpParserRuleCall_5_5_0() { return cMathMathExpParserRuleCall_5_5_0; }
 	}
 	public class RedirectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Redirect");
@@ -380,6 +402,33 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//'U'
 		public Keyword getUKeyword_1() { return cUKeyword_1; }
+	}
+	public class MathTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.MathType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cPlusSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cSolidusKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cAsteriskKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		
+		//MathType:
+		//	'+' | '-' | '/' | '*';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'+' | '-' | '/' | '*'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'+'
+		public Keyword getPlusSignKeyword_0() { return cPlusSignKeyword_0; }
+		
+		//'-'
+		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
+		
+		//'/'
+		public Keyword getSolidusKeyword_2() { return cSolidusKeyword_2; }
+		
+		//'*'
+		public Keyword getAsteriskKeyword_3() { return cAsteriskKeyword_3; }
 	}
 	public class MathExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.MathExp");
@@ -581,6 +630,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	private final ParameterElements pParameter;
 	private final RedirectElements pRedirect;
 	private final TypeElements pType;
+	private final MathTypeElements pMathType;
 	private final MathExpElements pMathExp;
 	private final ExpElements pExp;
 	private final MulOrDivElements pMulOrDiv;
@@ -605,6 +655,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.pParameter = new ParameterElements();
 		this.pRedirect = new RedirectElements();
 		this.pType = new TypeElements();
+		this.pMathType = new MathTypeElements();
 		this.pMathExp = new MathExpElements();
 		this.pExp = new ExpElements();
 		this.pMulOrDiv = new MulOrDivElements();
@@ -694,7 +745,8 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Parameter:
-	//	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') math=MathExp)?;
+	//	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=[Parameter] op=('>=' | '<=' | '>' | '<') right=[Parameter]?
+	//	mathType=MathType? math=MathExp?)?;
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -723,6 +775,16 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	public ParserRule getTypeRule() {
 		return getTypeAccess().getRule();
+	}
+	
+	//MathType:
+	//	'+' | '-' | '/' | '*';
+	public MathTypeElements getMathTypeAccess() {
+		return pMathType;
+	}
+	
+	public ParserRule getMathTypeRule() {
+		return getMathTypeAccess().getRule();
 	}
 	
 	//MathExp:

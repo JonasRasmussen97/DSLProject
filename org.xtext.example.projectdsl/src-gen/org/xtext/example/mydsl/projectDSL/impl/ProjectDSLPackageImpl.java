@@ -411,9 +411,31 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EReference getParameter_Math()
+  public EReference getParameter_Right()
   {
     return (EReference)parameterEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getParameter_MathType()
+  {
+    return (EAttribute)parameterEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getParameter_Math()
+  {
+    return (EReference)parameterEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -691,6 +713,8 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     createEAttribute(parameterEClass, PARAMETER__TYPE);
     createEReference(parameterEClass, PARAMETER__LEFT);
     createEAttribute(parameterEClass, PARAMETER__OP);
+    createEReference(parameterEClass, PARAMETER__RIGHT);
+    createEAttribute(parameterEClass, PARAMETER__MATH_TYPE);
     createEReference(parameterEClass, PARAMETER__MATH);
 
     redirectEClass = createEClass(REDIRECT);
@@ -784,6 +808,8 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     initEAttribute(getParameter_Type(), ecorePackage.getEString(), "type", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameter_Left(), this.getParameter(), null, "left", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getParameter_Op(), ecorePackage.getEString(), "op", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParameter_Right(), this.getParameter(), null, "right", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getParameter_MathType(), ecorePackage.getEString(), "mathType", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameter_Math(), this.getMathExp(), null, "math", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(redirectEClass, Redirect.class, "Redirect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

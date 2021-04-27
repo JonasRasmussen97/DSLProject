@@ -298,13 +298,31 @@ public interface ProjectDSLPackage extends EPackage
   int PARAMETER__OP = 4;
 
   /**
+   * The feature id for the '<em><b>Right</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER__RIGHT = 5;
+
+  /**
+   * The feature id for the '<em><b>Math Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER__MATH_TYPE = 6;
+
+  /**
    * The feature id for the '<em><b>Math</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PARAMETER__MATH = 5;
+  int PARAMETER__MATH = 7;
 
   /**
    * The number of structural features of the '<em>Parameter</em>' class.
@@ -313,7 +331,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAMETER_FEATURE_COUNT = 6;
+  int PARAMETER_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.RedirectImpl <em>Redirect</em>}' class.
@@ -780,6 +798,28 @@ public interface ProjectDSLPackage extends EPackage
   EAttribute getParameter_Op();
 
   /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Right</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Parameter#getRight()
+   * @see #getParameter()
+   * @generated
+   */
+  EReference getParameter_Right();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMathType <em>Math Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Math Type</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Parameter#getMathType()
+   * @see #getParameter()
+   * @generated
+   */
+  EAttribute getParameter_MathType();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1188,6 +1228,22 @@ public interface ProjectDSLPackage extends EPackage
      * @generated
      */
     EAttribute PARAMETER__OP = eINSTANCE.getParameter_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARAMETER__RIGHT = eINSTANCE.getParameter_Right();
+
+    /**
+     * The meta object literal for the '<em><b>Math Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAMETER__MATH_TYPE = eINSTANCE.getParameter_MathType();
 
     /**
      * The meta object literal for the '<em><b>Math</b></em>' containment reference feature.

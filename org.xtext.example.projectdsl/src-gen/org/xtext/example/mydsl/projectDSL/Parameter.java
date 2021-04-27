@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getType <em>Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getLeft <em>Left</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getOp <em>Op</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getMathType <em>Math Type</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.Parameter#getMath <em>Math</em>}</li>
  * </ul>
  *
@@ -129,6 +131,50 @@ public interface Parameter extends EObject
    * @generated
    */
   void setOp(String value);
+
+  /**
+   * Returns the value of the '<em><b>Right</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Right</em>' reference.
+   * @see #setRight(Parameter)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_Right()
+   * @model
+   * @generated
+   */
+  Parameter getRight();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getRight <em>Right</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Right</em>' reference.
+   * @see #getRight()
+   * @generated
+   */
+  void setRight(Parameter value);
+
+  /**
+   * Returns the value of the '<em><b>Math Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Math Type</em>' attribute.
+   * @see #setMathType(String)
+   * @see org.xtext.example.mydsl.projectDSL.ProjectDSLPackage#getParameter_MathType()
+   * @model
+   * @generated
+   */
+  String getMathType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.projectDSL.Parameter#getMathType <em>Math Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Math Type</em>' attribute.
+   * @see #getMathType()
+   * @generated
+   */
+  void setMathType(String value);
 
   /**
    * Returns the value of the '<em><b>Math</b></em>' containment reference.

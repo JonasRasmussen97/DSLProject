@@ -23,7 +23,6 @@ import org.xtext.example.mydsl.projectDSL.Div;
 import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Expression;
-import org.xtext.example.mydsl.projectDSL.MathExp;
 import org.xtext.example.mydsl.projectDSL.Minus;
 import org.xtext.example.mydsl.projectDSL.Mult;
 import org.xtext.example.mydsl.projectDSL.Num;
@@ -51,72 +50,77 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   
   public CharSequence generateMath(final Parameter p) {
     CharSequence _xifexpression = null;
-    String _op = p.getOp();
-    boolean _tripleNotEquals = (_op != null);
-    if (_tripleNotEquals) {
+    if (((p.getOp() != null) && (p.getRight() != null))) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("if(");
       String _name = p.getName();
       _builder.append(_name);
       _builder.append(" ");
-      String _op_1 = p.getOp();
-      _builder.append(_op_1);
+      String _op = p.getOp();
+      _builder.append(_op);
+      _builder.append(" req.body.");
+      String _name_1 = p.getRight().getName();
+      _builder.append(_name_1);
       _builder.append(" ");
-      int _compute = ProjectDSLGenerator.compute(p.getMath());
-      _builder.append(_compute);
+      String _mathType = p.getMathType();
+      _builder.append(_mathType);
+      _builder.append(" ");
+      String _generateExp = ProjectDSLGenerator.generateExp(p.getMath().getExp());
+      _builder.append(_generateExp);
       _builder.append("){}");
       _xifexpression = _builder;
     }
     return _xifexpression;
   }
   
-  public static int compute(final MathExp math) {
-    return ProjectDSLGenerator.computeExp(math.getExp());
-  }
-  
-  public static int computeExp(final Expression exp) {
-    int _switchResult = (int) 0;
+  public static String generateExp(final Expression exp) {
+    String _switchResult = null;
     boolean _matched = false;
     if (exp instanceof Plus) {
       _matched=true;
-      int _computeExp = ProjectDSLGenerator.computeExp(((Plus)exp).getLeft());
-      int _computeExp_1 = ProjectDSLGenerator.computeExp(((Plus)exp).getRight());
-      _switchResult = (_computeExp + _computeExp_1);
+      String _generateExp = ProjectDSLGenerator.generateExp(((Plus)exp).getLeft());
+      String _plus = (_generateExp + "+");
+      String _generateExp_1 = ProjectDSLGenerator.generateExp(((Plus)exp).getRight());
+      _switchResult = (_plus + _generateExp_1);
     }
     if (!_matched) {
       if (exp instanceof Minus) {
         _matched=true;
-        int _computeExp = ProjectDSLGenerator.computeExp(((Minus)exp).getLeft());
-        int _computeExp_1 = ProjectDSLGenerator.computeExp(((Minus)exp).getRight());
-        _switchResult = (_computeExp - _computeExp_1);
+        String _generateExp = ProjectDSLGenerator.generateExp(((Minus)exp).getLeft());
+        String _plus = (_generateExp + "-");
+        String _generateExp_1 = ProjectDSLGenerator.generateExp(((Minus)exp).getRight());
+        _switchResult = (_plus + _generateExp_1);
       }
     }
     if (!_matched) {
       if (exp instanceof Mult) {
         _matched=true;
-        int _computeExp = ProjectDSLGenerator.computeExp(((Mult)exp).getLeft());
-        int _computeExp_1 = ProjectDSLGenerator.computeExp(((Mult)exp).getRight());
-        _switchResult = (_computeExp * _computeExp_1);
+        String _generateExp = ProjectDSLGenerator.generateExp(((Mult)exp).getLeft());
+        String _plus = (_generateExp + "*");
+        String _generateExp_1 = ProjectDSLGenerator.generateExp(((Mult)exp).getRight());
+        _switchResult = (_plus + _generateExp_1);
       }
     }
     if (!_matched) {
       if (exp instanceof Div) {
         _matched=true;
-        int _computeExp = ProjectDSLGenerator.computeExp(((Div)exp).getLeft());
-        int _computeExp_1 = ProjectDSLGenerator.computeExp(((Div)exp).getRight());
-        _switchResult = (_computeExp / _computeExp_1);
+        String _generateExp = ProjectDSLGenerator.generateExp(((Div)exp).getLeft());
+        String _plus = (_generateExp + "/");
+        String _generateExp_1 = ProjectDSLGenerator.generateExp(((Div)exp).getRight());
+        _switchResult = (_plus + _generateExp_1);
       }
     }
     if (!_matched) {
       if (exp instanceof Num) {
         _matched=true;
-        _switchResult = ((Num)exp).getValue();
+        _switchResult = Integer.toString(((Num)exp).getValue());
       }
     }
     if (!_matched) {
-      _switchResult = 0;
+      throw new Error("Incorrect expression!");
     }
-    return _switchResult;
+    String _plus = ("(" + _switchResult);
+    return (_plus + ")");
   }
   
   public void generateApp(final IFileSystemAccess2 access1, final Iterable<Entity> entities) {

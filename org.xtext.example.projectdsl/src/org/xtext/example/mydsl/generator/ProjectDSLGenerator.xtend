@@ -47,26 +47,21 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	
 	def generateMath(Parameter p) {
 		// If there is no math expression on the parameter then the operator will be null.
-		if(p.op !== null) {
-			'''if(«p.name» «p.op» «p.math.compute»){}'''
+		if(p.op !== null && p.right !== null) {
+			'''if(«p.name» «p.op» req.body.«p.right.name» «p.mathType» «p.math.exp.generateExp»){}'''
 		}
 	}
 	
 	
-	def static int compute(MathExp math) { 
-		math.exp.computeExp
-	}
-	
-	
-	def static int computeExp(Expression exp) {
-		switch(exp) {
-			Plus: exp.left.computeExp+exp.right.computeExp
-			Minus: exp.left.computeExp-exp.right.computeExp
-			Mult: exp.left.computeExp*exp.right.computeExp
-			Div: exp.left.computeExp/exp.right.computeExp
-			Num: exp.value
-			default: 0
-		}
+	def static String generateExp(Expression exp) {
+		"("+ switch(exp) {
+			Plus: exp.left.generateExp+"+"+exp.right.generateExp
+			Minus: exp.left.generateExp+"-"+exp.right.generateExp
+			Mult: exp.left.generateExp+"*"+exp.right.generateExp
+			Div: exp.left.generateExp+"/"+exp.right.generateExp
+			Num: Integer.toString(exp.value)
+			default: throw new Error("Incorrect expression!")
+		}+")"
 	}
 	
 	

@@ -288,7 +288,12 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (name=ID dataType=ID type+=Type+ (left=[Parameter|ID] (op='>=' | op='<=' | op='>' | op='<') math=MathExp)?)
+	 *     (
+	 *         name=ID 
+	 *         dataType=ID 
+	 *         type+=Type+ 
+	 *         (left=[Parameter|ID] (op='>=' | op='<=' | op='>' | op='<') right=[Parameter|ID]? mathType=MathType? math=MathExp?)?
+	 *     )
 	 */
 	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.projectDSL.Parameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
