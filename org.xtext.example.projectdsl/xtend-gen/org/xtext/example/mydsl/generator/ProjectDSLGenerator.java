@@ -50,7 +50,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
   
   public CharSequence generateMath(final Parameter p) {
     CharSequence _xifexpression = null;
-    if (((p.getOp() != null) && (p.getContent().getRight() != null))) {
+    if ((((p.getOp() != null) && (p.getContent().getRight() != null)) && (p.getContent().getMath() != null))) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("if(");
       String _name = p.getName();
@@ -69,6 +69,42 @@ public class ProjectDSLGenerator extends AbstractGenerator {
       _builder.append(_generateExp);
       _builder.append("){}");
       _xifexpression = _builder;
+    } else {
+      CharSequence _xifexpression_1 = null;
+      if ((((p.getOp() != null) && (p.getContent().getRight() != null)) && (p.getContent().getMath() == null))) {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("if(");
+        String _name_2 = p.getName();
+        _builder_1.append(_name_2);
+        _builder_1.append(" ");
+        String _op_1 = p.getOp();
+        _builder_1.append(_op_1);
+        _builder_1.append(" req.body.");
+        String _name_3 = p.getContent().getRight().getName();
+        _builder_1.append(_name_3);
+        _builder_1.append("){}");
+        _xifexpression_1 = _builder_1;
+      } else {
+        CharSequence _xifexpression_2 = null;
+        if ((((p.getOp() != null) && (p.getContent().getRight() == null)) && (p.getContent().getMath() != null))) {
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("if(");
+          String _name_4 = p.getName();
+          _builder_2.append(_name_4);
+          _builder_2.append(" ");
+          String _op_2 = p.getOp();
+          _builder_2.append(_op_2);
+          String _mathType_1 = p.getContent().getMathType();
+          _builder_2.append(_mathType_1);
+          _builder_2.append(" ");
+          String _generateExp_1 = ProjectDSLGenerator.generateExp(p.getContent().getMath().getExp());
+          _builder_2.append(_generateExp_1);
+          _builder_2.append("){}");
+          _xifexpression_2 = _builder_2;
+        }
+        _xifexpression_1 = _xifexpression_2;
+      }
+      _xifexpression = _xifexpression_1;
     }
     return _xifexpression;
   }

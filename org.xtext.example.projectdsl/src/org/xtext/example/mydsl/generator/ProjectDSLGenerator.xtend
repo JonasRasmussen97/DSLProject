@@ -47,8 +47,12 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	
 	def generateMath(Parameter p) {
 		// If there is no math expression on the parameter then the operator will be null.
-		if(p.op !== null && p.content.right !== null) {
+		if(p.op !== null && p.content.right !== null && p.content.math !== null) {
 			'''if(«p.name» «p.op» req.body.«p.content.right.name» «p.content.mathType» «p.content.math.exp.generateExp»){}'''
+		} else if(p.op !== null && p.content.right !== null && p.content.math === null) {
+			'''if(«p.name» «p.op» req.body.«p.content.right.name»){}'''
+		} else if(p.op !== null && p.content.right === null && p.content.math !== null) {
+			'''if(«p.name» «p.op»«p.content.mathType» «p.content.math.exp.generateExp»){}'''
 		}
 	}
 	
