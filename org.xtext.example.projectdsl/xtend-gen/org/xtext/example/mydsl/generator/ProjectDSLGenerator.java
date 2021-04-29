@@ -62,7 +62,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
       _builder.append(" ");
       String _generateExp_1 = ProjectDSLGenerator.generateExp(p.getRight().getExp());
       _builder.append(_generateExp_1);
-      _builder.append("){}");
+      _builder.append(")");
       _xifexpression = _builder;
     }
     return _xifexpression;
@@ -263,6 +263,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_1.append("\t");
                               CharSequence _generateMath = this.generateMath(p);
                               _builder_1.append(_generateMath, "\t");
+                              _builder_1.append("{");
                               _builder_1.newLineIfNotEmpty();
                               _builder_1.append("\t");
                               String _firstUpper_7 = StringExtensions.toFirstUpper(b.getName());
@@ -290,7 +291,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_1.append("\t");
                               _builder_1.append("});");
                               _builder_1.newLine();
-                              _builder_1.append("},");
+                              _builder_1.append("}},");
                               _switchResult = _builder_1;
                               break;
                             case "U":
@@ -306,6 +307,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_2.append("\t");
                               CharSequence _generateMath_1 = this.generateMath(p);
                               _builder_2.append(_generateMath_1, "\t");
+                              _builder_2.append("{");
                               _builder_2.newLineIfNotEmpty();
                               _builder_2.append("\t");
                               String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
@@ -336,7 +338,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_2.append("\t");
                               _builder_2.append("});");
                               _builder_2.newLine();
-                              _builder_2.append("},");
+                              _builder_2.append("}},");
                               _switchResult = _builder_2;
                               break;
                           }

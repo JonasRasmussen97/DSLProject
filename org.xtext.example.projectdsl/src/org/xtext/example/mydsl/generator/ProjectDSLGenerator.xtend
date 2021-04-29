@@ -15,7 +15,6 @@ import org.xtext.example.mydsl.projectDSL.Entity
 import org.xtext.example.mydsl.projectDSL.Controller
 import org.xtext.example.mydsl.projectDSL.Parameter
 import org.xtext.example.mydsl.projectDSL.Plus
-import org.xtext.example.mydsl.projectDSL.MathExp
 import org.xtext.example.mydsl.projectDSL.Expression
 import org.xtext.example.mydsl.projectDSL.Minus
 import org.xtext.example.mydsl.projectDSL.Mult
@@ -49,7 +48,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	def generateMath(Parameter p) { 
 		// If there is no math expression on the parameter then the operator will be null.
 		if(p.op !== null && p.right !== null) {
-			'''if(«p.left.exp.generateExp» «p.op» «p.right.exp.generateExp»){}'''
+			'''if(«p.left.exp.generateExp» «p.op» «p.right.exp.generateExp»)'''
 		} 
 	}
 	
@@ -105,7 +104,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	                        «FOR t:p.type»
 	                            «switch t.toString {
 	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {
-	«p.generateMath»
+	«p.generateMath»{
 	«b.name.toFirstUpper».collection.findOne({
 		Id: req.params.id
 	}, function(err, result){
@@ -114,9 +113,9 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		} else {
 				res.send("Success!");
 	});
-},'''
+}},'''
 	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {
-	«p.generateMath»
+	«p.generateMath»{
 	«b.name.toFirstUpper».collection.findOneAndUpdate({
 		«p.name»:req.body.«p.name.toLowerCase»
 	}, {
@@ -124,7 +123,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		«p.name»:req.body.value
 		}
 	});
-},'''
+}},'''
 
 }»
 	                        «ENDFOR»
