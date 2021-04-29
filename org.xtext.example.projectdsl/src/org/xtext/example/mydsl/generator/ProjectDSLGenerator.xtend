@@ -146,11 +146,9 @@ module.exports = «controller.name»
 		// Controllers
 		«var controllerNames = new LinkedHashSet<String>()»
 		«FOR e : entities»
-		«controllerNames.add(e.ctrlr.name)»
-		«ENDFOR»
-		
-		«FOR cname : controllerNames»
-		var «cname.toFirstLower» = requires('./«cname.toFirstUpper».js');
+		«IF controllerNames.add(e.ctrlr.name)»
+		var «e.ctrlr.name.toFirstLower» = requires('./«e.ctrlr.name.toFirstUpper».js');
+		«ENDIF»
 		«ENDFOR»
 		
 		// Mongoose Schemas
