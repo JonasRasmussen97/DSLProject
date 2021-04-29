@@ -173,9 +173,7 @@ module.exports = «controller.name»
 			«FOR p:e.parameters»
 				«FOR t:p.type»
 					«switch t.toString {
-						case 'C': '''app.post('/post«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res) {
-	«e.name.toFirstUpper»Controller.post«p.name»(«e.name.toFirstUpper», req, res);
-});'''
+
 									
 						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
 	«e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
@@ -185,9 +183,7 @@ module.exports = «controller.name»
 	«e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
 });'''
 									
-						case 'D': '''app.delete('/delete«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.name.toFirstUpper»Controller.delete«p.name»(«e.name.toFirstUpper», req, res);
-});'''
+
 									
 					}»
 				«ENDFOR»

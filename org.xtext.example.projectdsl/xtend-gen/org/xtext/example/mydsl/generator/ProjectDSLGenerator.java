@@ -464,19 +464,19 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                 String _string = t.toString();
                 if (_string != null) {
                   switch (_string) {
-                    case "C":
+                    case "R":
                       StringConcatenation _builder_1 = new StringConcatenation();
-                      _builder_1.append("app.post(\'/post");
+                      _builder_1.append("app.get(\'/get");
                       String _firstUpper_4 = StringExtensions.toFirstUpper(e_3.getName());
                       _builder_1.append(_firstUpper_4);
                       String _firstUpper_5 = StringExtensions.toFirstUpper(p_1.getName());
                       _builder_1.append(_firstUpper_5);
-                      _builder_1.append("\', function (req, res) {");
+                      _builder_1.append("\', function (req, res)  {");
                       _builder_1.newLineIfNotEmpty();
                       _builder_1.append("\t");
                       String _firstUpper_6 = StringExtensions.toFirstUpper(e_3.getName());
                       _builder_1.append(_firstUpper_6, "\t");
-                      _builder_1.append("Controller.post");
+                      _builder_1.append("Controller.get");
                       String _name_1 = p_1.getName();
                       _builder_1.append(_name_1, "\t");
                       _builder_1.append("(");
@@ -487,9 +487,9 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_1.append("});");
                       _switchResult = _builder_1;
                       break;
-                    case "R":
+                    case "U":
                       StringConcatenation _builder_2 = new StringConcatenation();
-                      _builder_2.append("app.get(\'/get");
+                      _builder_2.append("app.put(\'/put");
                       String _firstUpper_8 = StringExtensions.toFirstUpper(e_3.getName());
                       _builder_2.append(_firstUpper_8);
                       String _firstUpper_9 = StringExtensions.toFirstUpper(p_1.getName());
@@ -499,7 +499,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_2.append("\t");
                       String _firstUpper_10 = StringExtensions.toFirstUpper(e_3.getName());
                       _builder_2.append(_firstUpper_10, "\t");
-                      _builder_2.append("Controller.get");
+                      _builder_2.append("Controller.put");
                       String _name_2 = p_1.getName();
                       _builder_2.append(_name_2, "\t");
                       _builder_2.append("(");
@@ -509,52 +509,6 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_2.newLineIfNotEmpty();
                       _builder_2.append("});");
                       _switchResult = _builder_2;
-                      break;
-                    case "U":
-                      StringConcatenation _builder_3 = new StringConcatenation();
-                      _builder_3.append("app.put(\'/put");
-                      String _firstUpper_12 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_3.append(_firstUpper_12);
-                      String _firstUpper_13 = StringExtensions.toFirstUpper(p_1.getName());
-                      _builder_3.append(_firstUpper_13);
-                      _builder_3.append("\', function (req, res)  {");
-                      _builder_3.newLineIfNotEmpty();
-                      _builder_3.append("\t");
-                      String _firstUpper_14 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_3.append(_firstUpper_14, "\t");
-                      _builder_3.append("Controller.put");
-                      String _name_3 = p_1.getName();
-                      _builder_3.append(_name_3, "\t");
-                      _builder_3.append("(");
-                      String _firstUpper_15 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_3.append(_firstUpper_15, "\t");
-                      _builder_3.append(", req, res);");
-                      _builder_3.newLineIfNotEmpty();
-                      _builder_3.append("});");
-                      _switchResult = _builder_3;
-                      break;
-                    case "D":
-                      StringConcatenation _builder_4 = new StringConcatenation();
-                      _builder_4.append("app.delete(\'/delete");
-                      String _firstUpper_16 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_4.append(_firstUpper_16);
-                      String _firstUpper_17 = StringExtensions.toFirstUpper(p_1.getName());
-                      _builder_4.append(_firstUpper_17);
-                      _builder_4.append("\', function (req, res)  {");
-                      _builder_4.newLineIfNotEmpty();
-                      _builder_4.append("\t");
-                      String _firstUpper_18 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_4.append(_firstUpper_18, "\t");
-                      _builder_4.append("Controller.delete");
-                      String _name_4 = p_1.getName();
-                      _builder_4.append(_name_4, "\t");
-                      _builder_4.append("(");
-                      String _firstUpper_19 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_4.append(_firstUpper_19, "\t");
-                      _builder_4.append(", req, res);");
-                      _builder_4.newLineIfNotEmpty();
-                      _builder_4.append("});");
-                      _switchResult = _builder_4;
                       break;
                   }
                 }
