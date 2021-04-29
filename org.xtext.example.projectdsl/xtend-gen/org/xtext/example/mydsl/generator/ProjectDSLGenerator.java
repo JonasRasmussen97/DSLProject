@@ -6,6 +6,7 @@ package org.xtext.example.mydsl.generator;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
+import java.util.LinkedHashSet;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -375,14 +376,23 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("// Controllers");
     _builder.newLine();
-    _builder.newLine();
+    LinkedHashSet<String> controllerNames = new LinkedHashSet<String>();
+    _builder.newLineIfNotEmpty();
     {
       for(final Entity e : entities) {
+        boolean _add = controllerNames.add(e.getCtrlr().getName());
+        _builder.append(_add);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    {
+      for(final String cname : controllerNames) {
         _builder.append("var ");
-        String _firstLower = StringExtensions.toFirstLower(e.getCtrlr().getName());
+        String _firstLower = StringExtensions.toFirstLower(cname);
         _builder.append(_firstLower);
         _builder.append(" = requires(\'./");
-        String _firstUpper = StringExtensions.toFirstUpper(e.getCtrlr().getName());
+        String _firstUpper = StringExtensions.toFirstUpper(cname);
         _builder.append(_firstUpper);
         _builder.append(".js\');");
         _builder.newLineIfNotEmpty();

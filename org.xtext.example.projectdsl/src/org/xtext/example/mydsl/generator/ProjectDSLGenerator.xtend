@@ -21,6 +21,8 @@ import org.xtext.example.mydsl.projectDSL.Mult
 import org.xtext.example.mydsl.projectDSL.Div
 import org.xtext.example.mydsl.projectDSL.Num
 import org.xtext.example.mydsl.projectDSL.Param
+import java.util.HashMap
+import java.util.LinkedHashSet
 
 /**
  * Generates code from your model files on save.
@@ -142,9 +144,13 @@ module.exports = «controller.name»
 		const port = 3000	
 		
 		// Controllers
-		
+		«var controllerNames = new LinkedHashSet<String>()»
 		«FOR e : entities»
-			var «e.ctrlr.name.toFirstLower» = requires('./«e.ctrlr.name.toFirstUpper».js');
+		«controllerNames.add(e.ctrlr.name)»
+		«ENDFOR»
+		
+		«FOR cname : controllerNames»
+		var «cname.toFirstLower» = requires('./«cname.toFirstUpper».js');
 		«ENDFOR»
 		
 		// Mongoose Schemas
