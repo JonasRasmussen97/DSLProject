@@ -83,8 +83,9 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	var «controller.name» = {
 		«FOR base:controller.base»
 		create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
-			«base.name.toFirstUpper».collection.insertOne(new User({
-				«FOR bp:base.parameters»«bp.name»:req.body.«bp.name.toLowerCase»,
+			«base.name.toFirstUpper».collection.insertOne(new «base.name.toFirstUpper»({
+				«FOR bp:base.parameters»
+				«bp.name»:req.body.«bp.name.toLowerCase»,
 				«ENDFOR»
 			})
 		);
@@ -98,13 +99,13 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		};
 		},
 	        «ENDFOR»
-	        «FOR e : controller.endpoint»
-	            «FOR b:controller.base»
-	                «FOR p:b.parameters» 
+		«FOR e : controller.endpoint»
+			«FOR b:controller.base»
+				«FOR p:b.parameters» 
 «««	                Only create the functions in the controller js file that have "make" in the controller. *)
-	                «IF p.name == e.endpoint.name»
-	                        «FOR t:p.type»
-	                            «switch t.toString {
+					«IF p.name == e.endpoint.name»
+						«FOR t:p.type»
+						«switch t.toString {
 	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {
 	«p.generateMath»{
 	«b.name.toFirstUpper».collection.findOne({

@@ -170,13 +170,16 @@ public class ProjectDSLGenerator extends AbstractGenerator {
         _builder.append("\t");
         String _firstUpper_2 = StringExtensions.toFirstUpper(base.getName());
         _builder.append(_firstUpper_2, "\t\t\t");
-        _builder.append(".collection.insertOne(new User({");
+        _builder.append(".collection.insertOne(new ");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_3, "\t\t\t");
+        _builder.append("({");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t\t");
-        _builder.append("\t\t");
         {
           EList<Parameter> _parameters = base.getParameters();
           for(final Parameter bp : _parameters) {
+            _builder.append("\t\t");
+            _builder.append("\t\t");
             String _name_1 = bp.getName();
             _builder.append(_name_1, "\t\t\t\t");
             _builder.append(":req.body.");
@@ -200,16 +203,16 @@ public class ProjectDSLGenerator extends AbstractGenerator {
         _builder.newLine();
         _builder.append("\t\t");
         _builder.append("delete");
-        String _firstUpper_3 = StringExtensions.toFirstUpper(base.getName());
-        _builder.append(_firstUpper_3, "\t\t");
-        _builder.append(": function(");
         String _firstUpper_4 = StringExtensions.toFirstUpper(base.getName());
         _builder.append(_firstUpper_4, "\t\t");
+        _builder.append(": function(");
+        String _firstUpper_5 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_5, "\t\t");
         _builder.append(", req, res) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t        ");
-        String _firstUpper_5 = StringExtensions.toFirstUpper(base.getName());
-        _builder.append(_firstUpper_5, "\t        ");
+        String _firstUpper_6 = StringExtensions.toFirstUpper(base.getName());
+        _builder.append(_firstUpper_6, "\t        ");
         _builder.append(".collection.deleteOne(req.body.id, function(err, result){");
         _builder.newLineIfNotEmpty();
         _builder.append("\t        \t");
@@ -246,7 +249,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                     {
                       EList<String> _type = p.getType();
                       for(final String t : _type) {
-                        _builder.append("\t        ");
+                        _builder.append("\t\t");
                         CharSequence _switchResult = null;
                         String _string = t.toString();
                         if (_string != null) {
@@ -257,8 +260,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               String _name_4 = p.getName();
                               _builder_1.append(_name_4);
                               _builder_1.append(": function(");
-                              String _firstUpper_6 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_1.append(_firstUpper_6);
+                              String _firstUpper_7 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_1.append(_firstUpper_7);
                               _builder_1.append(", req, res) {");
                               _builder_1.newLineIfNotEmpty();
                               _builder_1.append("\t");
@@ -267,8 +270,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_1.append("{");
                               _builder_1.newLineIfNotEmpty();
                               _builder_1.append("\t");
-                              String _firstUpper_7 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_1.append(_firstUpper_7, "\t");
+                              String _firstUpper_8 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_1.append(_firstUpper_8, "\t");
                               _builder_1.append(".collection.findOne({");
                               _builder_1.newLineIfNotEmpty();
                               _builder_1.append("\t\t");
@@ -301,8 +304,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               String _name_5 = p.getName();
                               _builder_2.append(_name_5);
                               _builder_2.append(": function(");
-                              String _firstUpper_8 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_2.append(_firstUpper_8);
+                              String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_2.append(_firstUpper_9);
                               _builder_2.append(", req, res) {");
                               _builder_2.newLineIfNotEmpty();
                               _builder_2.append("\t");
@@ -311,8 +314,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_2.append("{");
                               _builder_2.newLineIfNotEmpty();
                               _builder_2.append("\t");
-                              String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_2.append(_firstUpper_9, "\t");
+                              String _firstUpper_10 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_2.append(_firstUpper_10, "\t");
                               _builder_2.append(".collection.findOneAndUpdate({");
                               _builder_2.newLineIfNotEmpty();
                               _builder_2.append("\t\t");
@@ -344,7 +347,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               break;
                           }
                         }
-                        _builder.append(_switchResult, "\t        ");
+                        _builder.append(_switchResult, "\t\t");
                         _builder.newLineIfNotEmpty();
                       }
                     }
