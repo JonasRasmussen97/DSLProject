@@ -55,7 +55,7 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
   }
   
   @Check
-  public void checkCRUDNames(final Entity e) {
+  public void checkDuplicateParameter(final Entity e) {
     final ArrayList<String> entityParameterNames = new ArrayList<String>();
     final Consumer<Parameter> _function = (Parameter it) -> {
       boolean _contains = entityParameterNames.contains(it.getName());
@@ -69,7 +69,7 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
   }
   
   @Check
-  public void checkCRUDParameters(final Parameter parameter) {
+  public void checkDuplicateCRUD(final Parameter parameter) {
     for (int i = 0; (i < ((Object[])Conversions.unwrapArray(parameter.getType(), Object.class)).length); i++) {
       for (int j = 0; (j < ((Object[])Conversions.unwrapArray(parameter.getType(), Object.class)).length); j++) {
         if (((i != j) && Objects.equal(parameter.getType().get(i), parameter.getType().get(j)))) {

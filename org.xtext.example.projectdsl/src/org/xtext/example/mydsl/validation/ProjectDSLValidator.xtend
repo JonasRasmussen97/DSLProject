@@ -50,7 +50,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 	}
 	
 	@Check
-	def checkCRUDNames(Entity e) {
+	def checkDuplicateParameter(Entity e) {
 		val entityParameterNames = new ArrayList<String>
 		e.parameters.forEach[
 			if(entityParameterNames.contains(it.name)) {
@@ -62,7 +62,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 	}
     
     @Check
-    def checkCRUDParameters(Parameter parameter){
+    def checkDuplicateCRUD(Parameter parameter){
     	for(var i = 0; i < parameter.type.length; i++){
             for(var j = 0; j < parameter.type.length; j++){
                 if(i != j && parameter.type.get(i) == parameter.type.get(j)){
