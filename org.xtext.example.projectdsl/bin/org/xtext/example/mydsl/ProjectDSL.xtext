@@ -8,11 +8,15 @@ RestAPI:
 
 // Keeps a track of which elements are allowed to be created.
 Declaration: 
-	Entity | Controller
+	Entity | Controller | ParentEntity
+;
+
+ParentEntity:
+	'parent' name=ID '{' parameters+=Parameter+ '}'
 ;
 
 Entity: 
-	'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
+	'entity' name=ID ('extends' parent=[ParentEntity])? 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
 ;
 
 // Example of syntax: controller Weather uses Entity1, Entity {make Weather}
@@ -25,7 +29,7 @@ Endpoint:
 	endpoint=[Parameter]
 ;
 
-Parameter: 
+Parameter:
 	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
 ; 
 

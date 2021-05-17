@@ -13,7 +13,11 @@
     <genClasses ecoreClass="ProjectDSL.ecore#//Declaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ProjectDSL.ecore#//Declaration/name"/>
     </genClasses>
+    <genClasses ecoreClass="ProjectDSL.ecore#//ParentEntity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//ParentEntity/parameters"/>
+    </genClasses>
     <genClasses ecoreClass="ProjectDSL.ecore#//Entity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Entity/parent"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Entity/ctrlr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProjectDSL.ecore#//Entity/parameters"/>
     </genClasses>

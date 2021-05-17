@@ -17,6 +17,7 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
 import org.xtext.example.mydsl.projectDSL.impl.ControllerImpl;
 import org.xtext.example.mydsl.projectDSL.impl.EntityImpl;
+import org.xtext.example.mydsl.projectDSL.impl.ParentEntityImpl;
 import org.xtext.example.mydsl.validation.AbstractProjectDSLValidator;
 
 /**
@@ -85,6 +86,7 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
   public void checkDuplicateEntitiesOrControllers(final RestAPI api) {
     final ArrayList<String> entityNames = new ArrayList<String>();
     final ArrayList<String> controllerNames = new ArrayList<String>();
+    final ArrayList<String> parentNames = new ArrayList<String>();
     final Consumer<Declaration> _function = (Declaration it) -> {
       if ((Objects.equal(it.getClass(), EntityImpl.class) && (!entityNames.contains(it.getName())))) {
         entityNames.add(it.getName());
@@ -92,7 +94,11 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
         if ((Objects.equal(it.getClass(), ControllerImpl.class) && (!controllerNames.contains(it.getName())))) {
           controllerNames.add(it.getName());
         } else {
-          this.error("Already exists", it, null);
+          if ((Objects.equal(it.getClass(), ParentEntityImpl.class) && (!parentNames.contains(it.getName())))) {
+            parentNames.add(it.getName());
+          } else {
+            this.error("Already exists", it, null);
+          }
         }
       }
     };

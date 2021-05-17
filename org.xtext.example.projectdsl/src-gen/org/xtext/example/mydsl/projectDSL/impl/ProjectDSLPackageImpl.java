@@ -22,6 +22,7 @@ import org.xtext.example.mydsl.projectDSL.Mult;
 import org.xtext.example.mydsl.projectDSL.Num;
 import org.xtext.example.mydsl.projectDSL.Param;
 import org.xtext.example.mydsl.projectDSL.Parameter;
+import org.xtext.example.mydsl.projectDSL.ParentEntity;
 import org.xtext.example.mydsl.projectDSL.Plus;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLFactory;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
@@ -48,6 +49,13 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   private EClass declarationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass parentEntityEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -257,6 +265,28 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
+  public EClass getParentEntity()
+  {
+    return parentEntityEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getParentEntity_Parameters()
+  {
+    return (EReference)parentEntityEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getEntity()
   {
     return entityEClass;
@@ -268,7 +298,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EReference getEntity_Ctrlr()
+  public EReference getEntity_Parent()
   {
     return (EReference)entityEClass.getEStructuralFeatures().get(0);
   }
@@ -279,9 +309,20 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
    * @generated
    */
   @Override
-  public EReference getEntity_Parameters()
+  public EReference getEntity_Ctrlr()
   {
     return (EReference)entityEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntity_Parameters()
+  {
+    return (EReference)entityEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -663,7 +704,11 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     declarationEClass = createEClass(DECLARATION);
     createEAttribute(declarationEClass, DECLARATION__NAME);
 
+    parentEntityEClass = createEClass(PARENT_ENTITY);
+    createEReference(parentEntityEClass, PARENT_ENTITY__PARAMETERS);
+
     entityEClass = createEClass(ENTITY);
+    createEReference(entityEClass, ENTITY__PARENT);
     createEReference(entityEClass, ENTITY__CTRLR);
     createEReference(entityEClass, ENTITY__PARAMETERS);
 
@@ -739,6 +784,7 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    parentEntityEClass.getESuperTypes().add(this.getDeclaration());
     entityEClass.getESuperTypes().add(this.getDeclaration());
     controllerEClass.getESuperTypes().add(this.getDeclaration());
     paramEClass.getESuperTypes().add(this.getExpression());
@@ -756,7 +802,11 @@ public class ProjectDSLPackageImpl extends EPackageImpl implements ProjectDSLPac
     initEClass(declarationEClass, Declaration.class, "Declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(parentEntityEClass, ParentEntity.class, "ParentEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getParentEntity_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, ParentEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEntity_Parent(), this.getParentEntity(), null, "parent", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Ctrlr(), this.getController(), null, "ctrlr", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

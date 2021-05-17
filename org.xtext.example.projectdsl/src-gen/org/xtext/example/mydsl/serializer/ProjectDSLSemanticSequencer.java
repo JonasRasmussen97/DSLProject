@@ -23,6 +23,7 @@ import org.xtext.example.mydsl.projectDSL.Minus;
 import org.xtext.example.mydsl.projectDSL.Mult;
 import org.xtext.example.mydsl.projectDSL.Num;
 import org.xtext.example.mydsl.projectDSL.Param;
+import org.xtext.example.mydsl.projectDSL.ParentEntity;
 import org.xtext.example.mydsl.projectDSL.Plus;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 import org.xtext.example.mydsl.projectDSL.RestAPI;
@@ -72,6 +73,9 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 			case ProjectDSLPackage.PARAMETER:
 				sequence_Parameter(context, (org.xtext.example.mydsl.projectDSL.Parameter) semanticObject); 
 				return; 
+			case ProjectDSLPackage.PARENT_ENTITY:
+				sequence_ParentEntity(context, (ParentEntity) semanticObject); 
+				return; 
 			case ProjectDSLPackage.PLUS:
 				sequence_Exp(context, (Plus) semanticObject); 
 				return; 
@@ -120,7 +124,7 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Entity returns Entity
 	 *
 	 * Constraint:
-	 *     (name=ID ctrlr=[Controller|ID] parameters+=Parameter+)
+	 *     (name=ID parent=[ParentEntity|ID]? ctrlr=[Controller|ID] parameters+=Parameter+)
 	 */
 	protected void sequence_Entity(ISerializationContext context, Entity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -333,6 +337,19 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     )
 	 */
 	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.projectDSL.Parameter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Declaration returns ParentEntity
+	 *     ParentEntity returns ParentEntity
+	 *
+	 * Constraint:
+	 *     (name=ID parameters+=Parameter+)
+	 */
+	protected void sequence_ParentEntity(ISerializationContext context, ParentEntity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

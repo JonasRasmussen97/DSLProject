@@ -87,6 +87,14 @@ public class ProjectDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ProjectDSLPackage.PARENT_ENTITY:
+      {
+        ParentEntity parentEntity = (ParentEntity)theEObject;
+        T result = caseParentEntity(parentEntity);
+        if (result == null) result = caseDeclaration(parentEntity);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ProjectDSLPackage.ENTITY:
       {
         Entity entity = (Entity)theEObject;
@@ -211,6 +219,22 @@ public class ProjectDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDeclaration(Declaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Parent Entity</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Parent Entity</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseParentEntity(ParentEntity object)
   {
     return null;
   }

@@ -123,6 +123,43 @@ public interface ProjectDSLPackage extends EPackage
   int DECLARATION_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.ParentEntityImpl <em>Parent Entity</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.projectDSL.impl.ParentEntityImpl
+   * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getParentEntity()
+   * @generated
+   */
+  int PARENT_ENTITY = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARENT_ENTITY__NAME = DECLARATION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARENT_ENTITY__PARAMETERS = DECLARATION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Parent Entity</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARENT_ENTITY_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.EntityImpl <em>Entity</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -130,7 +167,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 2;
+  int ENTITY = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -142,13 +179,22 @@ public interface ProjectDSLPackage extends EPackage
   int ENTITY__NAME = DECLARATION__NAME;
 
   /**
+   * The feature id for the '<em><b>Parent</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__PARENT = DECLARATION_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Ctrlr</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENTITY__CTRLR = DECLARATION_FEATURE_COUNT + 0;
+  int ENTITY__CTRLR = DECLARATION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -157,7 +203,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__PARAMETERS = DECLARATION_FEATURE_COUNT + 1;
+  int ENTITY__PARAMETERS = DECLARATION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -166,7 +212,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 2;
+  int ENTITY_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.ControllerImpl <em>Controller</em>}' class.
@@ -176,7 +222,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getController()
    * @generated
    */
-  int CONTROLLER = 3;
+  int CONTROLLER = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -222,7 +268,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getEndpoint()
    * @generated
    */
-  int ENDPOINT = 4;
+  int ENDPOINT = 5;
 
   /**
    * The feature id for the '<em><b>Endpoint</b></em>' reference.
@@ -250,7 +296,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getParameter()
    * @generated
    */
-  int PARAMETER = 5;
+  int PARAMETER = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -323,7 +369,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMathExp()
    * @generated
    */
-  int MATH_EXP = 6;
+  int MATH_EXP = 7;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -351,7 +397,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 7;
+  int EXPRESSION = 8;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -370,7 +416,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getParam()
    * @generated
    */
-  int PARAM = 8;
+  int PARAM = 9;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -398,7 +444,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 9;
+  int PLUS = 10;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -435,7 +481,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 10;
+  int MINUS = 11;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -472,7 +518,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getMult()
    * @generated
    */
-  int MULT = 11;
+  int MULT = 12;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -509,7 +555,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getDiv()
    * @generated
    */
-  int DIV = 12;
+  int DIV = 13;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -546,7 +592,7 @@ public interface ProjectDSLPackage extends EPackage
    * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getNum()
    * @generated
    */
-  int NUM = 13;
+  int NUM = 14;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -621,6 +667,27 @@ public interface ProjectDSLPackage extends EPackage
   EAttribute getDeclaration_Name();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.ParentEntity <em>Parent Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Parent Entity</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.ParentEntity
+   * @generated
+   */
+  EClass getParentEntity();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.projectDSL.ParentEntity#getParameters <em>Parameters</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Parameters</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.ParentEntity#getParameters()
+   * @see #getParentEntity()
+   * @generated
+   */
+  EReference getParentEntity_Parameters();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.projectDSL.Entity <em>Entity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -629,6 +696,17 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    */
   EClass getEntity();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Entity#getParent <em>Parent</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Parent</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Entity#getParent()
+   * @see #getEntity()
+   * @generated
+   */
+  EReference getEntity_Parent();
 
   /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Entity#getCtrlr <em>Ctrlr</em>}'.
@@ -1050,6 +1128,24 @@ public interface ProjectDSLPackage extends EPackage
     EAttribute DECLARATION__NAME = eINSTANCE.getDeclaration_Name();
 
     /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.ParentEntityImpl <em>Parent Entity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.projectDSL.impl.ParentEntityImpl
+     * @see org.xtext.example.mydsl.projectDSL.impl.ProjectDSLPackageImpl#getParentEntity()
+     * @generated
+     */
+    EClass PARENT_ENTITY = eINSTANCE.getParentEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARENT_ENTITY__PARAMETERS = eINSTANCE.getParentEntity_Parameters();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.projectDSL.impl.EntityImpl <em>Entity</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1058,6 +1154,14 @@ public interface ProjectDSLPackage extends EPackage
      * @generated
      */
     EClass ENTITY = eINSTANCE.getEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY__PARENT = eINSTANCE.getEntity_Parent();
 
     /**
      * The meta object literal for the '<em><b>Ctrlr</b></em>' reference feature.

@@ -8,14 +8,12 @@ import org.xtext.example.mydsl.projectDSL.Controller
 import java.util.ArrayList
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage.Literals
 import org.xtext.example.mydsl.projectDSL.Entity
-import org.eclipse.emf.common.util.EList
-import java.util.HashSet
-import java.util.HashMap
 import org.xtext.example.mydsl.projectDSL.Parameter
-import org.xtext.example.mydsl.projectDSL.Declaration
 import org.xtext.example.mydsl.projectDSL.RestAPI
 import org.xtext.example.mydsl.projectDSL.impl.EntityImpl
 import org.xtext.example.mydsl.projectDSL.impl.ControllerImpl
+import org.xtext.example.mydsl.projectDSL.impl.ParentEntityImpl
+
 
 /**
  * This class contains custom validation rules. 
@@ -24,6 +22,7 @@ import org.xtext.example.mydsl.projectDSL.impl.ControllerImpl
  */
 class ProjectDSLValidator extends AbstractProjectDSLValidator {
 	
+	// Checks that the controller is not containing duplicate endpoints
 	@Check
 	def checkMakeOperations(Controller c) {
 		val endpointNames = new ArrayList<String>
@@ -37,6 +36,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 		]
 	}
 	
+	// Checks that each controller only 'uses' entities once
 	@Check
 	def checkDuplicateUsesStatement(Controller c) {
 		val entitiesUsed = new ArrayList<String>
@@ -49,6 +49,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 		]
 	}
 	
+	// Checks that each entity does not contain duplicate parameters
 	@Check
 	def checkDuplicateParameter(Entity e) {
 		val entityParameterNames = new ArrayList<String>
@@ -61,6 +62,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 		]
 	}
     
+    // Checks that there are no duplicate CRUD operations for each parameter e.g. Age = int R R
     @Check
     def checkDuplicateCRUD(Parameter parameter){
     	for(var i = 0; i < parameter.type.length; i++){
@@ -72,15 +74,22 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
         }
     }
     
+    // Checks that there are no duplicates of either entities, controllers and parent entities
     @Check
     def checkDuplicateEntitiesOrControllers(RestAPI api){
     	val entityNames = new ArrayList<String>
     	val controllerNames = new ArrayList<String>
+    	val parentNames = new ArrayList<String>
     	api.declarations.forEach[
     		if(it.class == EntityImpl && !entityNames.contains(it.name)){
     			entityNames.add(it.name)
+    		
     		}else if(it.class == ControllerImpl && !controllerNames.contains(it.name)){
     			controllerNames.add(it.name)
+    			
+    		}else if(it.class == ParentEntityImpl && !parentNames.contains(it.name)){
+    			parentNames.add(it.name)
+  
     		}else{
     			error("Already exists", it, null)
     		}

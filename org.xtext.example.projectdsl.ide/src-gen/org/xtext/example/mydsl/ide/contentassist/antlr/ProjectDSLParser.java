@@ -38,7 +38,9 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMulOrDivAccess().getAlternatives_1_0(), "rule__MulOrDiv__Alternatives_1_0");
 			builder.put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
 			builder.put(grammarAccess.getRestAPIAccess().getGroup(), "rule__RestAPI__Group__0");
+			builder.put(grammarAccess.getParentEntityAccess().getGroup(), "rule__ParentEntity__Group__0");
 			builder.put(grammarAccess.getEntityAccess().getGroup(), "rule__Entity__Group__0");
+			builder.put(grammarAccess.getEntityAccess().getGroup_2(), "rule__Entity__Group_2__0");
 			builder.put(grammarAccess.getControllerAccess().getGroup(), "rule__Controller__Group__0");
 			builder.put(grammarAccess.getControllerAccess().getGroup_4(), "rule__Controller__Group_4__0");
 			builder.put(grammarAccess.getControllerAccess().getGroup_6(), "rule__Controller__Group_6__0");
@@ -56,9 +58,12 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getNumberAccess().getGroup(), "rule__Number__Group__0");
 			builder.put(grammarAccess.getRestAPIAccess().getNameAssignment_1(), "rule__RestAPI__NameAssignment_1");
 			builder.put(grammarAccess.getRestAPIAccess().getDeclarationsAssignment_2(), "rule__RestAPI__DeclarationsAssignment_2");
+			builder.put(grammarAccess.getParentEntityAccess().getNameAssignment_1(), "rule__ParentEntity__NameAssignment_1");
+			builder.put(grammarAccess.getParentEntityAccess().getParametersAssignment_3(), "rule__ParentEntity__ParametersAssignment_3");
 			builder.put(grammarAccess.getEntityAccess().getNameAssignment_1(), "rule__Entity__NameAssignment_1");
-			builder.put(grammarAccess.getEntityAccess().getCtrlrAssignment_3(), "rule__Entity__CtrlrAssignment_3");
-			builder.put(grammarAccess.getEntityAccess().getParametersAssignment_5(), "rule__Entity__ParametersAssignment_5");
+			builder.put(grammarAccess.getEntityAccess().getParentAssignment_2_1(), "rule__Entity__ParentAssignment_2_1");
+			builder.put(grammarAccess.getEntityAccess().getCtrlrAssignment_4(), "rule__Entity__CtrlrAssignment_4");
+			builder.put(grammarAccess.getEntityAccess().getParametersAssignment_6(), "rule__Entity__ParametersAssignment_6");
 			builder.put(grammarAccess.getControllerAccess().getNameAssignment_1(), "rule__Controller__NameAssignment_1");
 			builder.put(grammarAccess.getControllerAccess().getBaseAssignment_3(), "rule__Controller__BaseAssignment_3");
 			builder.put(grammarAccess.getControllerAccess().getBaseAssignment_4_1(), "rule__Controller__BaseAssignment_4_1");

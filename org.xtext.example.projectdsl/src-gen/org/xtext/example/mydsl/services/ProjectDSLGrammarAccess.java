@@ -60,13 +60,14 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cEntityParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cControllerParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cParentEntityParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//// Keeps a track of which elements are allowed to be created.
 		//Declaration:
-		//	Entity | Controller;
+		//	Entity | Controller | ParentEntity;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Entity | Controller
+		//Entity | Controller | ParentEntity
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Entity
@@ -74,6 +75,48 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//Controller
 		public RuleCall getControllerParserRuleCall_1() { return cControllerParserRuleCall_1; }
+		
+		//ParentEntity
+		public RuleCall getParentEntityParserRuleCall_2() { return cParentEntityParserRuleCall_2; }
+	}
+	public class ParentEntityElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.ParentEntity");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cParentKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cParametersAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cParametersParameterParserRuleCall_3_0 = (RuleCall)cParametersAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//ParentEntity:
+		//	'parent' name=ID '{' parameters+=Parameter+ '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'parent' name=ID '{' parameters+=Parameter+ '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'parent'
+		public Keyword getParentKeyword_0() { return cParentKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//parameters+=Parameter+
+		public Assignment getParametersAssignment_3() { return cParametersAssignment_3; }
+		
+		//Parameter
+		public RuleCall getParametersParameterParserRuleCall_3_0() { return cParametersParameterParserRuleCall_3_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Entity");
@@ -81,20 +124,25 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cEntityKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cRequiresKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cCtrlrAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cCtrlrControllerCrossReference_3_0 = (CrossReference)cCtrlrAssignment_3.eContents().get(0);
-		private final RuleCall cCtrlrControllerIDTerminalRuleCall_3_0_1 = (RuleCall)cCtrlrControllerCrossReference_3_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cParametersAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cParametersParameterParserRuleCall_5_0 = (RuleCall)cParametersAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cExtendsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cParentAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cParentParentEntityCrossReference_2_1_0 = (CrossReference)cParentAssignment_2_1.eContents().get(0);
+		private final RuleCall cParentParentEntityIDTerminalRuleCall_2_1_0_1 = (RuleCall)cParentParentEntityCrossReference_2_1_0.eContents().get(1);
+		private final Keyword cRequiresKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cCtrlrAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cCtrlrControllerCrossReference_4_0 = (CrossReference)cCtrlrAssignment_4.eContents().get(0);
+		private final RuleCall cCtrlrControllerIDTerminalRuleCall_4_0_1 = (RuleCall)cCtrlrControllerCrossReference_4_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cParametersAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cParametersParameterParserRuleCall_6_0 = (RuleCall)cParametersAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Entity:
-		//	'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}';
+		//	'entity' name=ID ('extends' parent=[ParentEntity])? 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
+		//'entity' name=ID ('extends' parent=[ParentEntity])? 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'entity'
@@ -106,29 +154,44 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//'requires'
-		public Keyword getRequiresKeyword_2() { return cRequiresKeyword_2; }
+		//('extends' parent=[ParentEntity])?
+		public Group getGroup_2() { return cGroup_2; }
 		
-		//ctrlr=[Controller]
-		public Assignment getCtrlrAssignment_3() { return cCtrlrAssignment_3; }
+		//'extends'
+		public Keyword getExtendsKeyword_2_0() { return cExtendsKeyword_2_0; }
 		
-		//[Controller]
-		public CrossReference getCtrlrControllerCrossReference_3_0() { return cCtrlrControllerCrossReference_3_0; }
+		//parent=[ParentEntity]
+		public Assignment getParentAssignment_2_1() { return cParentAssignment_2_1; }
+		
+		//[ParentEntity]
+		public CrossReference getParentParentEntityCrossReference_2_1_0() { return cParentParentEntityCrossReference_2_1_0; }
 		
 		//ID
-		public RuleCall getCtrlrControllerIDTerminalRuleCall_3_0_1() { return cCtrlrControllerIDTerminalRuleCall_3_0_1; }
+		public RuleCall getParentParentEntityIDTerminalRuleCall_2_1_0_1() { return cParentParentEntityIDTerminalRuleCall_2_1_0_1; }
+		
+		//'requires'
+		public Keyword getRequiresKeyword_3() { return cRequiresKeyword_3; }
+		
+		//ctrlr=[Controller]
+		public Assignment getCtrlrAssignment_4() { return cCtrlrAssignment_4; }
+		
+		//[Controller]
+		public CrossReference getCtrlrControllerCrossReference_4_0() { return cCtrlrControllerCrossReference_4_0; }
+		
+		//ID
+		public RuleCall getCtrlrControllerIDTerminalRuleCall_4_0_1() { return cCtrlrControllerIDTerminalRuleCall_4_0_1; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
 		
 		//parameters+=Parameter+
-		public Assignment getParametersAssignment_5() { return cParametersAssignment_5; }
+		public Assignment getParametersAssignment_6() { return cParametersAssignment_6; }
 		
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_5_0() { return cParametersParameterParserRuleCall_5_0; }
+		public RuleCall getParametersParameterParserRuleCall_6_0() { return cParametersParameterParserRuleCall_6_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 	public class ControllerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Controller");
@@ -572,6 +635,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	private final RestAPIElements pRestAPI;
 	private final DeclarationElements pDeclaration;
+	private final ParentEntityElements pParentEntity;
 	private final EntityElements pEntity;
 	private final ControllerElements pController;
 	private final EndpointElements pEndpoint;
@@ -596,6 +660,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.gaTerminals = gaTerminals;
 		this.pRestAPI = new RestAPIElements();
 		this.pDeclaration = new DeclarationElements();
+		this.pParentEntity = new ParentEntityElements();
 		this.pEntity = new EntityElements();
 		this.pController = new ControllerElements();
 		this.pEndpoint = new EndpointElements();
@@ -649,7 +714,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//// Keeps a track of which elements are allowed to be created.
 	//Declaration:
-	//	Entity | Controller;
+	//	Entity | Controller | ParentEntity;
 	public DeclarationElements getDeclarationAccess() {
 		return pDeclaration;
 	}
@@ -658,8 +723,18 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getDeclarationAccess().getRule();
 	}
 	
+	//ParentEntity:
+	//	'parent' name=ID '{' parameters+=Parameter+ '}';
+	public ParentEntityElements getParentEntityAccess() {
+		return pParentEntity;
+	}
+	
+	public ParserRule getParentEntityRule() {
+		return getParentEntityAccess().getRule();
+	}
+	
 	//Entity:
-	//	'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}';
+	//	'entity' name=ID ('extends' parent=[ParentEntity])? 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}';
 	public EntityElements getEntityAccess() {
 		return pEntity;
 	}

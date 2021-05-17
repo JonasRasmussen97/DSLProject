@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.xtext.example.mydsl.projectDSL.Entity
+import org.xtext.example.mydsl.projectDSL.ParentEntity
 import org.xtext.example.mydsl.projectDSL.Controller
 import org.xtext.example.mydsl.projectDSL.Parameter
 import org.xtext.example.mydsl.projectDSL.Plus
@@ -39,9 +40,15 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		System.out.println("Math expression = "+math.displayMath)
 		println(result);
 		*/
+		
 		val entities = modelInstance.declarations.filter(Entity)
+		
+		val parentEntities = modelInstance.declarations.filter(ParentEntity)
+		
+		val controllers = modelInstance.declarations.filter(Controller)
+		
 		generateApp(fsa, entities)
-
+		
 		// Generate each of the controller files
 		modelInstance.declarations.filter(Controller).forEach[generateControllers(fsa)]
 	// modelInstance.display
@@ -80,29 +87,34 @@ class ProjectDSLGenerator extends AbstractGenerator {
 
 	def generateController(Controller controller) '''
 	var mongoose = require('mongoose');
+	
 	var «controller.name» = {
+	
+	««« Generating general create/delete functions for each entity
+	
 		«FOR base:controller.base»
+		// «base.name»
 		create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
 			«base.name.toFirstUpper».collection.insertOne(new «base.name.toFirstUpper»({
 				«FOR bp:base.parameters»
 				«bp.name»:req.body.«bp.name.toLowerCase»,
 				«ENDFOR»
-			})
-		);
+				})
+			);
 		},
-	        
+		
 		delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
 	        «base.name.toFirstUpper».collection.deleteOne(req.body.id, function(err, result){
 	        	if(err) { res.send("Error!")
 	        	} else { res.send("Success!") }
-	        })
-		};
+	        	})
+			};
 		},
-	        «ENDFOR»
+	    «ENDFOR»
 		«FOR e : controller.endpoint»
 			«FOR b:controller.base»
 				«FOR p:b.parameters» 
-«««	                Only create the functions in the controller js file that have "make" in the controller. *)
+	«««	Only create the functions in the controller js file that has "make" in the controller. *)
 					«IF p.name == e.endpoint.name»
 						«FOR t:p.type»
 						«switch t.toString {
@@ -174,28 +186,38 @@ module.exports = «controller.name»
 		//Endpoints
 		
 		«FOR e : entities»
-			// «e.name.toFirstUpper»
-			«FOR p:e.parameters»
-				«FOR t:p.type»
+		// «e.name.toFirstUpper»
+		«IF (e.parent !== null) »
+			«FOR p : e.parent.parameters»
+				«FOR t : p.type»
 					«switch t.toString {
-
-									
 						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
+	«e.ctrlr.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
 });'''
-									
+				
 						case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
+	«e.ctrlr.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
 });'''
-									
-
-									
 					}»
 				«ENDFOR»
 			«ENDFOR»
-					
-		«ENDFOR»
-	'''
+		«ENDIF»
+		
+			«FOR p : e.parameters»
+				«FOR t : p.type»
+					«switch t.toString {			
+						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.ctrlr.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
+});'''
+									
+						case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.ctrlr.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
+});'''				
+					}»
+				«ENDFOR»
+			«ENDFOR»
+		«ENDFOR»	
+'''
 
 	def display(EObject model) {
 		val res = new XMLResourceImpl

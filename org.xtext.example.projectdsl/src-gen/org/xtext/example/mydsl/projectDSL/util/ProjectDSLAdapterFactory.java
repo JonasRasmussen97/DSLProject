@@ -86,6 +86,11 @@ public class ProjectDSLAdapterFactory extends AdapterFactoryImpl
         return createDeclarationAdapter();
       }
       @Override
+      public Adapter caseParentEntity(ParentEntity object)
+      {
+        return createParentEntityAdapter();
+      }
+      @Override
       public Adapter caseEntity(Entity object)
       {
         return createEntityAdapter();
@@ -193,6 +198,21 @@ public class ProjectDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.projectDSL.ParentEntity <em>Parent Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.projectDSL.ParentEntity
+   * @generated
+   */
+  public Adapter createParentEntityAdapter()
   {
     return null;
   }

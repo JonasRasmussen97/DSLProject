@@ -67,6 +67,7 @@ public class ProjectDSLFactoryImpl extends EFactoryImpl implements ProjectDSLFac
     {
       case ProjectDSLPackage.REST_API: return createRestAPI();
       case ProjectDSLPackage.DECLARATION: return createDeclaration();
+      case ProjectDSLPackage.PARENT_ENTITY: return createParentEntity();
       case ProjectDSLPackage.ENTITY: return createEntity();
       case ProjectDSLPackage.CONTROLLER: return createController();
       case ProjectDSLPackage.ENDPOINT: return createEndpoint();
@@ -106,6 +107,18 @@ public class ProjectDSLFactoryImpl extends EFactoryImpl implements ProjectDSLFac
   {
     DeclarationImpl declaration = new DeclarationImpl();
     return declaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ParentEntity createParentEntity()
+  {
+    ParentEntityImpl parentEntity = new ParentEntityImpl();
+    return parentEntity;
   }
 
   /**
