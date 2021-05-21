@@ -90,15 +90,17 @@ class ProjectDSLGenerator extends AbstractGenerator {
 			})
 		);
 		},
-	        
+
 		delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
 	        «base.name.toFirstUpper».collection.deleteOne(req.body.id, function(err, result){
-	        	if(err) { res.send("Error!")
-	        	} else { res.send("Success!") }
-	        })
-		};
+				if(err) { 
+					res.send("Error!")
+				} else { 
+					res.send("Success!") 
+				}
+			})
 		},
-	        «ENDFOR»
+        «ENDFOR»
 		«FOR e : controller.endpoint»
 			«FOR b:controller.base»
 				«FOR p:b.parameters» 
@@ -140,7 +142,9 @@ module.exports = «controller.name»
 
 	// Appends the entity data to the app.js file
 	def generateCore(Iterable<Entity> entities) '''
-		const express = require('express')
+		const express = require('express');
+		const mongoose = require('mongoose');
+		const extendSchema = require('./mongoose-extend-schema');
 		const app = express()
 		const port = 3000	
 		
@@ -153,47 +157,50 @@ module.exports = «controller.name»
 		«ENDFOR»
 		
 		// Mongoose Schemas
-		
 		«FOR e : entities»
-			var «e.name.toFirstLower»Schema = new mongoose.Schema({
-				«FOR p: e.parameters»
-				«p.name»: «p.dataType»,
-				«ENDFOR»
-			}, {
-				collection: '«e.name.toFirstLower»s'
-			});
-			
+			«IF e.parent === null »
+				var «e.name.toFirstLower»Schema = new mongoose.Schema({
+					«FOR p: e.parameters»
+					«p.name»: {type: «p.dataType»},
+					«ENDFOR»
+				}, {
+					collection: '«e.name.toFirstLower»s'
+				});
+				
+			«ELSE»
+				var «e.name.toFirstLower»Schema = extendSchema(«e.parent.name.toFirstLower»Schema, {
+					«FOR p: e.parameters»
+					«p.name»: {type: «p.dataType»},
+					«ENDFOR»
+				}, {
+					collection: '«e.name.toFirstLower»s'
+				});
+				
+			«ENDIF»
 		«ENDFOR»
 		
 		// Mongoose Models
-		
 		«FOR e : entities»
 		var «e.name.toFirstUpper» = mongoose.model('«e.name.toFirstUpper»', «e.name.toFirstLower»Schema);
 		«ENDFOR»
 		
 		//Endpoints
-		
 		«FOR e : entities»
 			// «e.name.toFirstUpper»
 			«FOR p:e.parameters»
 				«FOR t:p.type»
 					«switch t.toString {
-
-									
-						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+						case 'R': 
+'''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
 	«e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
-});'''
-									
-						case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+});'''		
+						case 'U': 
+'''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
 	«e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
-});'''
-									
-
-									
+});'''	
 					}»
 				«ENDFOR»
 			«ENDFOR»
-					
 		«ENDFOR»
 	'''
 
