@@ -13,7 +13,9 @@ import org.xtext.example.mydsl.projectDSL.Controller
 import java.util.ArrayList
 import org.xtext.example.mydsl.projectDSL.Parameter
 import org.eclipse.xtext.scoping.Scopes
-
+import org.xtext.example.mydsl.projectDSL.Entity
+import java.util.HashSet
+import java.util.Collections
 
 /**
  * This class contains custom scoping description.
@@ -29,10 +31,24 @@ class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
             Endpoint case reference == Literals.ENDPOINT__ENDPOINT : {
                 val controller = EcoreUtil2.getContainerOfType(context, Controller);
                 val result = new ArrayList<Parameter>
-                controller.base.forEach[result.addAll(it.parameters)]
+                controller.base.forEach[result.addAll(it.allParameters)]
                 return Scopes.scopeFor(result);
             }
         }
         super.getScope(context, reference);
+    }
+    
+    //helper method for adding all parameters from the super class
+    def Iterable<Parameter> allParameters(Entity entity){
+    	val candidates = new ArrayList<Parameter>
+    	val seen = new HashSet<Entity>
+    	var e = entity
+    	while (e !== null){
+    		if(seen.contains(e)) return Collections.EMPTY_LIST
+    		seen.add(e)
+    		candidates.addAll(e.parameters.filter(Parameter))
+    		e = e.parent
+    	}
+    	return candidates
     }
 }

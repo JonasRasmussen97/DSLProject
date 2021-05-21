@@ -12,7 +12,7 @@ Declaration:
 ;
 
 Entity: 
-	'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
+	'entity' name=ID ('extends' parent=[Entity])? 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
 ;
 
 // Example of syntax: controller Weather uses Entity1, Entity {make Weather}
