@@ -440,19 +440,20 @@ ruleParameter returns [EObject current=null]
 		}
 		(
 			(
-				lv_dataType_2_0=RULE_ID
 				{
-					newLeafNode(lv_dataType_2_0, grammarAccess.getParameterAccess().getDataTypeIDTerminalRuleCall_2_0());
+					newCompositeNode(grammarAccess.getParameterAccess().getDataTypeDataTypeParserRuleCall_2_0());
 				}
+				lv_dataType_2_0=ruleDataType
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getParameterRule());
+						$current = createModelElementForParent(grammarAccess.getParameterRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
 						"dataType",
 						lv_dataType_2_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"org.xtext.example.mydsl.ProjectDSL.DataType");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -594,6 +595,66 @@ ruleParameter returns [EObject current=null]
 				)
 			)
 		)?
+	)
+;
+
+// Entry rule entryRuleDataType
+entryRuleDataType returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getDataTypeRule()); }
+	iv_ruleDataType=ruleDataType
+	{ $current=$iv_ruleDataType.current.getText(); }
+	EOF;
+
+// Rule DataType
+ruleDataType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='string'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDataTypeAccess().getStringKeyword_0());
+		}
+		    |
+		kw='number'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDataTypeAccess().getNumberKeyword_1());
+		}
+		    |
+		kw='boolean'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDataTypeAccess().getBooleanKeyword_2());
+		}
+		    |
+		kw='bigint'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDataTypeAccess().getBigintKeyword_3());
+		}
+		    |
+		kw='undefined'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDataTypeAccess().getUndefinedKeyword_4());
+		}
+		    |
+		kw='symbol'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDataTypeAccess().getSymbolKeyword_5());
+		}
+		    |
+		kw='null'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDataTypeAccess().getNullKeyword_6());
+		}
 	)
 ;
 

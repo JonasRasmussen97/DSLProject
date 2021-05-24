@@ -9,15 +9,11 @@ import com.google.common.collect.Iterators;
 import java.util.LinkedHashSet;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.projectDSL.Controller;
 import org.xtext.example.mydsl.projectDSL.Div;
@@ -389,7 +385,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("const app = express()");
     _builder.newLine();
-    _builder.append("const port = 3000\t");
+    _builder.append("const port = 3000");
     _builder.newLine();
     _builder.newLine();
     _builder.append("// Controllers");
@@ -534,17 +530,18 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_1.append(_firstUpper_5);
                       _builder_1.append("\', function (req, res)  {");
                       _builder_1.newLineIfNotEmpty();
-                      _builder_1.append("\t");
+                      _builder_1.append("\t\t\t\t");
                       String _firstUpper_6 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_1.append(_firstUpper_6, "\t");
+                      _builder_1.append(_firstUpper_6, "\t\t\t\t");
                       _builder_1.append("Controller.get");
                       String _name_2 = p_2.getName();
-                      _builder_1.append(_name_2, "\t");
+                      _builder_1.append(_name_2, "\t\t\t\t");
                       _builder_1.append("(");
                       String _firstUpper_7 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_1.append(_firstUpper_7, "\t");
+                      _builder_1.append(_firstUpper_7, "\t\t\t\t");
                       _builder_1.append(", req, res);");
                       _builder_1.newLineIfNotEmpty();
+                      _builder_1.append("\t\t\t");
                       _builder_1.append("});");
                       _switchResult = _builder_1;
                       break;
@@ -557,17 +554,18 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                       _builder_2.append(_firstUpper_9);
                       _builder_2.append("\', function (req, res)  {");
                       _builder_2.newLineIfNotEmpty();
-                      _builder_2.append("\t");
+                      _builder_2.append("\t\t\t\t");
                       String _firstUpper_10 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_2.append(_firstUpper_10, "\t");
+                      _builder_2.append(_firstUpper_10, "\t\t\t\t");
                       _builder_2.append("Controller.put");
                       String _name_3 = p_2.getName();
-                      _builder_2.append(_name_3, "\t");
+                      _builder_2.append(_name_3, "\t\t\t\t");
                       _builder_2.append("(");
                       String _firstUpper_11 = StringExtensions.toFirstUpper(e_3.getName());
-                      _builder_2.append(_firstUpper_11, "\t");
+                      _builder_2.append(_firstUpper_11, "\t\t\t\t");
                       _builder_2.append(", req, res);");
                       _builder_2.newLineIfNotEmpty();
+                      _builder_2.append("\t\t\t");
                       _builder_2.append("});");
                       _switchResult = _builder_2;
                       break;
@@ -582,16 +580,5 @@ public class ProjectDSLGenerator extends AbstractGenerator {
       }
     }
     return _builder;
-  }
-  
-  public void display(final EObject model) {
-    try {
-      final XMLResourceImpl res = new XMLResourceImpl();
-      res.getContents().add(EcoreUtil.<EObject>copy(model));
-      System.out.println("Dump of model:");
-      res.save(System.out, null);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
   }
 }

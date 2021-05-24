@@ -15,7 +15,6 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.xtext.example.mydsl.projectDSL.Controller;
-import org.xtext.example.mydsl.projectDSL.Endpoint;
 import org.xtext.example.mydsl.projectDSL.Entity;
 import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
@@ -33,17 +32,30 @@ public class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
     IScope _xblockexpression = null;
     {
       boolean _matched = false;
-      if (context instanceof Endpoint) {
-        boolean _equals = Objects.equal(reference, ProjectDSLPackage.Literals.ENDPOINT__ENDPOINT);
-        if (_equals) {
+      boolean _equals = Objects.equal(reference, ProjectDSLPackage.Literals.ENDPOINT__ENDPOINT);
+      if (_equals) {
+        _matched=true;
+        final Controller controller = EcoreUtil2.<Controller>getContainerOfType(context, Controller.class);
+        final ArrayList<Parameter> entityParams = new ArrayList<Parameter>();
+        final Consumer<Entity> _function = (Entity it) -> {
+          Iterables.<Parameter>addAll(entityParams, this.allParameters(it));
+        };
+        controller.getBase().forEach(_function);
+        return Scopes.scopeFor(entityParams);
+      }
+      if (!_matched) {
+        boolean _equals_1 = Objects.equal(reference, ProjectDSLPackage.Literals.PARAM__VALUE);
+        if (_equals_1) {
           _matched=true;
-          final Controller controller = EcoreUtil2.<Controller>getContainerOfType(context, Controller.class);
-          final ArrayList<Parameter> result = new ArrayList<Parameter>();
-          final Consumer<Entity> _function = (Entity it) -> {
-            Iterables.<Parameter>addAll(result, this.allParameters(it));
-          };
-          controller.getBase().forEach(_function);
-          return Scopes.scopeFor(result);
+          final Entity entity = EcoreUtil2.<Entity>getContainerOfType(context, Entity.class);
+          Entity _parent = entity.getParent();
+          boolean _tripleNotEquals = (_parent != null);
+          if (_tripleNotEquals) {
+            final ArrayList<Parameter> allParams = new ArrayList<Parameter>();
+            Iterables.<Parameter>addAll(allParams, this.allParameters(entity));
+            Iterables.<Parameter>addAll(allParams, this.allParameters(entity.getParent()));
+            return Scopes.scopeFor(allParams);
+          }
         }
       }
       _xblockexpression = super.getScope(context, reference);

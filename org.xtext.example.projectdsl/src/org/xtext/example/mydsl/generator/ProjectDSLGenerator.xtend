@@ -21,7 +21,6 @@ import org.xtext.example.mydsl.projectDSL.Mult
 import org.xtext.example.mydsl.projectDSL.Div
 import org.xtext.example.mydsl.projectDSL.Num
 import org.xtext.example.mydsl.projectDSL.Param
-import java.util.HashMap
 import java.util.LinkedHashSet
 
 /**
@@ -146,7 +145,7 @@ module.exports = «controller.name»
 		const mongoose = require('mongoose');
 		const extendSchema = require('./mongoose-extend-schema');
 		const app = express()
-		const port = 3000	
+		const port = 3000
 		
 		// Controllers
 		«var controllerNames = new LinkedHashSet<String>()»
@@ -191,23 +190,17 @@ module.exports = «controller.name»
 				«FOR t:p.type»
 					«switch t.toString {
 						case 'R': 
-'''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
-});'''		
-						case 'U': 
-'''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
-});'''	
+			'''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+				«e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
+			});'''		
+									case 'U': 
+			'''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+				«e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
+			});'''	
 					}»
 				«ENDFOR»
 			«ENDFOR»
 		«ENDFOR»
 	'''
 
-	def display(EObject model) {
-		val res = new XMLResourceImpl
-		res.contents.add(EcoreUtil::copy(model))
-		System::out.println("Dump of model:")
-		res.save(System.out, null)
-	}
 }

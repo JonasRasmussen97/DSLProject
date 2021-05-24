@@ -199,6 +199,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleDataType
+entryRuleDataType
+:
+{ before(grammarAccess.getDataTypeRule()); }
+	 ruleDataType
+{ after(grammarAccess.getDataTypeRule()); } 
+	 EOF 
+;
+
+// Rule DataType
+ruleDataType 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getDataTypeAccess().getAlternatives()); }
+		(rule__DataType__Alternatives)
+		{ after(grammarAccess.getDataTypeAccess().getAlternatives()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleType
 entryRuleType
 :
@@ -459,6 +484,57 @@ rule__Parameter__OpAlternatives_5_2_0
 		{ before(grammarAccess.getParameterAccess().getOpEqualsSignExclamationMarkKeyword_5_2_0_5()); }
 		'=!'
 		{ after(grammarAccess.getParameterAccess().getOpEqualsSignExclamationMarkKeyword_5_2_0_5()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DataType__Alternatives
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getDataTypeAccess().getStringKeyword_0()); }
+		'string'
+		{ after(grammarAccess.getDataTypeAccess().getStringKeyword_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getDataTypeAccess().getNumberKeyword_1()); }
+		'number'
+		{ after(grammarAccess.getDataTypeAccess().getNumberKeyword_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getDataTypeAccess().getBooleanKeyword_2()); }
+		'boolean'
+		{ after(grammarAccess.getDataTypeAccess().getBooleanKeyword_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getDataTypeAccess().getBigintKeyword_3()); }
+		'bigint'
+		{ after(grammarAccess.getDataTypeAccess().getBigintKeyword_3()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getDataTypeAccess().getUndefinedKeyword_4()); }
+		'undefined'
+		{ after(grammarAccess.getDataTypeAccess().getUndefinedKeyword_4()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getDataTypeAccess().getSymbolKeyword_5()); }
+		'symbol'
+		{ after(grammarAccess.getDataTypeAccess().getSymbolKeyword_5()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getDataTypeAccess().getNullKeyword_6()); }
+		'null'
+		{ after(grammarAccess.getDataTypeAccess().getNullKeyword_6()); }
 	)
 ;
 finally {
@@ -2294,9 +2370,9 @@ rule__Parameter__DataTypeAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getParameterAccess().getDataTypeIDTerminalRuleCall_2_0()); }
-		RULE_ID
-		{ after(grammarAccess.getParameterAccess().getDataTypeIDTerminalRuleCall_2_0()); }
+		{ before(grammarAccess.getParameterAccess().getDataTypeDataTypeParserRuleCall_2_0()); }
+		ruleDataType
+		{ after(grammarAccess.getParameterAccess().getDataTypeDataTypeParserRuleCall_2_0()); }
 	)
 ;
 finally {

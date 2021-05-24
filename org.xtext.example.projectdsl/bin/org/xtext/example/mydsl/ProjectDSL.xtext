@@ -26,8 +26,12 @@ Endpoint:
 ;
 
 Parameter: 
-	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
-; 
+	name=ID '=' dataType=DataType ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
+;
+
+DataType:
+	'string' | 'number' | 'boolean' | 'bigint' | 'undefined' | 'symbol' | 'null'
+;
 
 // Indicates the different CRUD operations. 
 Type: 

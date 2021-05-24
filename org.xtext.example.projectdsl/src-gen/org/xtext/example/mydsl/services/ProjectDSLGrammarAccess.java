@@ -266,7 +266,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cDataTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cDataTypeIDTerminalRuleCall_2_0 = (RuleCall)cDataTypeAssignment_2.eContents().get(0);
+		private final RuleCall cDataTypeDataTypeParserRuleCall_2_0 = (RuleCall)cDataTypeAssignment_2.eContents().get(0);
 		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cTypeTypeParserRuleCall_4_0 = (RuleCall)cTypeAssignment_4.eContents().get(0);
@@ -286,11 +286,11 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cRightMathExpParserRuleCall_5_3_0 = (RuleCall)cRightAssignment_5_3.eContents().get(0);
 		
 		//Parameter:
-		//    name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
+		//    name=ID '=' dataType=DataType ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
+		//name=ID '=' dataType=DataType ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -302,11 +302,11 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'='
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 		
-		//dataType=ID
+		//dataType=DataType
 		public Assignment getDataTypeAssignment_2() { return cDataTypeAssignment_2; }
 		
-		//ID
-		public RuleCall getDataTypeIDTerminalRuleCall_2_0() { return cDataTypeIDTerminalRuleCall_2_0; }
+		//DataType
+		public RuleCall getDataTypeDataTypeParserRuleCall_2_0() { return cDataTypeDataTypeParserRuleCall_2_0; }
 		
 		//':'
 		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
@@ -358,6 +358,46 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//MathExp
 		public RuleCall getRightMathExpParserRuleCall_5_3_0() { return cRightMathExpParserRuleCall_5_3_0; }
+	}
+	public class DataTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.DataType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cStringKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cNumberKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cBooleanKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cBigintKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cUndefinedKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cSymbolKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cNullKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		
+		//DataType:
+		//    'string' | 'number' | 'boolean' | 'bigint' | 'undefined' | 'symbol' | 'null'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'string' | 'number' | 'boolean' | 'bigint' | 'undefined' | 'symbol' | 'null'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'string'
+		public Keyword getStringKeyword_0() { return cStringKeyword_0; }
+		
+		//'number'
+		public Keyword getNumberKeyword_1() { return cNumberKeyword_1; }
+		
+		//'boolean'
+		public Keyword getBooleanKeyword_2() { return cBooleanKeyword_2; }
+		
+		//'bigint'
+		public Keyword getBigintKeyword_3() { return cBigintKeyword_3; }
+		
+		//'undefined'
+		public Keyword getUndefinedKeyword_4() { return cUndefinedKeyword_4; }
+		
+		//'symbol'
+		public Keyword getSymbolKeyword_5() { return cSymbolKeyword_5; }
+		
+		//'null'
+		public Keyword getNullKeyword_6() { return cNullKeyword_6; }
 	}
 	public class TypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.ProjectDSL.Type");
@@ -608,6 +648,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	private final ControllerElements pController;
 	private final EndpointElements pEndpoint;
 	private final ParameterElements pParameter;
+	private final DataTypeElements pDataType;
 	private final TypeElements pType;
 	private final MathExpElements pMathExp;
 	private final ExpElements pExp;
@@ -632,6 +673,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.pController = new ControllerElements();
 		this.pEndpoint = new EndpointElements();
 		this.pParameter = new ParameterElements();
+		this.pDataType = new DataTypeElements();
 		this.pType = new TypeElements();
 		this.pMathExp = new MathExpElements();
 		this.pExp = new ExpElements();
@@ -728,7 +770,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Parameter:
-	//    name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
+	//    name=ID '=' dataType=DataType ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
 	//;
 	public ParameterElements getParameterAccess() {
 		return pParameter;
@@ -736,6 +778,17 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	public ParserRule getParameterRule() {
 		return getParameterAccess().getRule();
+	}
+	
+	//DataType:
+	//    'string' | 'number' | 'boolean' | 'bigint' | 'undefined' | 'symbol' | 'null'
+	//;
+	public DataTypeElements getDataTypeAccess() {
+		return pDataType;
+	}
+	
+	public ParserRule getDataTypeRule() {
+		return getDataTypeAccess().getRule();
 	}
 	
 	//// Indicates the different CRUD operations.

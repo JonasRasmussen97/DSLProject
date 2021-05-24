@@ -33,6 +33,7 @@ public class ProjectDSLParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, ProjectDSLGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getDeclarationAccess().getAlternatives(), "rule__Declaration__Alternatives");
 			builder.put(grammarAccess.getParameterAccess().getOpAlternatives_5_2_0(), "rule__Parameter__OpAlternatives_5_2_0");
+			builder.put(grammarAccess.getDataTypeAccess().getAlternatives(), "rule__DataType__Alternatives");
 			builder.put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
 			builder.put(grammarAccess.getExpAccess().getAlternatives_1_0(), "rule__Exp__Alternatives_1_0");
 			builder.put(grammarAccess.getMulOrDivAccess().getAlternatives_1_0(), "rule__MulOrDiv__Alternatives_1_0");

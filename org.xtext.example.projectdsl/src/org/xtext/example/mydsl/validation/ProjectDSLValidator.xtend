@@ -8,11 +8,7 @@ import org.xtext.example.mydsl.projectDSL.Controller
 import java.util.ArrayList
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage.Literals
 import org.xtext.example.mydsl.projectDSL.Entity
-import org.eclipse.emf.common.util.EList
-import java.util.HashSet
-import java.util.HashMap
 import org.xtext.example.mydsl.projectDSL.Parameter
-import org.xtext.example.mydsl.projectDSL.Declaration
 import org.xtext.example.mydsl.projectDSL.RestAPI
 import org.xtext.example.mydsl.projectDSL.impl.EntityImpl
 import org.xtext.example.mydsl.projectDSL.impl.ControllerImpl

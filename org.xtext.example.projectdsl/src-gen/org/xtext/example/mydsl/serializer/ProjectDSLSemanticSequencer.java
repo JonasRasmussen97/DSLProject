@@ -316,7 +316,7 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         dataType=ID 
+	 *         dataType=DataType 
 	 *         type+=Type+ 
 	 *         (
 	 *             left=MathExp 
