@@ -31,6 +31,7 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.EntityImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.EntityImpl#getCtrlr <em>Ctrlr</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.projectDSL.impl.EntityImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
@@ -39,6 +40,16 @@ import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
  */
 public class EntityImpl extends DeclarationImpl implements Entity
 {
+  /**
+   * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getParent()
+   * @generated
+   * @ordered
+   */
+  protected Entity parent;
+
   /**
    * The cached value of the '{@link #getCtrlr() <em>Ctrlr</em>}' reference.
    * <!-- begin-user-doc -->
@@ -78,6 +89,51 @@ public class EntityImpl extends DeclarationImpl implements Entity
   protected EClass eStaticClass()
   {
     return ProjectDSLPackage.Literals.ENTITY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Entity getParent()
+  {
+    if (parent != null && parent.eIsProxy())
+    {
+      InternalEObject oldParent = (InternalEObject)parent;
+      parent = (Entity)eResolveProxy(oldParent);
+      if (parent != oldParent)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectDSLPackage.ENTITY__PARENT, oldParent, parent));
+      }
+    }
+    return parent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Entity basicGetParent()
+  {
+    return parent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setParent(Entity newParent)
+  {
+    Entity oldParent = parent;
+    parent = newParent;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ProjectDSLPackage.ENTITY__PARENT, oldParent, parent));
   }
 
   /**
@@ -166,6 +222,9 @@ public class EntityImpl extends DeclarationImpl implements Entity
   {
     switch (featureID)
     {
+      case ProjectDSLPackage.ENTITY__PARENT:
+        if (resolve) return getParent();
+        return basicGetParent();
       case ProjectDSLPackage.ENTITY__CTRLR:
         if (resolve) return getCtrlr();
         return basicGetCtrlr();
@@ -186,6 +245,9 @@ public class EntityImpl extends DeclarationImpl implements Entity
   {
     switch (featureID)
     {
+      case ProjectDSLPackage.ENTITY__PARENT:
+        setParent((Entity)newValue);
+        return;
       case ProjectDSLPackage.ENTITY__CTRLR:
         setCtrlr((Controller)newValue);
         return;
@@ -207,6 +269,9 @@ public class EntityImpl extends DeclarationImpl implements Entity
   {
     switch (featureID)
     {
+      case ProjectDSLPackage.ENTITY__PARENT:
+        setParent((Entity)null);
+        return;
       case ProjectDSLPackage.ENTITY__CTRLR:
         setCtrlr((Controller)null);
         return;
@@ -227,6 +292,8 @@ public class EntityImpl extends DeclarationImpl implements Entity
   {
     switch (featureID)
     {
+      case ProjectDSLPackage.ENTITY__PARENT:
+        return parent != null;
       case ProjectDSLPackage.ENTITY__CTRLR:
         return ctrlr != null;
       case ProjectDSLPackage.ENTITY__PARAMETERS:

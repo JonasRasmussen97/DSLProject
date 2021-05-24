@@ -81,20 +81,26 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cEntityKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cRequiresKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cCtrlrAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cCtrlrControllerCrossReference_3_0 = (CrossReference)cCtrlrAssignment_3.eContents().get(0);
-		private final RuleCall cCtrlrControllerIDTerminalRuleCall_3_0_1 = (RuleCall)cCtrlrControllerCrossReference_3_0.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cExtendsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cParentAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cParentEntityCrossReference_2_1_0 = (CrossReference)cParentAssignment_2_1.eContents().get(0);
+		private final RuleCall cParentEntityIDTerminalRuleCall_2_1_0_1 = (RuleCall)cParentEntityCrossReference_2_1_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cRequiresKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cCtrlrAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final CrossReference cCtrlrControllerCrossReference_3_1_0 = (CrossReference)cCtrlrAssignment_3_1.eContents().get(0);
+		private final RuleCall cCtrlrControllerIDTerminalRuleCall_3_1_0_1 = (RuleCall)cCtrlrControllerCrossReference_3_1_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cParametersAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cParametersParameterParserRuleCall_5_0 = (RuleCall)cParametersAssignment_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Entity:
-		//	'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}';
+		//	'entity' name=ID ('extends' parent=[Entity])? ('requires' ctrlr=[Controller])? '{' parameters+=Parameter+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
+		//'entity' name=ID ('extends' parent=[Entity])? ('requires' ctrlr=[Controller])? '{' parameters+=Parameter+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'entity'
@@ -106,17 +112,35 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//'requires'
-		public Keyword getRequiresKeyword_2() { return cRequiresKeyword_2; }
+		//('extends' parent=[Entity])?
+		public Group getGroup_2() { return cGroup_2; }
 		
-		//ctrlr=[Controller]
-		public Assignment getCtrlrAssignment_3() { return cCtrlrAssignment_3; }
+		//'extends'
+		public Keyword getExtendsKeyword_2_0() { return cExtendsKeyword_2_0; }
 		
-		//[Controller]
-		public CrossReference getCtrlrControllerCrossReference_3_0() { return cCtrlrControllerCrossReference_3_0; }
+		//parent=[Entity]
+		public Assignment getParentAssignment_2_1() { return cParentAssignment_2_1; }
+		
+		//[Entity]
+		public CrossReference getParentEntityCrossReference_2_1_0() { return cParentEntityCrossReference_2_1_0; }
 		
 		//ID
-		public RuleCall getCtrlrControllerIDTerminalRuleCall_3_0_1() { return cCtrlrControllerIDTerminalRuleCall_3_0_1; }
+		public RuleCall getParentEntityIDTerminalRuleCall_2_1_0_1() { return cParentEntityIDTerminalRuleCall_2_1_0_1; }
+		
+		//('requires' ctrlr=[Controller])?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//'requires'
+		public Keyword getRequiresKeyword_3_0() { return cRequiresKeyword_3_0; }
+		
+		//ctrlr=[Controller]
+		public Assignment getCtrlrAssignment_3_1() { return cCtrlrAssignment_3_1; }
+		
+		//[Controller]
+		public CrossReference getCtrlrControllerCrossReference_3_1_0() { return cCtrlrControllerCrossReference_3_1_0; }
+		
+		//ID
+		public RuleCall getCtrlrControllerIDTerminalRuleCall_3_1_0_1() { return cCtrlrControllerIDTerminalRuleCall_3_1_0_1; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
@@ -659,7 +683,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Entity:
-	//	'entity' name=ID 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}';
+	//	'entity' name=ID ('extends' parent=[Entity])? ('requires' ctrlr=[Controller])? '{' parameters+=Parameter+ '}';
 	public EntityElements getEntityAccess() {
 		return pEntity;
 	}

@@ -142,13 +142,22 @@ public interface ProjectDSLPackage extends EPackage
   int ENTITY__NAME = DECLARATION__NAME;
 
   /**
+   * The feature id for the '<em><b>Parent</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__PARENT = DECLARATION_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Ctrlr</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENTITY__CTRLR = DECLARATION_FEATURE_COUNT + 0;
+  int ENTITY__CTRLR = DECLARATION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -157,7 +166,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__PARAMETERS = DECLARATION_FEATURE_COUNT + 1;
+  int ENTITY__PARAMETERS = DECLARATION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -166,7 +175,7 @@ public interface ProjectDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 2;
+  int ENTITY_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.projectDSL.impl.ControllerImpl <em>Controller</em>}' class.
@@ -631,6 +640,17 @@ public interface ProjectDSLPackage extends EPackage
   EClass getEntity();
 
   /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Entity#getParent <em>Parent</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Parent</em>'.
+   * @see org.xtext.example.mydsl.projectDSL.Entity#getParent()
+   * @see #getEntity()
+   * @generated
+   */
+  EReference getEntity_Parent();
+
+  /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.projectDSL.Entity#getCtrlr <em>Ctrlr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1058,6 +1078,14 @@ public interface ProjectDSLPackage extends EPackage
      * @generated
      */
     EClass ENTITY = eINSTANCE.getEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY__PARENT = eINSTANCE.getEntity_Parent();
 
     /**
      * The meta object literal for the '<em><b>Ctrlr</b></em>' reference feature.

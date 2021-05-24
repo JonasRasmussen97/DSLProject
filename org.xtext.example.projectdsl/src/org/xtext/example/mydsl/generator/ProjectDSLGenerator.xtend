@@ -21,7 +21,6 @@ import org.xtext.example.mydsl.projectDSL.Mult
 import org.xtext.example.mydsl.projectDSL.Div
 import org.xtext.example.mydsl.projectDSL.Num
 import org.xtext.example.mydsl.projectDSL.Param
-import java.util.HashMap
 import java.util.LinkedHashSet
 
 /**
@@ -33,6 +32,18 @@ class ProjectDSLGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val RestAPI modelInstance = resource.allContents.filter(RestAPI).next
+		
+		/* FOR THE GENERICS PART!!
+		resource.allContents.filter(SystemTypes).forEach[
+			if(it instanceof Generic) {
+				
+			} else if(it instanceof RestAPI) {
+				val ent = it.declarations.filter(Entity)
+				generateApp(fsa, ent);
+			}
+		]
+		*/
+		
 		/* 
 		val math = resource.allContents.filter(MathExp).next	
 		var result = math.compute;
@@ -40,6 +51,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		println(result);
 		*/
 		val entities = modelInstance.declarations.filter(Entity)
+		val controllers = modelInstance.declarations.filter(Controller)
 		generateApp(fsa, entities)
 
 		// Generate each of the controller files
@@ -84,9 +96,10 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		«FOR base:controller.base»
 		create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
 			«base.name.toFirstUpper».collection.insertOne(new «base.name.toFirstUpper»({
-				«FOR bp:base.parameters»
+				«FOR bp: (if(base.parent !== null) {base.parent.parameters + base.parameters} else base.parameters)»
 				«bp.name»:req.body.«bp.name.toLowerCase»,
 				«ENDFOR»
+				
 			})
 		);
 		},
@@ -98,10 +111,10 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	        })
 		};
 		},
-	        «ENDFOR»
+	    «ENDFOR»
 		«FOR e : controller.endpoint»
 			«FOR b:controller.base»
-				«FOR p:b.parameters» 
+				«FOR p: (if(b.parent !== null) { b.parameters + b.parent.parameters} else b.parameters)» 
 «««	                Only create the functions in the controller js file that have "make" in the controller. *)
 					«IF p.name == e.endpoint.name»
 						«FOR t:p.type»
@@ -127,7 +140,6 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		}
 	});
 }},'''
-
 }»
 	                        «ENDFOR»
 	                    «ENDIF»
@@ -147,53 +159,54 @@ module.exports = «controller.name»
 		// Controllers
 		«var controllerNames = new LinkedHashSet<String>()»
 		«FOR e : entities»
+		«IF e.ctrlr !== null»
 		«IF controllerNames.add(e.ctrlr.name)»
 		var «e.ctrlr.name.toFirstLower» = requires('./«e.ctrlr.name.toFirstUpper».js');
+		«ENDIF»
 		«ENDIF»
 		«ENDFOR»
 		
 		// Mongoose Schemas
 		
 		«FOR e : entities»
+			«IF e.ctrlr !== null»
 			var «e.name.toFirstLower»Schema = new mongoose.Schema({
-				«FOR p: e.parameters»
+				«FOR p: if(e.parent !== null) {e.parent.parameters + e.parameters} else e.parameters»
 				«p.name»: «p.dataType»,
 				«ENDFOR»
 			}, {
 				collection: '«e.name.toFirstLower»s'
 			});
-			
+		«ENDIF»	
 		«ENDFOR»
 		
 		// Mongoose Models
 		
 		«FOR e : entities»
+		«IF e.ctrlr !== null»
 		var «e.name.toFirstUpper» = mongoose.model('«e.name.toFirstUpper»', «e.name.toFirstLower»Schema);
+		«ENDIF»
 		«ENDFOR»
 		
 		//Endpoints
 		
 		«FOR e : entities»
+		«IF e.ctrlr !== null»
 			// «e.name.toFirstUpper»
-			«FOR p:e.parameters»
-				«FOR t:p.type»
+			«FOR p:e.ctrlr.endpoint»
+				«FOR t:p.endpoint.type»
 					«switch t.toString {
-
-									
-						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
+						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.endpoint.name.toFirstUpper»', function (req, res)  {
+	«e.name.toFirstUpper»Controller.get«p.endpoint.name»(«e.name.toFirstUpper», req, res);
 });'''
 									
-						case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
+						case 'U': '''app.put('/put«e.name.toFirstUpper»«p.endpoint.name.toFirstUpper»', function (req, res)  {
+	«e.name.toFirstUpper»Controller.put«p.endpoint.name»(«e.name.toFirstUpper», req, res);
 });'''
-									
-
-									
 					}»
 				«ENDFOR»
 			«ENDFOR»
-					
+			«ENDIF»		
 		«ENDFOR»
 	'''
 

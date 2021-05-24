@@ -30,7 +30,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 		// We add the names of each of the endpoints.
 		c.endpoint.forEach[
 			if(endpointNames.contains(it.endpoint.name)) {
-				error ("Endpoint already exists!", it, Literals.ENDPOINT__ENDPOINT)
+				error ("Endpoint " + it.endpoint.name + " already exists!", it, Literals.ENDPOINT__ENDPOINT)
 			} else {
 				endpointNames.add(it.endpoint.name)
 			}
@@ -42,7 +42,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 		val entitiesUsed = new ArrayList<String>
 		c.base.forEach[
 			if(entitiesUsed.contains(it.name)){
-				error ("Duplicate entities not allowed!", c, Literals.CONTROLLER__BASE)
+				error ("Entity " + it.name + " is already used by " + c.name, c, Literals.CONTROLLER__BASE)
 			} else {
 				entitiesUsed.add(it.name)
 			}
@@ -52,16 +52,25 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 	@Check
 	def checkDuplicateParameter(Entity e) {
 		val entityParameterNames = new ArrayList<String>
+		if(e.parent !== null) {
+			e.parent.parameters.forEach[
+				if(entityParameterNames.contains(it.name)) {
+					error ("Parameter " + it.name + " already exists!", it, Literals.PARAMETER__NAME)
+				} else {
+					entityParameterNames.add(it.name)
+				}
+			]
+		}
 		e.parameters.forEach[
 			if(entityParameterNames.contains(it.name)) {
-				error ("Parameter already exists!", it, Literals.PARAMETER__NAME)
+				error ("Parameter " + it.name + " already exists!", it, Literals.PARAMETER__NAME)
 			} else {
 				entityParameterNames.add(it.name)
 			}
 		]
 	}
     
-    @Check
+        @Check
     def checkDuplicateCRUD(Parameter parameter){
     	for(var i = 0; i < parameter.type.length; i++){
             for(var j = 0; j < parameter.type.length; j++){
@@ -71,6 +80,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
             }
         }
     }
+        
     
     @Check
     def checkDuplicateEntitiesOrControllers(RestAPI api){
@@ -82,7 +92,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
     		}else if(it.class == ControllerImpl && !controllerNames.contains(it.name)){
     			controllerNames.add(it.name)
     		}else{
-    			error("Already exists", it, null)
+    			error(it.name + " already exists", it, null)
     		}
     	]
     }
