@@ -22,8 +22,9 @@ import org.xtext.example.mydsl.projectDSL.Mult
 import org.xtext.example.mydsl.projectDSL.Div
 import org.xtext.example.mydsl.projectDSL.Num
 import org.xtext.example.mydsl.projectDSL.Param
-import java.util.HashMap
 import java.util.LinkedHashSet
+import org.eclipse.emf.common.util.EList
+import org.xtext.example.mydsl.projectDSL.Endpoint
 
 /**
  * Generates code from your model files on save.
@@ -47,7 +48,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		
 		val controllers = modelInstance.declarations.filter(Controller)
 		
-		generateApp(fsa, entities)
+		generateApp(fsa, entities, controllers)
 		
 		// Generate each of the controller files
 		modelInstance.declarations.filter(Controller).forEach[generateControllers(fsa)]
@@ -76,8 +77,8 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	
 	
 	// Generates the app.js file
-	def generateApp(IFileSystemAccess2 access1, Iterable<Entity> entities) {
-		access1.generateFile('app.js', entities.generateCore);
+	def generateApp(IFileSystemAccess2 access1, Iterable<Entity> entities, Iterable<Controller> controllers) {
+		access1.generateFile('app.js', entities.generateAppJs(controllers));
 	}
 
 	// Generates the controller js files
@@ -90,7 +91,7 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	
 	var «controller.name» = {
 	
-	««« Generating general create/delete functions for each entity
+		««« Generating general create/delete functions for each entity
 	
 		«FOR base:controller.base»
 		// «base.name»
@@ -110,48 +111,88 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	        	})
 			};
 		},
-	    «ENDFOR»
-		«FOR e : controller.endpoint»
-			«FOR b:controller.base»
-				«FOR p:b.parameters» 
-	«««	Only create the functions in the controller js file that has "make" in the controller. *)
-					«IF p.name == e.endpoint.name»
-						«FOR t:p.type»
-						«switch t.toString {
-	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {
-	«p.generateMath»{
-	«b.name.toFirstUpper».collection.findOne({
-		Id: req.params.id
-	}, function(err, result){
-		if(err) {
-				res.send("There was an error!");
-		} else {
-				res.send("Success!");
-	});
-}},'''
-	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {
-	«p.generateMath»{
-	«b.name.toFirstUpper».collection.findOneAndUpdate({
-		«p.name»:req.body.«p.name.toLowerCase»
-	}, {
-		$set: {
-		«p.name»:req.body.value
-		}
-	});
-}},'''
-
-}»
-	                        «ENDFOR»
-	                    «ENDIF»
-	                «ENDFOR»
-	            «ENDFOR»
-	        «ENDFOR»
+		
+		««« Generating functions for entities that extends a parent entity
+			«IF base.parent !== null»
+				«FOR p : base.parent.parameters»
+					«FOR end : controller.endpoint»
+				    	«FOR t : p.type»
+				    		«switch t.toString {
+				    			case 'R': '''		get«p.name»: function(«base.name.toFirstUpper», req, res) {
+			«p.generateMath»{
+				«base.name.toFirstUpper».collection.findOne({
+			Id: req.params.id
+				}, function(err, result){
+				    if(err) {
+				    	res.send("There was an error!");
+				    } else {
+				    	res.send("Success!");
+				   });
+				}
+			},'''
+				    			
+				    			case 'U': '''		put«p.name»: function(«base.name.toFirstUpper», req, res) {
+			«p.generateMath»{
+				«base.name.toFirstUpper».collection.findOneAndUpdate({
+				 «p.name»:req.body.«p.name.toLowerCase»
+				}, {
+				   	$set: {
+				    	«p.name»:req.body.value
+				    }
+				   });
+				}
+			},'''
+				    			
+				    		}»
+				    					
+						«ENDFOR»
+					«ENDFOR»
+				«ENDFOR««»
+			«ENDIF»
+		
+	    «««	Only create the functions in the controller js file that has "make" in the controller.
+	    	«FOR p : base.parameters»
+	    		«FOR end : controller.endpoint»
+	    			«IF p.name == end.endpoint.name»
+	    				«FOR t : p.type»
+	    					«switch t.toString {
+	    						case 'R': '''		get«p.name»: function(«base.name.toFirstUpper», req, res) {
+			«p.generateMath»{
+				«base.name.toFirstUpper».collection.findOne({
+	  	 	Id: req.params.id
+	   		}, function(err, result){
+	    			if(err) {
+	    				res.send("There was an error!");
+	    			} else {
+	    				res.send("Success!");
+	    		});
+			}
+		},'''
+	    			
+	    				case 'U': '''		put«p.name»: function(«base.name.toFirstUpper», req, res) {
+			«p.generateMath»{
+				«base.name.toFirstUpper».collection.findOneAndUpdate({
+	   			 «p.name»:req.body.«p.name.toLowerCase»
+	    		}, {
+	    			$set: {
+	    				«p.name»:req.body.value
+	    			}
+	    		});
+			}
+		},'''
+	    			
+	    					}»
+	    					
+	    				«ENDFOR»
+	    			«ENDIF»
+	    		«ENDFOR»
+	    	«ENDFOR»
+	  «ENDFOR»
 }
 module.exports = «controller.name»
 	'''
 
-	// Appends the entity data to the app.js file
-	def generateCore(Iterable<Entity> entities) '''
+	def generateAppJs (Iterable<Entity> entities, Iterable<Controller> controllers)'''
 		const express = require('express')
 		const app = express()
 		const port = 3000	
@@ -168,6 +209,11 @@ module.exports = «controller.name»
 		
 		«FOR e : entities»
 			var «e.name.toFirstLower»Schema = new mongoose.Schema({
+				«IF e.parent !== null»
+				«FOR p: e.parent.parameters»
+				«p.name»: «p.dataType»,
+				«ENDFOR»
+				«ENDIF»
 				«FOR p: e.parameters»
 				«p.name»: «p.dataType»,
 				«ENDFOR»
@@ -184,40 +230,49 @@ module.exports = «controller.name»
 		«ENDFOR»
 		
 		//Endpoints
-		
-		«FOR e : entities»
-		// «e.name.toFirstUpper»
-		«IF (e.parent !== null) »
-			«FOR p : e.parent.parameters»
-				«FOR t : p.type»
-					«switch t.toString {
-						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.ctrlr.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
+			«FOR c : controllers»
+				«FOR e : c.base»
+			//«e.name.toFirstUpper»
+					«IF (e.parent !== null) »
+				««« Endpoint for parent entity parameters
+						«FOR p : e.parent.parameters»
+							«FOR t : p.type»
+								«switch t.toString {
+									case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.ctrlr.name.toFirstUpper».get«p.name»(«e.name.toFirstUpper», req, res);
 });'''
-				
-						case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.ctrlr.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
+						
+									case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.ctrlr.name.toFirstUpper».put«p.name»(«e.name.toFirstUpper», req, res);
 });'''
-					}»
-				«ENDFOR»
-			«ENDFOR»
-		«ENDIF»
-		
-			«FOR p : e.parameters»
-				«FOR t : p.type»
+								}»
+							«ENDFOR»
+						«ENDFOR»
+					«ENDIF»
+					
+				««« Endpoint for entity parameters
+					«FOR p : e.parameters»
+					«FOR end : c.endpoint»
+						«IF p.name == end.endpoint.name»
+						«FOR t : p.type»
 					«switch t.toString {			
-						case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.ctrlr.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
+								case 'R': '''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.ctrlr.name.toFirstUpper».get«p.name»(«e.name.toFirstUpper», req, res);
+});'''
+																		
+								case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«e.ctrlr.name.toFirstUpper».put«p.name»(«e.name.toFirstUpper», req, res);
 });'''
 									
-						case 'U': '''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«e.ctrlr.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
-});'''				
 					}»
+						«ENDFOR»
+						«ENDIF»
+					«ENDFOR»
 				«ENDFOR»
 			«ENDFOR»
-		«ENDFOR»	
+		«ENDFOR»
 '''
+	
 
 	def display(EObject model) {
 		val res = new XMLResourceImpl

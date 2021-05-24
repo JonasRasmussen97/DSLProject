@@ -93,7 +93,7 @@ public class ProjectDSLSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Controller returns Controller
 	 *
 	 * Constraint:
-	 *     (name=ID base+=[Entity|ID] base+=[Entity|ID]* endpoint+=Endpoint+)
+	 *     (name=ID base+=[Entity|ID] base+=[Entity|ID]* endpoint+=Endpoint*)
 	 */
 	protected void sequence_Controller(ISerializationContext context, Controller semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

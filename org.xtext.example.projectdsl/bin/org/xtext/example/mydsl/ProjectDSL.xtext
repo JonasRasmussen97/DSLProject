@@ -21,7 +21,7 @@ Entity:
 
 // Example of syntax: controller Weather uses Entity1, Entity {make Weather}
 Controller: 
-	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)+ '}'
+	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' (('make' endpoint+=Endpoint)+)? '}'
 ;
 
 // Are used for all the endpoints in controllers e.g., make 'Weather' 

@@ -1266,16 +1266,9 @@ rule__Controller__Group__6__Impl
 	}
 :
 (
-	(
-		{ before(grammarAccess.getControllerAccess().getGroup_6()); }
-		(rule__Controller__Group_6__0)
-		{ after(grammarAccess.getControllerAccess().getGroup_6()); }
-	)
-	(
-		{ before(grammarAccess.getControllerAccess().getGroup_6()); }
-		(rule__Controller__Group_6__0)*
-		{ after(grammarAccess.getControllerAccess().getGroup_6()); }
-	)
+	{ before(grammarAccess.getControllerAccess().getGroup_6()); }
+	(rule__Controller__Group_6__0)*
+	{ after(grammarAccess.getControllerAccess().getGroup_6()); }
 )
 ;
 finally {

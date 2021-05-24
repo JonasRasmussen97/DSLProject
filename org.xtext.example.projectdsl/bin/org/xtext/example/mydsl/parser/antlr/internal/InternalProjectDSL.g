@@ -439,7 +439,7 @@ ruleController returns [EObject current=null]
 					}
 				)
 			)
-		)+
+		)*
 		otherlv_9='}'
 		{
 			newLeafNode(otherlv_9, grammarAccess.getControllerAccess().getRightCurlyBracketKeyword_7());

@@ -217,10 +217,10 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//// Example of syntax: controller Weather uses Entity1, Entity {make Weather}
 		//Controller:
-		//	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)+ '}';
+		//	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)+ '}'
+		//'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'controller'
@@ -262,7 +262,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
 		
-		//('make' endpoint+=Endpoint)+
+		//('make' endpoint+=Endpoint)*
 		public Group getGroup_6() { return cGroup_6; }
 		
 		//'make'
@@ -745,7 +745,7 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//// Example of syntax: controller Weather uses Entity1, Entity {make Weather}
 	//Controller:
-	//	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)+ '}';
+	//	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)* '}';
 	public ControllerElements getControllerAccess() {
 		return pController;
 	}
