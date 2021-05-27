@@ -6,7 +6,6 @@ RestAPI:
 	'system' name=ID declarations+=Declaration*
 ;
 
-// Keeps a track of which elements are allowed to be created.
 Declaration: 
 	Entity | Controller | ParentEntity
 ;
@@ -19,12 +18,10 @@ Entity:
 	'entity' name=ID ('extends' parent=[ParentEntity])? 'requires' ctrlr=[Controller] '{' parameters+=Parameter+ '}'
 ;
 
-// Example of syntax: controller Weather uses Entity1, Entity {make Weather}
 Controller: 
 	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' (('make' endpoint+=Endpoint)+)? '}'
 ;
 
-// Are used for all the endpoints in controllers e.g., make 'Weather' 
 Endpoint:
 	endpoint=[Parameter]
 ;
@@ -32,8 +29,7 @@ Endpoint:
 Parameter:
 	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
 ; 
-
-// Indicates the different CRUD operations. 
+ 
 Type: 
 	'R' | 'U'
 ;

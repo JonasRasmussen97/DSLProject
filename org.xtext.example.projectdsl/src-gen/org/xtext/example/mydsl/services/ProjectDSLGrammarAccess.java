@@ -62,7 +62,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cControllerParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cParentEntityParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
-		//// Keeps a track of which elements are allowed to be created.
 		//Declaration:
 		//	Entity | Controller | ParentEntity;
 		@Override public ParserRule getRule() { return rule; }
@@ -215,7 +214,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cEndpointEndpointParserRuleCall_6_1_0 = (RuleCall)cEndpointAssignment_6_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
-		//// Example of syntax: controller Weather uses Entity1, Entity {make Weather}
 		//Controller:
 		//	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)* '}';
 		@Override public ParserRule getRule() { return rule; }
@@ -283,7 +281,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final CrossReference cEndpointParameterCrossReference_0 = (CrossReference)cEndpointAssignment.eContents().get(0);
 		private final RuleCall cEndpointParameterIDTerminalRuleCall_0_1 = (RuleCall)cEndpointParameterCrossReference_0.eContents().get(1);
 		
-		//// Are used for all the endpoints in controllers e.g., make 'Weather' 
 		//Endpoint:
 		//	endpoint=[Parameter];
 		@Override public ParserRule getRule() { return rule; }
@@ -404,7 +401,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cRKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cUKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
-		//// Indicates the different CRUD operations. 
 		//Type:
 		//	'R' | 'U';
 		@Override public ParserRule getRule() { return rule; }
@@ -712,7 +708,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getRestAPIAccess().getRule();
 	}
 	
-	//// Keeps a track of which elements are allowed to be created.
 	//Declaration:
 	//	Entity | Controller | ParentEntity;
 	public DeclarationElements getDeclarationAccess() {
@@ -743,7 +738,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getEntityAccess().getRule();
 	}
 	
-	//// Example of syntax: controller Weather uses Entity1, Entity {make Weather}
 	//Controller:
 	//	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)* '}';
 	public ControllerElements getControllerAccess() {
@@ -754,7 +748,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getControllerAccess().getRule();
 	}
 	
-	//// Are used for all the endpoints in controllers e.g., make 'Weather' 
 	//Endpoint:
 	//	endpoint=[Parameter];
 	public EndpointElements getEndpointAccess() {
@@ -776,7 +769,6 @@ public class ProjectDSLGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getParameterAccess().getRule();
 	}
 	
-	//// Indicates the different CRUD operations. 
 	//Type:
 	//	'R' | 'U';
 	public TypeElements getTypeAccess() {

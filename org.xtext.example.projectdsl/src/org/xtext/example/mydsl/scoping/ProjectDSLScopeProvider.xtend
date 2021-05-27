@@ -13,19 +13,13 @@ import org.eclipse.xtext.scoping.Scopes
 import org.xtext.example.mydsl.projectDSL.Controller
 import org.xtext.example.mydsl.projectDSL.Entity
 import org.xtext.example.mydsl.projectDSL.Parameter
-
-
-/**
- * This class contains custom scoping description.
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
- * on how and when to use it.
- */
  
 class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
 	
 	override IScope getScope(EObject context, EReference reference) {
         switch(context) {
+        	
+        	// Ensures that the controller knows of the associated entity's parameters.
             case reference == Literals.ENDPOINT__ENDPOINT : {
                 val controller = EcoreUtil2.getContainerOfType(context, Controller);
                 val result = new ArrayList<Parameter>
@@ -33,6 +27,7 @@ class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
                 return Scopes.scopeFor(result);
             }
             
+            // Ensures that an entity can use it's parent's parameters in the math expressions.
             case reference == Literals.PARAM__VALUE : {
             	val entity = EcoreUtil2.getContainerOfType(context, Entity);
                 val result = new ArrayList<Parameter>
@@ -41,7 +36,8 @@ class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
                 return Scopes.scopeFor(result);
             }
             
-        }
+        } 
         super.getScope(context, reference);
     }
 }
+

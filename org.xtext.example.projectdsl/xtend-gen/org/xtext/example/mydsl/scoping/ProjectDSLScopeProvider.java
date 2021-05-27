@@ -17,12 +17,6 @@ import org.xtext.example.mydsl.projectDSL.Parameter;
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage;
 import org.xtext.example.mydsl.scoping.AbstractProjectDSLScopeProvider;
 
-/**
- * This class contains custom scoping description.
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
- * on how and when to use it.
- */
 @SuppressWarnings("all")
 public class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
   @Override
