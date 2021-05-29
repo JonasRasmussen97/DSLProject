@@ -27,7 +27,6 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 	@Check
 	def checkMakeOperations(Controller c) {
 		val endpointNames = new ArrayList<String>
-		// We add the names of each of the endpoints.
 		c.endpoint.forEach[
 			if(endpointNames.contains(it.endpoint.name)) {
 				error ("Endpoint " + it.endpoint.name + " already exists!", it, Literals.ENDPOINT__ENDPOINT)
@@ -36,7 +35,6 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 			}
 		]
 	}
-	
 	@Check
 	def checkDuplicateUsesStatement(Controller c) {
 		val entitiesUsed = new ArrayList<String>
@@ -48,7 +46,6 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 			}
 		]
 	}
-	
 	@Check
 	def checkDuplicateParameter(Entity e) {
 		val entityParameterNames = new ArrayList<String>
@@ -69,7 +66,6 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 			}
 		]
 	}
-    
         @Check
     def checkDuplicateCRUD(Parameter parameter){
     	for(var i = 0; i < parameter.type.length; i++){
@@ -79,9 +75,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
                 }
             }
         }
-    }
-        
-    
+    }    
     @Check
     def checkDuplicateEntitiesOrControllers(RestAPI api){
     	val entityNames = new ArrayList<String>

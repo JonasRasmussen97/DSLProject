@@ -26,9 +26,6 @@ import org.xtext.example.mydsl.projectDSL.Param
 class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
 	
 	override IScope getScope(EObject context, EReference reference) {
-		// println(reference == Literals.ENTITY__PARENT)
-		// println(context.eClass().getName())
-		// println(reference.EContainingClass.name + " : " + context.eClass().name)
         switch(context) {
             Endpoint case reference == Literals.ENDPOINT__ENDPOINT : {
                 val controller = EcoreUtil2.getContainerOfType(context, Controller);
@@ -37,7 +34,7 @@ class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
                 controller.base.forEach[if(it.parent !== null) {result.addAll(it.parent.parameters)}]
                 return Scopes.scopeFor(result);
             }
-       // Scoping rules that allows for cross-referencing between entities in math expressions, such that they can depend on each other.
+       // Scoping rules that allows for cross-referencing between entities.
             Param case reference.EContainingClass == Literals.PARAM : {
             	val entity = EcoreUtil2.getContainerOfType(context, Entity);
             	val result = new ArrayList<Parameter>
@@ -47,12 +44,6 @@ class ProjectDSLScopeProvider extends AbstractProjectDSLScopeProvider {
             	}
             	return Scopes.scopeFor(result);
             }            
-         
-            
-           
-            
-          	
-     
         }
         super.getScope(context, reference);
     }
