@@ -5,44 +5,59 @@ generate projectDSL "http://www.xtext.org/example/mydsl/ProjectDSL"
 RestAPI:
 	'system' name=ID declarations+=Declaration*
 ;
+
+// Keeps a track of which elements are allowed to be created.
 Declaration: 
 	Entity | Controller 
 ;
+
 Entity: 
 	'entity' name=ID ('extends' parent=[Entity])? ('requires' ctrlr=[Controller])? '{' parameters+=Parameter+ '}'
 ;
+
+// Example of syntax: controller Weather uses Entity1, Entity {make Weather}
 Controller: 
 	'controller' name=ID 'uses' base+=[Entity] (',' base+=[Entity])* '{' ('make' endpoint+=Endpoint)+ '}'
-; 
+;
+
+// Are used for all the endpoints in controllers e.g., make 'Weather' 
 Endpoint:
 	endpoint=[Parameter]
 ;
+
 Parameter: 
 	name=ID '=' dataType=ID ':' type+=Type+ ('require' left=MathExp op=('>=' | '<=' | '>' | '<' | '==' | '=!') right=MathExp)?
-;  
+; 
+
+// Indicates the different CRUD operations. 
 Type: 
 	'R' | 'U'
 ;
+
 MathExp:
 	exp=Exp
 ;
+
 Exp returns Expression:  
 	MulOrDiv (('+' {Plus.left=current}| '-' {Minus.left=current}) right=MulOrDiv)*	
 ;
+
 MulOrDiv returns Expression:  
 	Primary (('*' {Mult.left=current} | '/' {Div.left=current}) right=Primary)*
 ;
+
 Primary returns Expression:
 	Number | Parenthesis | Param
 ;
+
 Param:
 	value=[Parameter]
 ;
+
 Parenthesis returns Expression:
 	'(' Exp ')'
 ;
+
 Number returns Expression:
 	{Num} value=INT
 ;
-
-
