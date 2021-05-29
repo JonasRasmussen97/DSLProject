@@ -8,9 +8,6 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.mydsl.projectDSL.RestAPI
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
-import org.eclipse.emf.ecore.util.EcoreUtil
 import org.xtext.example.mydsl.projectDSL.Entity
 import org.xtext.example.mydsl.projectDSL.Controller
 import org.xtext.example.mydsl.projectDSL.Parameter
@@ -78,36 +75,40 @@ class ProjectDSLGenerator extends AbstractGenerator {
 	}
 
 	def generateController(Controller controller) '''
-	var mongoose = require('mongoose');
-	var «controller.name» = {
-		«FOR base:controller.base»
-		create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
-			«base.name.toFirstUpper».collection.insertOne(new «base.name.toFirstUpper»({
-				«FOR bp:base.parameters»
-				«bp.name»:req.body.«bp.name.toLowerCase»,
-				«ENDFOR»
-			})
-		);
-		},
+var mongoose = require('mongoose');
 
-		delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
-	        «base.name.toFirstUpper».collection.deleteOne(req.body.id, function(err, result){
-				if(err) { 
-					res.send("Error!")
-				} else { 
-					res.send("Success!") 
-				}
-			})
-		},
-        «ENDFOR»
-		«FOR e : controller.endpoint»
-			«FOR b:controller.base»
-				«FOR p:b.parameters» 
-«««	                Only create the functions in the controller js file that have "make" in the controller. *)
-					«IF p.name == e.endpoint.name»
-						«FOR t:p.type»
-						«switch t.toString {
-	                        case 'R': '''get«p.name»: function(«b.name.toFirstUpper», req, res) {
+var «controller.name» = {
+«FOR base:controller.base»
+create«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
+	«base.name.toFirstUpper».collection.insertOne(new «base.name.toFirstUpper»({
+		«FOR bp:base.parameters»
+		«bp.name»:req.body.«bp.name.toLowerCase»,
+		«ENDFOR»
+		})
+	);
+},
+
+delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
+    «base.name.toFirstUpper».collection.deleteOne(req.body.id, function(err, result){
+		if(err) { 
+			res.send("Error!")
+		} else { 
+			res.send("Success!") 
+		}
+	})
+},
+
+«ENDFOR»
+«FOR e : controller.endpoint»
+	«FOR b:controller.base»
+		«FOR p:b.parameters» 
+«««	        Only create the functions in the controller js file that have "make" in the controller. 
+			«IF p.name == e.endpoint.name»
+				«FOR t:p.type»
+				«switch t.toString {
+                    case 'R': 
+'''
+get«p.name»: function(«b.name.toFirstUpper», req, res) {
 	«p.generateMath»{
 	«b.name.toFirstUpper».collection.findOne({
 		Id: req.params.id
@@ -117,8 +118,12 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		} else {
 				res.send("Success!");
 	});
-}},'''
-	                        case 'U': '''put«p.name»: function(«b.name.toFirstUpper», req, res) {
+}},
+
+'''
+	                        case 'U': 
+'''
+put«p.name»: function(«b.name.toFirstUpper», req, res) {
 	«p.generateMath»{
 	«b.name.toFirstUpper».collection.findOneAndUpdate({
 		«p.name»:req.body.«p.name.toLowerCase»
@@ -127,14 +132,16 @@ class ProjectDSLGenerator extends AbstractGenerator {
 		«p.name»:req.body.value
 		}
 	});
-}},'''
+}},
+
+'''
 
 }»
-	                        «ENDFOR»
-	                    «ENDIF»
-	                «ENDFOR»
-	            «ENDFOR»
-	        «ENDFOR»
+                «ENDFOR»
+            «ENDIF»
+        «ENDFOR»
+    «ENDFOR»
+«ENDFOR»
 }
 module.exports = «controller.name»
 	'''
@@ -184,23 +191,31 @@ module.exports = «controller.name»
 		«ENDFOR»
 		
 		//Endpoints
-		«FOR e : entities»
-			// «e.name.toFirstUpper»
-			«FOR p:e.parameters»
-				«FOR t:p.type»
-					«switch t.toString {
-						case 'R': 
-			'''app.get('/get«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-				«e.name.toFirstUpper»Controller.get«p.name»(«e.name.toFirstUpper», req, res);
-			});'''		
-									case 'U': 
-			'''app.put('/put«e.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-				«e.name.toFirstUpper»Controller.put«p.name»(«e.name.toFirstUpper», req, res);
-			});'''	
-					}»
+				«FOR entity : entities»
+				// «entity.name.toFirstUpper»
+					«FOR base : entity.ctrlr.base»
+						«FOR p : base.parameters» 
+							«FOR endpoint : entity.ctrlr.endpoint»
+								«IF p.name == endpoint.endpoint.name»
+									«FOR t:p.type»
+							«switch t.toString {
+								case 'R': 
+'''app.get('/get«entity.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«entity.name.toFirstUpper»Controller.get«p.name»(«entity.name.toFirstUpper», req, res);
+});
+'''		
+								case 'U': 
+'''app.put('/put«entity.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
+	«entity.name.toFirstUpper»Controller.put«p.name»(«entity.name.toFirstUpper», req, res);
+});
+'''	
+							}»
+									«ENDFOR»
+								«ENDIF»
+							«ENDFOR»
+						«ENDFOR»
+					«ENDFOR»
 				«ENDFOR»
-			«ENDFOR»
-		«ENDFOR»
 	'''
 
 }

@@ -6,7 +6,6 @@ package org.xtext.example.mydsl.scoping
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.xtext.example.mydsl.projectDSL.Endpoint
 import org.xtext.example.mydsl.projectDSL.ProjectDSLPackage.Literals
 import org.eclipse.xtext.EcoreUtil2
 import org.xtext.example.mydsl.projectDSL.Controller
@@ -16,7 +15,6 @@ import org.eclipse.xtext.scoping.Scopes
 import org.xtext.example.mydsl.projectDSL.Entity
 import java.util.HashSet
 import java.util.Collections
-import java.awt.List
 
 /**
  * This class contains custom scoping description.
