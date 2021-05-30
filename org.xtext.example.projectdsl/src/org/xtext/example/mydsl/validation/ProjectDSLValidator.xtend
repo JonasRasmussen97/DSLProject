@@ -26,7 +26,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 		// We add the names of each of the endpoints.
 		c.endpoint.forEach[
 			if(endpointNames.contains(it.endpoint.name)) {
-				error ("Endpoint already exists!", it, Literals.ENDPOINT__ENDPOINT)
+				error (it + " has already been created as an endpoint in this controller, only one can exist", it, Literals.ENDPOINT__ENDPOINT)
 			} else {
 				endpointNames.add(it.endpoint.name)
 			}
@@ -38,7 +38,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 		val entitiesUsed = new ArrayList<String>
 		c.base.forEach[
 			if(entitiesUsed.contains(it.name)){
-				error ("Duplicate entities not allowed!", c, Literals.CONTROLLER__BASE)
+				error (it + " has already been mentioned after the uses, duplication is not allowed!", c, Literals.CONTROLLER__BASE)
 			} else {
 				entitiesUsed.add(it.name)
 			}
@@ -50,7 +50,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
 		val entityParameterNames = new ArrayList<String>
 		e.parameters.forEach[
 			if(entityParameterNames.contains(it.name)) {
-				error ("Parameter already exists!", it, Literals.PARAMETER__NAME)
+				error (it + " already exists!", it, Literals.PARAMETER__NAME)
 			} else {
 				entityParameterNames.add(it.name)
 			}
@@ -62,7 +62,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
     	for(var i = 0; i < parameter.type.length; i++){
             for(var j = 0; j < parameter.type.length; j++){
                 if(i != j && parameter.type.get(i) == parameter.type.get(j)){
-                    error("Parameters contains duplicates of " + parameter.type.get(i), parameter, Literals.PARAMETER__NAME)
+                    error("Parameters already contains the " + parameter.type.get(i) + " operation, duplication is not allowed!", parameter, Literals.PARAMETER__NAME)
                 }
             }
         }
@@ -78,7 +78,7 @@ class ProjectDSLValidator extends AbstractProjectDSLValidator {
     		}else if(it.class == ControllerImpl && !controllerNames.contains(it.name)){
     			controllerNames.add(it.name)
     		}else{
-    			error("Already exists", it, null)
+    			error(it + " already exists, duplication is not allowed!", it, null)
     		}
     	]
     }
