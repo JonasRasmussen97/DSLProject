@@ -117,6 +117,7 @@ get«p.name»: function(«b.name.toFirstUpper», req, res) {
 				res.send("There was an error!");
 		} else {
 				res.send("Success!");
+		}
 	});
 }},
 

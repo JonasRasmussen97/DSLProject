@@ -285,6 +285,9 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_1.append("\t\t\t\t");
                               _builder_1.append("res.send(\"Success!\");");
                               _builder_1.newLine();
+                              _builder_1.append("\t\t");
+                              _builder_1.append("}");
+                              _builder_1.newLine();
                               _builder_1.append("\t");
                               _builder_1.append("});");
                               _builder_1.newLine();
