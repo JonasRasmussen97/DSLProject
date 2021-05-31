@@ -191,31 +191,31 @@ module.exports = «controller.name»
 		«ENDFOR»
 		
 		//Endpoints
-				«FOR entity : entities»
-				// «entity.name.toFirstUpper»
-					«FOR base : entity.ctrlr.base»
-						«FOR p : base.parameters» 
-							«FOR endpoint : entity.ctrlr.endpoint»
-								«IF p.name == endpoint.endpoint.name»
-									«FOR t:p.type»
-							«switch t.toString {
-								case 'R': 
+		«FOR entity : entities»
+			// «entity.name.toFirstUpper»
+			«FOR base : entity.ctrlr.base»
+				«FOR p : base.parameters» 
+					«FOR endpoint : entity.ctrlr.endpoint»
+						«IF p.name == endpoint.endpoint.name»
+							«FOR t:p.type»
+								«switch t.toString {
+									case 'R': 
 '''app.get('/get«entity.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
 	«entity.name.toFirstUpper»Controller.get«p.name»(«entity.name.toFirstUpper», req, res);
 });
 '''		
-								case 'U': 
+									case 'U': 
 '''app.put('/put«entity.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
 	«entity.name.toFirstUpper»Controller.put«p.name»(«entity.name.toFirstUpper», req, res);
 });
 '''	
-							}»
-									«ENDFOR»
-								«ENDIF»
+								}»
 							«ENDFOR»
-						«ENDFOR»
+						«ENDIF»
 					«ENDFOR»
 				«ENDFOR»
+			«ENDFOR»
+		«ENDFOR»
 	'''
 
 }

@@ -497,10 +497,9 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     _builder.newLine();
     {
       for(final Entity entity : entities) {
-        _builder.append("\t\t");
         _builder.append("// ");
         String _firstUpper_3 = StringExtensions.toFirstUpper(entity.getName());
-        _builder.append(_firstUpper_3, "\t\t");
+        _builder.append(_firstUpper_3);
         _builder.newLineIfNotEmpty();
         {
           EList<Entity> _base = entity.getCtrlr().getBase();
