@@ -31,7 +31,8 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
     final Consumer<Endpoint> _function = (Endpoint it) -> {
       boolean _contains = endpointNames.contains(it.getEndpoint().getName());
       if (_contains) {
-        String _plus = (it + " has already been created as an endpoint in this controller, only one can exist");
+        String _name = it.getEndpoint().getName();
+        String _plus = (_name + " has already been created as an endpoint in this controller, only one can exist");
         this.error(_plus, it, ProjectDSLPackage.Literals.ENDPOINT__ENDPOINT);
       } else {
         endpointNames.add(it.getEndpoint().getName());
@@ -46,7 +47,8 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
     final Consumer<Entity> _function = (Entity it) -> {
       boolean _contains = entitiesUsed.contains(it.getName());
       if (_contains) {
-        String _plus = (it + " has already been mentioned after the uses, duplication is not allowed!");
+        String _name = it.getName();
+        String _plus = (_name + " has already been mentioned after the uses, duplication is not allowed!");
         this.error(_plus, c, ProjectDSLPackage.Literals.CONTROLLER__BASE);
       } else {
         entitiesUsed.add(it.getName());
@@ -61,7 +63,8 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
     final Consumer<Parameter> _function = (Parameter it) -> {
       boolean _contains = entityParameterNames.contains(it.getName());
       if (_contains) {
-        String _plus = (it + " already exists!");
+        String _name = it.getName();
+        String _plus = (_name + " already exists! Duplication of parameters is not allowed");
         this.error(_plus, it, ProjectDSLPackage.Literals.PARAMETER__NAME);
       } else {
         entityParameterNames.add(it.getName());
@@ -76,7 +79,7 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
       for (int j = 0; (j < ((Object[])Conversions.unwrapArray(parameter.getType(), Object.class)).length); j++) {
         if (((i != j) && Objects.equal(parameter.getType().get(i), parameter.getType().get(j)))) {
           String _get = parameter.getType().get(i);
-          String _plus = ("Parameters already contains the " + _get);
+          String _plus = ("Parameters can only contain one of " + _get);
           String _plus_1 = (_plus + " operation, duplication is not allowed!");
           this.error(_plus_1, parameter, ProjectDSLPackage.Literals.PARAMETER__NAME);
         }
@@ -95,7 +98,8 @@ public class ProjectDSLValidator extends AbstractProjectDSLValidator {
         if ((Objects.equal(it.getClass(), ControllerImpl.class) && (!controllerNames.contains(it.getName())))) {
           controllerNames.add(it.getName());
         } else {
-          String _plus = (it + " already exists, duplication is not allowed!");
+          String _name = it.getName();
+          String _plus = (_name + " already exists, duplication is not allowed!");
           this.error(_plus, it, null);
         }
       }

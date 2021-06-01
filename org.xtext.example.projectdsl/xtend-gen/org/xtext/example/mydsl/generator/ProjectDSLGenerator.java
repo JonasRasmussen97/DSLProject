@@ -250,11 +250,11 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                             case "R":
                               StringConcatenation _builder_1 = new StringConcatenation();
                               _builder_1.append("get");
-                              String _name_4 = p.getName();
-                              _builder_1.append(_name_4);
-                              _builder_1.append(": function(");
-                              String _firstUpper_7 = StringExtensions.toFirstUpper(b.getName());
+                              String _firstUpper_7 = StringExtensions.toFirstUpper(p.getName());
                               _builder_1.append(_firstUpper_7);
+                              _builder_1.append(": function(");
+                              String _firstUpper_8 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_1.append(_firstUpper_8);
                               _builder_1.append(", req, res) {");
                               _builder_1.newLineIfNotEmpty();
                               _builder_1.append("\t");
@@ -263,8 +263,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_1.append("{");
                               _builder_1.newLineIfNotEmpty();
                               _builder_1.append("\t");
-                              String _firstUpper_8 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_1.append(_firstUpper_8, "\t");
+                              String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_1.append(_firstUpper_9, "\t");
                               _builder_1.append(".collection.findOne({");
                               _builder_1.newLineIfNotEmpty();
                               _builder_1.append("\t\t");
@@ -276,13 +276,13 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_1.append("\t\t");
                               _builder_1.append("if(err) {");
                               _builder_1.newLine();
-                              _builder_1.append("\t\t\t\t");
+                              _builder_1.append("\t\t\t");
                               _builder_1.append("res.send(\"There was an error!\");");
                               _builder_1.newLine();
                               _builder_1.append("\t\t");
                               _builder_1.append("} else {");
                               _builder_1.newLine();
-                              _builder_1.append("\t\t\t\t");
+                              _builder_1.append("\t\t\t");
                               _builder_1.append("res.send(\"Success!\");");
                               _builder_1.newLine();
                               _builder_1.append("\t\t");
@@ -299,11 +299,11 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                             case "U":
                               StringConcatenation _builder_2 = new StringConcatenation();
                               _builder_2.append("put");
-                              String _name_5 = p.getName();
-                              _builder_2.append(_name_5);
+                              String _firstUpper_10 = StringExtensions.toFirstUpper(p.getName());
+                              _builder_2.append(_firstUpper_10);
                               _builder_2.append(": function(");
-                              String _firstUpper_9 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_2.append(_firstUpper_9);
+                              String _firstUpper_11 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_2.append(_firstUpper_11);
                               _builder_2.append(", req, res) {");
                               _builder_2.newLineIfNotEmpty();
                               _builder_2.append("\t");
@@ -312,13 +312,13 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_2.append("{");
                               _builder_2.newLineIfNotEmpty();
                               _builder_2.append("\t");
-                              String _firstUpper_10 = StringExtensions.toFirstUpper(b.getName());
-                              _builder_2.append(_firstUpper_10, "\t");
+                              String _firstUpper_12 = StringExtensions.toFirstUpper(b.getName());
+                              _builder_2.append(_firstUpper_12, "\t");
                               _builder_2.append(".collection.findOneAndUpdate({");
                               _builder_2.newLineIfNotEmpty();
                               _builder_2.append("\t\t");
-                              String _name_6 = p.getName();
-                              _builder_2.append(_name_6, "\t\t");
+                              String _name_4 = p.getName();
+                              _builder_2.append(_name_4, "\t\t");
                               _builder_2.append(":req.body.");
                               String _lowerCase_1 = p.getName().toLowerCase();
                               _builder_2.append(_lowerCase_1, "\t\t");
@@ -330,8 +330,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                               _builder_2.append("$set: {");
                               _builder_2.newLine();
                               _builder_2.append("\t\t");
-                              String _name_7 = p.getName();
-                              _builder_2.append(_name_7, "\t\t");
+                              String _name_5 = p.getName();
+                              _builder_2.append(_name_5, "\t\t");
                               _builder_2.append(":req.body.value");
                               _builder_2.newLineIfNotEmpty();
                               _builder_2.append("\t\t");
@@ -362,8 +362,8 @@ public class ProjectDSLGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("module.exports = ");
-    String _name_8 = controller.getName();
-    _builder.append(_name_8);
+    String _name_6 = controller.getName();
+    _builder.append(_name_6);
     _builder.newLineIfNotEmpty();
     return _builder;
   }

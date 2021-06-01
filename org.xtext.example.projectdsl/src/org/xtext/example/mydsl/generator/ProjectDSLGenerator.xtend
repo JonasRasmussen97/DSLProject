@@ -29,12 +29,6 @@ class ProjectDSLGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val RestAPI modelInstance = resource.allContents.filter(RestAPI).next
-		/* 
-		val math = resource.allContents.filter(MathExp).next	
-		var result = math.compute;
-		System.out.println("Math expression = "+math.displayMath)
-		println(result);
-		*/
 		val entities = modelInstance.declarations.filter(Entity)
 		generateApp(fsa, entities)
 
@@ -108,15 +102,15 @@ delete«base.name.toFirstUpper»: function(«base.name.toFirstUpper», req, res) {
 				«switch t.toString {
                     case 'R': 
 '''
-get«p.name»: function(«b.name.toFirstUpper», req, res) {
+get«p.name.toFirstUpper»: function(«b.name.toFirstUpper», req, res) {
 	«p.generateMath»{
 	«b.name.toFirstUpper».collection.findOne({
 		Id: req.params.id
 	}, function(err, result){
 		if(err) {
-				res.send("There was an error!");
+			res.send("There was an error!");
 		} else {
-				res.send("Success!");
+			res.send("Success!");
 		}
 	});
 }},
@@ -124,7 +118,7 @@ get«p.name»: function(«b.name.toFirstUpper», req, res) {
 '''
 	                        case 'U': 
 '''
-put«p.name»: function(«b.name.toFirstUpper», req, res) {
+put«p.name.toFirstUpper»: function(«b.name.toFirstUpper», req, res) {
 	«p.generateMath»{
 	«b.name.toFirstUpper».collection.findOneAndUpdate({
 		«p.name»:req.body.«p.name.toLowerCase»
