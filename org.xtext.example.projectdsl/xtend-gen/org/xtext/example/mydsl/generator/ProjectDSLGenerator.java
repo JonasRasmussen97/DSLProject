@@ -535,7 +535,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                                   _builder_1.append("\', function (req, res)  {");
                                   _builder_1.newLineIfNotEmpty();
                                   _builder_1.append("\t");
-                                  String _firstUpper_6 = StringExtensions.toFirstUpper(entity.getName());
+                                  String _firstUpper_6 = StringExtensions.toFirstUpper(entity.getCtrlr().getName());
                                   _builder_1.append(_firstUpper_6, "\t");
                                   _builder_1.append("Controller.get");
                                   String _name_4 = p_2.getName();
@@ -559,7 +559,7 @@ public class ProjectDSLGenerator extends AbstractGenerator {
                                   _builder_2.append("\', function (req, res)  {");
                                   _builder_2.newLineIfNotEmpty();
                                   _builder_2.append("\t");
-                                  String _firstUpper_10 = StringExtensions.toFirstUpper(entity.getName());
+                                  String _firstUpper_10 = StringExtensions.toFirstUpper(entity.getCtrlr().getName());
                                   _builder_2.append(_firstUpper_10, "\t");
                                   _builder_2.append("Controller.put");
                                   String _name_5 = p_2.getName();

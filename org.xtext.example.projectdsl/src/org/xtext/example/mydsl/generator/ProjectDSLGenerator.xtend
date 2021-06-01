@@ -196,12 +196,12 @@ module.exports = «controller.name»
 								«switch t.toString {
 									case 'R': 
 '''app.get('/get«entity.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«entity.name.toFirstUpper»Controller.get«p.name»(«entity.name.toFirstUpper», req, res);
+	«entity.ctrlr.name.toFirstUpper»Controller.get«p.name»(«entity.name.toFirstUpper», req, res);
 });
 '''		
 									case 'U': 
 '''app.put('/put«entity.name.toFirstUpper»«p.name.toFirstUpper»', function (req, res)  {
-	«entity.name.toFirstUpper»Controller.put«p.name»(«entity.name.toFirstUpper», req, res);
+	«entity.ctrlr.name.toFirstUpper»Controller.put«p.name»(«entity.name.toFirstUpper», req, res);
 });
 '''	
 								}»
